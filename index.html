@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velixia — Secure Access</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#F2F2F2;--bg-alt:#FFFFFF;--bg-warm:#F5EFE6;
+  --text:#1C1C1C;--text-muted:#6B7280;--border:#E5E4E2;
+  --gold:#C6A75E;--gold-dim:rgba(198,167,94,0.12);--gold-border:rgba(198,167,94,0.28);
+  --gold-dark:#A8892A;--white:#FFFFFF;--charcoal:#1C1C1C;
+  --green:#2E7D5E;--green-dim:rgba(46,125,94,0.1);--red:#C0392B;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;overflow-x:hidden;cursor:none;user-select:none;-webkit-user-select:none;}
+
+/* WATERMARK */
+.wm-overlay{position:fixed;inset:0;pointer-events:none;z-index:9990;overflow:hidden;}
+.wm-overlay::before{
+  content:'Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential';
+  position:absolute;width:200%;top:0;left:-50%;
+  font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:4px;text-transform:uppercase;color:rgba(198,167,94,0.06);
+  transform:rotate(-35deg);line-height:6;white-space:pre-wrap;word-break:break-all;
+}
+
+/* CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.1s ease;}
+.cursor-ring{position:fixed;width:30px;height:30px;border:1px solid rgba(198,167,94,0.5);border-radius:50%;pointer-events:none;z-index:9998;transition:all 0.15s ease;}
+
+/* ── GATE SCREEN ─────────────────────────────────────────── */
+#gateScreen{
+  position:fixed;inset:0;z-index:8000;
+  background:linear-gradient(160deg,var(--bg) 0%,#EDE0C8 100%);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;padding:40px;
+}
+.gate-geo{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.gate-ring{position:absolute;border-radius:50%;border:1px solid var(--gold-border);top:50%;left:50%;}
+.gate-ring-1{width:700px;height:700px;transform:translate(-50%,-50%);animation:spinSlow 60s linear infinite;}
+.gate-ring-2{width:480px;height:480px;transform:translate(-50%,-50%);border-color:rgba(198,167,94,0.12);animation:spinSlow 40s linear infinite reverse;}
+@keyframes spinSlow{from{transform:translate(-50%,-50%) rotate(0deg);}to{transform:translate(-50%,-50%) rotate(360deg);}}
+.gate-corner{position:absolute;width:50px;height:50px;border-color:var(--gold-border);border-style:solid;}
+.gate-corner-tl{top:40px;left:40px;border-width:1px 0 0 1px;}
+.gate-corner-tr{top:40px;right:40px;border-width:1px 1px 0 0;}
+.gate-corner-bl{bottom:40px;left:40px;border-width:0 0 1px 1px;}
+.gate-corner-br{bottom:40px;right:40px;border-width:0 1px 1px 0;}
+
+.gate-box{
+  background:var(--bg-alt);border:1px solid var(--gold-border);
+  padding:60px 56px;max-width:500px;width:100%;text-align:center;
+  position:relative;z-index:2;
+  box-shadow:0 40px 80px rgba(28,28,28,0.1);
+  clip-path:polygon(20px 0%,100% 0%,100% calc(100% - 20px),calc(100% - 20px) 100%,0% 100%,0% 20px);
+  animation:fadeUp 0.8s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+.gate-logo{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:var(--text);margin-bottom:6px;}
+.gate-logo .x{color:var(--gold);}
+.gate-tagline{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-muted);letter-spacing:2px;margin-bottom:40px;}
+.gate-divider{width:40px;height:1px;background:var(--gold);margin:0 auto 36px;}
+.gate-label{font-size:9px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;text-align:left;}
+.gate-input{
+  width:100%;background:var(--bg);border:1px solid var(--border);
+  padding:16px 20px;font-family:'Montserrat',sans-serif;font-size:14px;
+  color:var(--text);outline:none;letter-spacing:3px;text-transform:uppercase;
+  transition:border-color 0.3s;text-align:center;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.gate-input:focus{border-color:var(--gold-border);}
+.gate-input::placeholder{color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;font-size:11px;}
+.gate-btn{
+  width:100%;margin-top:16px;
+  background:var(--gold);border:none;
+  padding:18px;font-family:'Montserrat',sans-serif;
+  font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--white);cursor:pointer;transition:all 0.3s;
+  clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);
+}
+.gate-btn:hover{background:var(--gold-dark);transform:translateY(-1px);box-shadow:0 10px 30px rgba(198,167,94,0.25);}
+.gate-error{margin-top:14px;font-size:11px;font-weight:500;letter-spacing:1px;color:var(--red);opacity:0;transition:opacity 0.3s;}
+.gate-error.show{opacity:1;}
+.gate-note{margin-top:28px;font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-muted);line-height:1.6;}
+.gate-note strong{color:var(--gold);font-style:normal;}
+
+/* Shake animation */
+@keyframes shake{0%,100%{transform:translateX(0);}20%,60%{transform:translateX(-6px);}40%,80%{transform:translateX(6px);}}
+.shake{animation:shake 0.4s ease;}
+
+/* EXPIRED / BLOCKED screens */
+#expiredScreen,#blockedScreen{
+  position:fixed;inset:0;z-index:8500;
+  background:linear-gradient(160deg,var(--bg) 0%,#EDE0C8 100%);
+  display:none;align-items:center;justify-content:center;
+  flex-direction:column;padding:40px;text-align:center;
+}
+.blocked-logo{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--text);margin-bottom:30px;}
+.blocked-logo .x{color:var(--gold);}
+.blocked-icon{font-size:48px;margin-bottom:20px;}
+.blocked-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--text);margin-bottom:14px;}
+.blocked-desc{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--text-muted);max-width:420px;line-height:1.6;}
+
+/* ── MAIN CONTENT (hidden until access granted) ─────────── */
+#mainContent{display:none;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:24px 60px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(242,242,242,0.97) 0%,rgba(242,242,242,0) 100%);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color 0.3s;}
+nav.scrolled{border-color:var(--border);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--text);text-decoration:none;}
+.nav-logo .x{color:var(--gold);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--white);background:var(--gold);padding:13px 28px;text-decoration:none;transition:all 0.3s;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);}
+.nav-cta:hover{background:var(--gold-dark);transform:translateY(-2px);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:140px 60px 100px;background:linear-gradient(160deg,var(--bg) 0%,#EDE0C8 100%);}
+.hero-geo{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.geo-ring{position:absolute;border-radius:50%;border:1px solid var(--gold-border);top:50%;left:50%;}
+.geo-ring-1{width:900px;height:900px;transform:translate(-50%,-50%);animation:spinSlow 60s linear infinite;}
+.geo-ring-2{width:620px;height:620px;transform:translate(-50%,-50%);border-color:rgba(198,167,94,0.12);animation:spinSlow 40s linear infinite reverse;}
+.geo-ring-3{width:380px;height:380px;transform:translate(-50%,-50%);border-color:rgba(198,167,94,0.07);animation:spinSlow 25s linear infinite;}
+.geo-corner{position:absolute;width:60px;height:60px;border-color:var(--gold-border);border-style:solid;}
+.geo-corner-tl{top:80px;left:60px;border-width:1px 0 0 1px;}.geo-corner-tr{top:80px;right:60px;border-width:1px 1px 0 0;}
+.geo-corner-bl{bottom:60px;left:60px;border-width:0 0 1px 1px;}.geo-corner-br{bottom:60px;right:60px;border-width:0 1px 1px 0;}
+.hero-glow{position:absolute;width:600px;height:600px;background:radial-gradient(ellipse,rgba(198,167,94,0.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.hero-content{text-align:center;position:relative;z-index:2;max-width:960px;}
+.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:6px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:36px;opacity:0;animation:fadeUp 1s ease 0.3s both;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:36px;height:1px;background:var(--gold);}
+.hero-headline{font-family:'Playfair Display',serif;font-size:clamp(42px,7vw,86px);font-weight:700;line-height:1.05;color:var(--text);margin-bottom:28px;opacity:0;animation:fadeUp 1s ease 0.5s both;}
+.hero-headline em{font-style:italic;color:var(--gold);}
+.hero-headline .sub{display:block;font-weight:400;font-style:italic;font-size:0.52em;color:var(--text-muted);margin-top:12px;font-family:'Cormorant Garamond',serif;}
+.hero-desc{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.2vw,22px);font-weight:300;font-style:italic;color:var(--text-muted);line-height:1.65;max-width:640px;margin:0 auto 52px;opacity:0;animation:fadeUp 1s ease 0.7s both;}
+.hero-actions{display:flex;gap:20px;justify-content:center;align-items:center;opacity:0;animation:fadeUp 1s ease 0.9s both;}
+.btn-primary{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--white);background:var(--gold);padding:18px 48px;text-decoration:none;clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);transition:all 0.35s;position:relative;overflow:hidden;display:inline-block;}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,0.15) 50%,transparent 60%);transform:translateX(-100%);transition:transform 0.6s;}
+.btn-primary:hover::before{transform:translateX(100%);}
+.btn-primary:hover{background:var(--gold-dark);transform:translateY(-2px);box-shadow:0 20px 40px rgba(198,167,94,0.22);}
+.btn-ghost{font-size:10px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:12px;transition:gap 0.3s;}
+.btn-ghost::after{content:'→';font-size:15px;}
+.btn-ghost:hover{gap:20px;}
+.hero-stats{display:flex;justify-content:center;gap:60px;margin-top:80px;padding-top:60px;border-top:1px solid var(--border);opacity:0;animation:fadeUp 1s ease 1.1s both;}
+.stat-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--gold);line-height:1;}
+.stat-label{font-size:9px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-top:8px;}
+
+/* SECTIONS */
+section{padding:110px 60px;position:relative;}
+.section-eyebrow{font-size:9px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+.section-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,54px);font-weight:700;color:var(--text);line-height:1.1;margin-bottom:18px;}
+.section-title em{font-style:italic;color:var(--gold);}
+.section-sub{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;font-style:italic;color:var(--text-muted);line-height:1.65;max-width:520px;}
+
+/* SKILLS */
+.skills-section{background:var(--bg-alt);border-top:1px solid var(--border);}
+.skills-intro{max-width:1200px;margin:0 auto 70px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1200px;margin:0 auto;}
+.skill-card{background:var(--bg);border:1px solid transparent;padding:36px 30px;transition:all 0.4s;cursor:default;position:relative;overflow:hidden;}
+.skill-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform 0.4s;}
+.skill-card:hover{border-color:var(--gold-border);background:var(--gold-dim);}
+.skill-card:hover::after{transform:scaleX(1);}
+.skill-icon{font-size:22px;margin-bottom:18px;}
+.skill-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--text);margin-bottom:10px;}
+.skill-desc{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.7;}
+.skill-vs{margin-top:14px;padding:10px 14px;background:var(--gold-dim);border-left:2px solid var(--gold);}
+.skill-vs-label{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.skill-vs-text{font-size:11px;color:var(--text-muted);line-height:1.5;}
+
+/* DEMO */
+.demo-section{background:var(--bg);border-top:1px solid var(--border);}
+.demo-layout{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center;}
+.phone-wrap{display:flex;justify-content:center;align-items:center;position:relative;}
+.phone-glow{position:absolute;width:400px;height:400px;background:radial-gradient(ellipse,rgba(198,167,94,0.1) 0%,transparent 70%);pointer-events:none;}
+.phone{width:320px;background:var(--bg);border:1px solid var(--border);box-shadow:0 40px 80px rgba(28,28,28,0.1);overflow:hidden;position:relative;clip-path:polygon(16px 0%,100% 0%,100% calc(100% - 16px),calc(100% - 16px) 100%,0% 100%,0% 16px);}
+.phone-header{background:var(--gold);padding:16px 20px;display:flex;align-items:center;gap:12px;}
+.phone-status-dot{width:8px;height:8px;border-radius:50%;background:var(--white);opacity:0.8;animation:pulseDot 2s infinite;}
+@keyframes pulseDot{0%,100%{opacity:0.8}50%{opacity:0.3}}
+.phone-header-text{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--white);}
+.phone-caller{padding:18px;text-align:center;border-bottom:1px solid var(--border);background:var(--bg-alt);}
+.caller-avatar{width:50px;height:50px;margin:0 auto 10px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;color:var(--gold);}
+.caller-name{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:var(--text);}
+.caller-role{font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-top:3px;}
+.call-timer{font-family:'Montserrat',monospace;font-size:11px;color:var(--gold);margin-top:6px;letter-spacing:2px;}
+.transcript{padding:18px;height:300px;overflow:hidden;display:flex;flex-direction:column;gap:12px;position:relative;}
+.transcript::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50px;background:linear-gradient(transparent,var(--bg));pointer-events:none;}
+.line{display:flex;gap:10px;align-items:flex-start;opacity:0;transform:translateY(8px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.line.visible{opacity:1;transform:translateY(0);}
+.line-label{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding-top:3px;white-space:nowrap;flex-shrink:0;}
+.line.apex .line-label{color:var(--gold);}
+.line.prospect .line-label{color:var(--text-muted);}
+.line-text{font-family:'Cormorant Garamond',serif;font-size:13px;line-height:1.55;}
+.line.apex .line-text{color:var(--text);}
+.line.prospect .line-text{color:var(--text-muted);font-style:italic;}
+.waveform{display:flex;align-items:center;gap:2px;padding:12px 18px;border-top:1px solid var(--border);background:var(--bg-alt);}
+.w-bar{width:3px;border-radius:2px;background:var(--gold);animation:waveAnim 1.2s ease-in-out infinite;}
+.w-bar:nth-child(1){height:6px;animation-delay:0s}.w-bar:nth-child(2){height:12px;animation-delay:0.1s}.w-bar:nth-child(3){height:18px;animation-delay:0.2s}.w-bar:nth-child(4){height:10px;animation-delay:0.3s}.w-bar:nth-child(5){height:16px;animation-delay:0.4s}.w-bar:nth-child(6){height:8px;animation-delay:0.3s}.w-bar:nth-child(7){height:14px;animation-delay:0.2s}.w-bar:nth-child(8){height:6px;animation-delay:0.1s}.w-bar:nth-child(9){height:10px;animation-delay:0s}
+@keyframes waveAnim{0%,100%{transform:scaleY(0.3);opacity:0.4}50%{transform:scaleY(1);opacity:1}}
+.waveform-label{margin-left:10px;font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.demo-outcome{margin-top:18px;background:var(--gold-dim);border:1px solid var(--gold-border);padding:14px 22px;display:flex;align-items:center;gap:14px;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);}
+.outcome-text{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.outcome-sub{font-size:10px;letter-spacing:1px;color:var(--text-muted);margin-top:2px;}
+.replay-btn{margin-top:10px;background:transparent;border:1px solid var(--border);padding:10px 20px;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);transition:all 0.3s;}
+.replay-btn:hover{background:var(--gold-dim);border-color:var(--gold-border);}
+
+/* CRM */
+.crm-section{background:var(--bg-warm);border-top:1px solid var(--border);}
+.crm-layout{max-width:1200px;margin:0 auto;}
+.pipeline-flow{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:60px;flex-wrap:wrap;}
+.pipe-step{background:var(--bg-alt);border:1px solid var(--border);padding:24px 28px;text-align:center;flex:1;min-width:140px;position:relative;transition:all 0.3s;}
+.pipe-step:hover{border-color:var(--gold-border);background:var(--gold-dim);}
+.pipe-step-icon{font-size:24px;margin-bottom:10px;}
+.pipe-step-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.pipe-step-desc{font-size:11px;font-weight:300;color:var(--text-muted);line-height:1.5;}
+.pipe-arrow{font-size:18px;color:var(--gold);padding:0 4px;flex-shrink:0;opacity:0.6;}
+.pipe-step.active-step{border-color:var(--gold);background:var(--gold-dim);}
+.velixia-badge{display:inline-block;background:var(--gold);color:var(--white);font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;margin-bottom:8px;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);}
+.crm-logos{border-top:1px solid var(--border);padding-top:48px;}
+.crm-logos-label{font-size:9px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--text-muted);text-align:center;margin-bottom:32px;}
+.crm-logos-grid{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
+.crm-logo-pill{background:var(--bg-alt);border:1px solid var(--border);padding:14px 28px;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;transition:all 0.3s;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+.crm-logo-pill:hover{border-color:var(--gold-border);color:var(--gold);background:var(--gold-dim);}
+.crm-note{text-align:center;margin-top:24px;font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text-muted);}
+
+/* FEATURES */
+.features-section{background:var(--bg-alt);border-top:1px solid var(--border);}
+.features-layout{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.features-grid{display:flex;flex-direction:column;gap:2px;margin-top:50px;}
+.feature-card{background:var(--bg);border:1px solid transparent;padding:28px 32px;transition:all 0.4s;cursor:default;position:relative;overflow:hidden;}
+.feature-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transition:transform 0.4s;transform-origin:bottom;}
+.feature-card:hover{border-color:var(--gold-border);transform:translateX(6px);background:var(--gold-dim);}
+.feature-card:hover::before{transform:scaleY(1);}
+.feature-num{font-family:'Playfair Display',serif;font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:10px;opacity:0.7;}
+.feature-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:8px;}
+.feature-desc{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.7;}
+.feature-gain{display:inline-block;margin-top:10px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.metrics-panel{position:sticky;top:120px;background:var(--bg);border:1px solid var(--border);padding:44px;box-shadow:0 20px 60px rgba(28,28,28,0.06);}
+.metric{margin-bottom:34px;padding-bottom:34px;border-bottom:1px solid var(--border);}
+.metric:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.metric-label{font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;}
+.metric-value{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:var(--gold);line-height:1;}
+.metric-desc{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--text-muted);margin-top:6px;}
+.metric-bar{height:2px;background:var(--border);margin-top:12px;overflow:hidden;}
+.metric-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),#E2C06A);animation:barFill 2s ease 1s both;}
+@keyframes barFill{from{width:0%}}
+
+/* ACCOUNTABILITY */
+.accountability-section{background:var(--bg);border-top:1px solid var(--border);}
+.accountability-layout{max-width:1200px;margin:0 auto;}
+.accountability-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:60px;}
+.ac-card{padding:44px 36px;position:relative;overflow:hidden;transition:all 0.4s;cursor:default;}
+.ac-card-1{background:var(--bg-alt);border:1px solid var(--border);}
+.ac-card-2{background:var(--bg-warm);border:1px solid var(--border);}
+.ac-card-3{background:var(--gold);border:1px solid var(--gold-dark);}
+.ac-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(28,28,28,0.08);}
+.ac-icon{font-size:28px;margin-bottom:20px;}
+.ac-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:14px;line-height:1.2;}
+.ac-card-1 .ac-title,.ac-card-2 .ac-title{color:var(--text);}
+.ac-card-3 .ac-title{color:var(--white);}
+.ac-desc{font-size:13px;font-weight:300;line-height:1.75;}
+.ac-card-1 .ac-desc,.ac-card-2 .ac-desc{color:var(--text-muted);}
+.ac-card-3 .ac-desc{color:rgba(255,255,255,0.85);}
+.ac-items{margin-top:20px;display:flex;flex-direction:column;gap:10px;}
+.ac-item{display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.5;}
+.ac-card-1 .ac-item,.ac-card-2 .ac-item{color:var(--text-muted);}
+.ac-card-3 .ac-item{color:rgba(255,255,255,0.9);}
+.ac-check{flex-shrink:0;font-size:11px;margin-top:1px;}
+.ac-card-1 .ac-check,.ac-card-2 .ac-check{color:var(--gold);}
+.ac-card-3 .ac-check{color:var(--white);}
+.dashboard-mockup{background:var(--bg-alt);border:1px solid var(--border);padding:32px;}
+.dashboard-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.dashboard-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--text);}
+.dashboard-live{display:flex;align-items:center;gap:8px;font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulseDot 2s infinite;}
+.dashboard-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+.dash-stat{background:var(--bg);border:1px solid var(--border);padding:18px;text-align:center;}
+.dash-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--gold);}
+.dash-stat-label{font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-top:4px;}
+.dashboard-table{width:100%;border-collapse:collapse;}
+.dashboard-table th{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);}
+.dashboard-table td{font-size:12px;color:var(--text);padding:12px;border-bottom:1px solid var(--border);}
+.dashboard-table tr:last-child td{border-bottom:none;}
+.status-badge{display:inline-block;padding:3px 10px;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);}
+.status-booked{background:var(--green-dim);color:var(--green);}
+.status-followup{background:var(--gold-dim);color:var(--gold-dark);}
+.status-closed{background:rgba(46,125,94,0.2);color:var(--green);}
+
+/* VS */
+.vs-section{background:var(--bg-warm);border-top:1px solid var(--border);}
+.vs-layout{max-width:1200px;margin:0 auto;}
+.vs-table-wrap{overflow-x:auto;}
+.vs-table{width:100%;border-collapse:collapse;}
+.vs-table th{padding:18px 24px;text-align:left;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;}
+.vs-table th:first-child{color:var(--text-muted);}
+.vs-table th.velixia-col{background:var(--gold);color:var(--white);text-align:center;}
+.vs-table th.other-col{background:var(--bg-alt);color:var(--text-muted);text-align:center;border:1px solid var(--border);}
+.vs-table td{padding:16px 24px;font-size:13px;border-bottom:1px solid var(--border);}
+.vs-table td:first-child{font-weight:600;color:var(--text);}
+.vs-table td.velixia-cell{background:var(--gold-dim);text-align:center;border-left:1px solid var(--gold-border);border-right:1px solid var(--gold-border);font-weight:600;color:var(--gold-dark);}
+.vs-table td.other-cell{background:var(--bg-alt);text-align:center;color:var(--text-muted);border:1px solid var(--border);}
+.vs-table tr:last-child td{border-bottom:none;}
+.check-yes{color:var(--green);font-size:16px;}.check-no{color:#D1505A;font-size:16px;}.check-partial{color:var(--gold);font-size:13px;font-weight:600;}
+
+/* BENEFITS */
+.benefits-section{background:var(--bg-alt);border-top:1px solid var(--border);}
+.benefits-header{max-width:1200px;margin:0 auto 70px;}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1200px;margin:0 auto;}
+.benefit-card{background:var(--bg);padding:40px 34px;position:relative;overflow:hidden;transition:all 0.4s;cursor:default;border:1px solid transparent;}
+.benefit-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),#E2C06A);transform:scaleX(0);transition:transform 0.4s;}
+.benefit-card:hover{border-color:var(--gold-border);background:var(--gold-dim);}
+.benefit-card:hover::after{transform:scaleX(1);}
+.benefit-icon{width:44px;height:44px;border:1px solid var(--gold-border);background:var(--gold-dim);display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--gold);margin-bottom:24px;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+.benefit-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--text);margin-bottom:12px;line-height:1.2;}
+.benefit-desc{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.75;}
+.benefit-result{margin-top:20px;padding:10px 16px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--gold-dark);}
+
+/* ACCESS */
+.access-section{background:var(--bg);border-top:1px solid var(--border);}
+.access-header{text-align:center;max-width:580px;margin:0 auto 70px;}
+.access-header .section-eyebrow{justify-content:center;}
+.access-header .section-eyebrow::before{display:none;}
+.access-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1200px;margin:0 auto 50px;}
+.access-card{background:var(--bg-alt);border:1px solid var(--border);padding:40px 32px;transition:border-color 0.3s;}
+.access-card:hover{border-color:var(--gold-border);}
+.access-num{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:14px;}
+.access-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:10px;}
+.access-desc{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.7;}
+.founding-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:26px 0;max-width:1200px;margin:0 auto;text-align:center;}
+.founding-text{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--text-muted);letter-spacing:1px;}
+.founding-text strong{color:var(--gold);font-style:normal;font-weight:600;}
+
+/* CTA */
+.cta-section{background:linear-gradient(160deg,var(--bg) 0%,var(--bg-warm) 100%);border-top:1px solid var(--border);text-align:center;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;width:700px;height:700px;background:radial-gradient(ellipse,rgba(198,167,94,0.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.cta-content{position:relative;z-index:2;max-width:800px;margin:0 auto;}
+.cta-badge{display:inline-flex;align-items:center;gap:10px;background:var(--gold-dim);border:1px solid var(--gold-border);padding:10px 24px;margin-bottom:40px;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);}
+.cta-badge span{font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);}
+.cta-title{font-family:'Playfair Display',serif;font-size:clamp(38px,6vw,68px);font-weight:700;color:var(--text);line-height:1.05;margin-bottom:24px;}
+.cta-title em{font-style:italic;color:var(--gold);}
+.cta-desc{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;font-weight:300;color:var(--text-muted);margin-bottom:48px;line-height:1.5;}
+.cta-actions{display:flex;gap:20px;justify-content:center;align-items:center;margin-bottom:44px;}
+.cta-guarantee{display:flex;align-items:center;justify-content:center;gap:32px;margin-top:40px;padding-top:40px;border-top:1px solid var(--border);}
+.guarantee-item{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:500;letter-spacing:1px;color:var(--text-muted);}
+.guarantee-item::before{content:'✓';color:var(--gold);font-size:14px;font-weight:700;}
+
+/* FOOTER */
+footer{background:var(--charcoal);padding:50px 60px;display:flex;align-items:center;justify-content:space-between;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--white);}
+.footer-logo .x{color:var(--gold);}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:#6B7280;margin-top:5px;letter-spacing:2px;}
+.footer-copy{font-size:10px;letter-spacing:2px;color:#6B7280;text-transform:uppercase;}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:960px){
+  nav{padding:22px 24px;}.nav-links{display:none;}
+  section{padding:80px 24px;}
+  .demo-layout,.features-layout,.skills-intro{grid-template-columns:1fr;gap:40px;}
+  .metrics-panel{display:none;}
+  .benefits-grid,.access-grid,.skills-grid,.accountability-grid{grid-template-columns:1fr;}
+  .hero-stats{flex-direction:column;gap:28px;}
+  .pipeline-flow{flex-direction:column;}
+  footer{flex-direction:column;gap:16px;text-align:center;}
+  .dashboard-stats{grid-template-columns:repeat(2,1fr);}
+  .cta-guarantee{flex-direction:column;gap:16px;}
+}
+</style>
+</head>
+<body>
+<div class="wm-overlay"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ── GATE SCREEN ─────────────────────────────────────── -->
+<div id="gateScreen">
+  <div class="gate-geo">
+    <div class="gate-ring gate-ring-1"></div>
+    <div class="gate-ring gate-ring-2"></div>
+    <div class="gate-corner gate-corner-tl"></div>
+    <div class="gate-corner gate-corner-tr"></div>
+    <div class="gate-corner gate-corner-bl"></div>
+    <div class="gate-corner gate-corner-br"></div>
+  </div>
+  <div class="gate-box">
+    <div class="gate-logo">VELI<span class="x">X</span>IA</div>
+    <div class="gate-tagline">Where Excellence Meets Authority</div>
+    <div class="gate-divider"></div>
+    <div class="gate-label">Enter Your Private Access Code</div>
+    <input class="gate-input" id="gateInput" type="text" placeholder="XXXX-XXXX" maxlength="9" autocomplete="off" spellcheck="false"/>
+    <button class="gate-btn" onclick="checkAccess()">Request Access →</button>
+    <div class="gate-error" id="gateError">Invalid or expired access code. Contact Velixia to request access.</div>
+    <div class="gate-note">This presentation is <strong>private and confidential</strong>. Access is issued individually and is non-transferable. Unauthorised sharing is prohibited.</div>
+  </div>
+</div>
+
+<!-- ── EXPIRED SCREEN ──────────────────────────────────── -->
+<div id="expiredScreen">
+  <div class="blocked-logo">VELI<span class="x">X</span>IA</div>
+  <div class="blocked-icon">🔒</div>
+  <div class="blocked-title">This Session Has Expired</div>
+  <div class="blocked-desc">Your access to this presentation has expired. Each access code is valid for a single session only. Please contact Velixia to arrange a new session.</div>
+</div>
+
+<!-- ── BLOCKED SCREEN ─────────────────────────────────── -->
+<div id="blockedScreen">
+  <div class="blocked-logo">VELI<span class="x">X</span>IA</div>
+  <div class="blocked-icon">⛔</div>
+  <div class="blocked-title">Access Revoked</div>
+  <div class="blocked-desc">This access code has already been used or is no longer valid. Access codes are single-use only. Contact Velixia to request a new one.</div>
+</div>
+
+<!-- ── MAIN CONTENT ────────────────────────────────────── -->
+<div id="mainContent">
+
+<nav id="mainNav">
+  <a href="#" class="nav-logo">VELI<span class="x">X</span>IA</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Closer Skills</a></li>
+    <li><a href="#demo">Live Demo</a></li>
+    <li><a href="#crm">CRM</a></li>
+    <li><a href="#accountability">Accountability</a></li>
+    <li><a href="#vs">vs. Human</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Book a Call</a>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-geo">
+    <div class="geo-ring geo-ring-1"></div><div class="geo-ring geo-ring-2"></div><div class="geo-ring geo-ring-3"></div>
+    <div class="geo-corner geo-corner-tl"></div><div class="geo-corner geo-corner-tr"></div>
+    <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
+  </div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">The World's First · AI High-Ticket Closer · Real Estate</div>
+    <h1 class="hero-headline">
+      Your Best Closer<br>Just Got <em>Replaced</em><br>By Something Better.
+      <span class="sub">Velixia is a fully trained AI sales employee that closes high-ticket real estate deals — with the skill of a top 1% closer and the endurance of a machine.</span>
+    </h1>
+    <p class="hero-desc">Every objection handled. Every lead followed up. Every appointment booked. Zero commission. Zero excuses. Zero days off.</p>
+    <div class="hero-actions">
+      <a href="#demo" class="btn-primary">Watch It Close a Deal Live</a>
+      <a href="#skills" class="btn-ghost">See Its Closing Skills</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">&lt;90s</div><div class="stat-label">Lead Response Time</div></div>
+      <div><div class="stat-num">24/7</div><div class="stat-label">Always Closing</div></div>
+      <div><div class="stat-num">$0</div><div class="stat-label">Commission. Ever.</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">Call Consistency</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="skills-section" id="skills">
+  <div class="skills-intro reveal">
+    <div>
+      <div class="section-eyebrow">High-Ticket Closer Skills</div>
+      <h2 class="section-title">Every Skill a World-Class<br>Closer Owns. <em>Engineered</em><br>Into One System.</h2>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--text-muted);margin-top:16px;line-height:1.6;">The top 1% of closers are rare, expensive, and unpredictable. Velixia carries every skill they have — without the inconsistency, the ego, or the commission invoice.</p>
+    </div>
+    <div style="background:var(--bg-warm);border:1px solid var(--border);padding:36px;">
+      <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--text);margin-bottom:20px;">What separates a top 1% closer:</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>They use silence as a weapon — never to fill it nervously</div>
+        <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>They qualify fast — bad leads cut, strong leads accelerated</div>
+        <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>They signal abundance — never desperation in their tone</div>
+        <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>They frame price as investment — before the prospect even asks</div>
+        <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>They own every objection — "I need to think" becomes a yes</div>
+      </div>
+      <div style="margin-top:24px;padding:14px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--gold-dark);">Velixia executes every one of these — on every single call.</div>
+    </div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal"><div class="skill-icon">🎯</div><div class="skill-name">Rapid Qualification</div><div class="skill-desc">Identifies decision authority, budget, timeline, and intent within 60 seconds. Bad leads are disqualified. Strong leads are accelerated immediately.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Human closers spend 20+ minutes on unqualified leads. Velixia has no such bias.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🧠</div><div class="skill-name">Psychological Mirroring</div><div class="skill-desc">Adapts tone, pace, and language to match the prospect's communication style in real time — building rapport at a subconscious level before the pitch begins.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Most closers mirror when they remember to. Velixia mirrors on every exchange without exception.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">⚡</div><div class="skill-name">Pattern-Interrupt Opening</div><div class="skill-desc">Never opens with a generic greeting. Opens with a sharp, unexpected question that separates this call from every other the prospect received this week.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Generic openers create generic outcomes. The first 10 seconds set the call's trajectory.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🛡️</div><div class="skill-name">Objection Dismantling</div><div class="skill-desc">Every real estate objection — "I'll think about it," "we have closers," "AI can't replace humans," "price is too high" — has a precise, field-tested counter built in.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Human closers memorize 5–10 counters. Velixia carries hundreds and selects by context.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🔇</div><div class="skill-name">Strategic Silence</div><div class="skill-desc">After a close or key statement, Velixia holds silence — the most underused weapon in sales — creating pressure that gets prospects to fill the space with a decision.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Nervous closers rush to fill silence. Velixia never gets nervous. It waits with absolute confidence.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">📈</div><div class="skill-name">ROI Framing Before Price</div><div class="skill-desc">Frames the value and business impact before the prospect ever sees the investment figure. By the time price is mentioned, the prospect has already decided it's worth it.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Most closers present price too early, triggering sticker shock. Velixia makes price the last focus.</div></div></div>
+  </div>
+</section>
+
+<section class="demo-section" id="demo">
+  <div class="demo-layout">
+    <div class="demo-left reveal">
+      <div class="section-eyebrow">Live Demonstration</div>
+      <h2 class="section-title">Watch Velixia Run<br>a <em>Complete</em> High-<br>Ticket Sales Call.</h2>
+      <p class="section-sub" style="margin-bottom:32px;">Three real objections. Handled with precision. Appointment booked in under four minutes. A trained closer at full capacity.</p>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;flex-shrink:0;">✓</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;">Pattern-interrupt opener — no generic pitch, no small talk</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;flex-shrink:0;">✓</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;">Handles "we already have closers" without flinching</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;flex-shrink:0;">✓</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;">Frames ROI before price — prospect qualifies the investment themselves</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;flex-shrink:0;">✓</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;">Closes with a specific time — not "let's stay in touch"</span></div>
+      </div>
+    </div>
+    <div class="demo-right reveal">
+      <div class="phone-wrap">
+        <div class="phone-glow"></div>
+        <div style="width:100%;max-width:340px;">
+          <div class="phone">
+            <div class="phone-header"><div class="phone-status-dot"></div><div class="phone-header-text">Velixia AI · Live Call</div></div>
+            <div class="phone-caller"><div class="caller-avatar">M</div><div class="caller-name">Michael Torres</div><div class="caller-role">Principal Broker · Los Angeles</div><div class="call-timer" id="callTimer">00:00</div></div>
+            <div class="transcript" id="transcript"></div>
+            <div class="waveform" id="waveform"><div class="w-bar"></div><div class="w-bar"></div><div class="w-bar"></div><div class="w-bar"></div><div class="w-bar"></div><div class="w-bar"></div><div class="w-bar"></div><div class="w-bar"></div><div class="w-bar"></div><span class="waveform-label" id="waveLabel">Connecting...</span></div>
+          </div>
+          <div class="demo-outcome" id="demoOutcome" style="opacity:0;transition:opacity 0.8s;"><div style="font-size:20px;">📅</div><div><div class="outcome-text">Appointment Confirmed</div><div class="outcome-sub">Discovery call · Thursday 2:00 PM</div></div></div>
+          <button class="replay-btn" id="replayBtn" style="opacity:0;transition:opacity 0.6s;" onclick="startDemo()">↺ Replay Demo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="crm-section" id="crm">
+  <div class="crm-layout">
+    <div class="crm-header reveal">
+      <div class="section-eyebrow">CRM Integration</div>
+      <h2 class="section-title">Velixia Plugs Into<br>Your Existing <em>Pipeline.</em><br>Zero Extra Work.</h2>
+      <p class="section-sub">Every call logged. Every lead status updated. Every appointment synced. Velixia works inside your CRM — not alongside it.</p>
+    </div>
+    <div class="pipeline-flow reveal">
+      <div class="pipe-step"><div class="pipe-step-icon">📥</div><div class="pipe-step-label">Lead Enters</div><div class="pipe-step-desc">New lead added to CRM from any source — web form, referral, ad campaign</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step active-step"><div class="velixia-badge">Velixia</div><div class="pipe-step-icon">🤖</div><div class="pipe-step-label">Auto-Called &lt;90s</div><div class="pipe-step-desc">Velixia dials instantly — qualifying, pitching, handling objections</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step active-step"><div class="velixia-badge">Velixia</div><div class="pipe-step-icon">📋</div><div class="pipe-step-label">CRM Updated</div><div class="pipe-step-desc">Call outcome and lead status automatically logged — zero manual entry</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step active-step"><div class="velixia-badge">Velixia</div><div class="pipe-step-icon">📅</div><div class="pipe-step-label">Appointment Booked</div><div class="pipe-step-desc">Qualified leads booked into your calendar with confirmation sent</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step"><div class="pipe-step-icon">🤝</div><div class="pipe-step-label">You Close the Deal</div><div class="pipe-step-desc">You receive a warm, pre-qualified prospect — ready to commit</div></div>
+    </div>
+    <div class="crm-logos reveal">
+      <div class="crm-logos-label">Integrates with your existing CRM tools</div>
+      <div class="crm-logos-grid">
+        <div class="crm-logo-pill">HubSpot</div><div class="crm-logo-pill">GoHighLevel</div><div class="crm-logo-pill">Salesforce</div><div class="crm-logo-pill">Zoho CRM</div><div class="crm-logo-pill">Pipedrive</div><div class="crm-logo-pill">Close.io</div><div class="crm-logo-pill">Calendly</div>
+      </div>
+      <div class="crm-note">Don't use any of these? Velixia configures around your setup — not the other way around.</div>
+    </div>
+  </div>
+</section>
+
+<section class="features-section" id="features">
+  <div class="features-layout">
+    <div>
+      <div class="reveal"><div class="section-eyebrow">Core Capabilities</div><h2 class="section-title">Engineered for<br><em>One Purpose:</em><br>Close the Deal.</h2><p class="section-sub">Four capabilities that eliminate the most expensive failure points in your sales operation.</p></div>
+      <div class="features-grid reveal">
+        <div class="feature-card"><div class="feature-num">01</div><div class="feature-title">Autonomous Voice Closing</div><div class="feature-desc">Full discovery-to-appointment calls executed without human involvement. Qualification, pitch, objection handling, and booking — complete.</div><div class="feature-gain">Every call at peak performance</div></div>
+        <div class="feature-card"><div class="feature-num">02</div><div class="feature-title">Real-Time Objection Intelligence</div><div class="feature-desc">Detects hesitation, resistance, and buying signals mid-conversation. Responds with the precise reframe for that specific objection — not a generic script.</div><div class="feature-gain">No objection goes unanswered</div></div>
+        <div class="feature-card"><div class="feature-num">03</div><div class="feature-title">Sub-90-Second Lead Activation</div><div class="feature-desc">Every inbound lead contacted within 90 seconds. Speed of first contact is one of the highest-leverage variables in real estate conversion.</div><div class="feature-gain">First to call. First to close.</div></div>
+        <div class="feature-card"><div class="feature-num">04</div><div class="feature-title">Fixed-Cost Zero-Commission Model</div><div class="feature-desc">One investment. Unlimited calls. No salary, no recruitment overhead, no commission on any deal — ever. Cost-per-close drops from month one.</div><div class="feature-gain">Predictable cost. Scalable output.</div></div>
+      </div>
+    </div>
+    <div class="metrics-panel reveal">
+      <div class="metric"><div class="metric-label">Lead Response Time</div><div class="metric-value">&lt;90s</div><div class="metric-desc">From lead entry to live voice contact, every time</div><div class="metric-bar"><div class="metric-bar-fill" style="width:95%"></div></div></div>
+      <div class="metric"><div class="metric-label">Operational Uptime</div><div class="metric-value">24/7</div><div class="metric-desc">No downtime, no sick days, no performance variance</div><div class="metric-bar"><div class="metric-bar-fill" style="width:100%"></div></div></div>
+      <div class="metric"><div class="metric-label">Commission Overhead</div><div class="metric-value">$0</div><div class="metric-desc">Fixed investment. No variable cost per deal, ever.</div><div class="metric-bar"><div class="metric-bar-fill" style="width:60%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="accountability-section" id="accountability">
+  <div class="accountability-layout">
+    <div class="accountability-header reveal"><div class="section-eyebrow">Accountability & Results</div><h2 class="section-title">You See Everything.<br>We're <em>Accountable</em><br>For All of It.</h2><p class="section-sub">Every call logged, every metric tracked, every result reported. You measure us — constantly.</p></div>
+    <div class="accountability-grid reveal">
+      <div class="ac-card ac-card-1"><div class="ac-icon">📊</div><div class="ac-title">Live Performance Dashboard</div><div class="ac-desc">Every call Velixia makes is visible to you in real time. Track calls, leads contacted, objections handled, and appointments booked — by the hour, by the day.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">✓</span>Total calls made this week</div><div class="ac-item"><span class="ac-check">✓</span>Lead qualification rate</div><div class="ac-item"><span class="ac-check">✓</span>Objections encountered & handled</div><div class="ac-item"><span class="ac-check">✓</span>Appointments booked vs. targets</div><div class="ac-item"><span class="ac-check">✓</span>Full call recordings available</div></div></div>
+      <div class="ac-card ac-card-2"><div class="ac-icon">📅</div><div class="ac-title">Weekly Performance Reports</div><div class="ac-desc">Every founding client receives a structured weekly report covering pipeline activity, conversion points, and where the system can be sharpened further.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">✓</span>Weekly summary delivered every Monday</div><div class="ac-item"><span class="ac-check">✓</span>Pipeline health assessment</div><div class="ac-item"><span class="ac-check">✓</span>Conversion rate tracking</div><div class="ac-item"><span class="ac-check">✓</span>Optimization recommendations</div><div class="ac-item"><span class="ac-check">✓</span>Direct team access included</div></div></div>
+      <div class="ac-card ac-card-3"><div class="ac-icon">🛡️</div><div class="ac-title">Performance Guarantee</div><div class="ac-desc">If Velixia does not deliver measurable improvement in your lead contact rate within 30 days of deployment, we work with you until it does — at no additional cost.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">✓</span>30-day performance commitment</div><div class="ac-item"><span class="ac-check">✓</span>Measurable benchmarks set at onboarding</div><div class="ac-item"><span class="ac-check">✓</span>Full reconfiguration at no extra charge</div><div class="ac-item"><span class="ac-check">✓</span>Your success is our deliverable</div></div></div>
+    </div>
+    <div class="dashboard-mockup reveal">
+      <div class="dashboard-header"><div class="dashboard-title">Velixia Performance Dashboard — Live View</div><div class="dashboard-live"><div class="live-dot"></div>Live · Updating Now</div></div>
+      <div class="dashboard-stats"><div class="dash-stat"><div class="dash-stat-num">47</div><div class="dash-stat-label">Calls This Week</div></div><div class="dash-stat"><div class="dash-stat-num">31</div><div class="dash-stat-label">Leads Qualified</div></div><div class="dash-stat"><div class="dash-stat-num">12</div><div class="dash-stat-label">Appointments Set</div></div><div class="dash-stat"><div class="dash-stat-num">3</div><div class="dash-stat-label">Deals in Progress</div></div></div>
+      <table class="dashboard-table">
+        <thead><tr><th>Lead Name</th><th>Called At</th><th>Duration</th><th>Objection Handled</th><th>Outcome</th></tr></thead>
+        <tbody>
+          <tr><td>Michael Torres</td><td>Today, 9:04 AM</td><td>3m 48s</td><td>AI vs. human closers</td><td><span class="status-badge status-booked">Booked</span></td></tr>
+          <tr><td>Sarah Lin</td><td>Today, 10:22 AM</td><td>5m 12s</td><td>Price concern, timing</td><td><span class="status-badge status-booked">Booked</span></td></tr>
+          <tr><td>James Whitfield</td><td>Today, 11:47 AM</td><td>2m 30s</td><td>Already has a team</td><td><span class="status-badge status-followup">Follow-Up</span></td></tr>
+          <tr><td>Dana Reeves</td><td>Yesterday, 4:15 PM</td><td>6m 05s</td><td>ROI justification</td><td><span class="status-badge status-closed">Deal Closed</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="vs-section" id="vs">
+  <div class="vs-layout">
+    <div class="vs-header reveal"><div class="section-eyebrow">Competitive Positioning</div><h2 class="section-title">Why Velixia Leaves<br>Every <em>Alternative</em><br>Behind.</h2><p class="section-sub">Compare Velixia against a human closer, a generic AI chatbot, or an outsourced call center. The difference is structural.</p></div>
+    <div class="vs-table-wrap reveal">
+      <table class="vs-table">
+        <thead><tr><th>Capability</th><th class="velixia-col">Velixia AI Closer</th><th class="other-col">Human Closer</th><th class="other-col">Generic AI Chatbot</th><th class="other-col">Outsourced Call Center</th></tr></thead>
+        <tbody>
+          <tr><td>Available 24/7</td><td class="velixia-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-no">✗</span></td><td class="other-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-partial">Partial</span></td></tr>
+          <tr><td>Contacts lead in &lt;90 seconds</td><td class="velixia-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-no">✗</span></td><td class="other-cell"><span class="check-partial">Chat only</span></td><td class="other-cell"><span class="check-no">✗</span></td></tr>
+          <tr><td>Handles complex objections</td><td class="velixia-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-partial">Varies</span></td><td class="other-cell"><span class="check-no">✗</span></td><td class="other-cell"><span class="check-no">✗</span></td></tr>
+          <tr><td>Zero commission cost</td><td class="velixia-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-no">✗</span></td><td class="other-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-no">✗</span></td></tr>
+          <tr><td>Consistent performance every call</td><td class="velixia-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-no">✗</span></td><td class="other-cell"><span class="check-partial">Scripted only</span></td><td class="other-cell"><span class="check-no">✗</span></td></tr>
+          <tr><td>CRM auto-update after every call</td><td class="velixia-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-partial">Manual</span></td><td class="other-cell"><span class="check-no">✗</span></td><td class="other-cell"><span class="check-partial">Varies</span></td></tr>
+          <tr><td>Real estate objection training</td><td class="velixia-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-partial">Varies</span></td><td class="other-cell"><span class="check-no">✗</span></td><td class="other-cell"><span class="check-no">✗</span></td></tr>
+          <tr><td>Weekly performance reporting</td><td class="velixia-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-no">✗</span></td><td class="other-cell"><span class="check-no">✗</span></td><td class="other-cell"><span class="check-partial">Basic</span></td></tr>
+          <tr><td>No training time required</td><td class="velixia-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-no">✗</span></td><td class="other-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-no">✗</span></td></tr>
+          <tr><td>Performance guarantee</td><td class="velixia-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-no">✗</span></td><td class="other-cell"><span class="check-no">✗</span></td><td class="other-cell"><span class="check-no">✗</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="benefits-section" id="benefits">
+  <div class="benefits-header reveal"><div class="section-eyebrow">Business Impact</div><h2 class="section-title">The Shifts That Happen<br>When Your Pipeline <em>Stops</em><br>Leaking Revenue.</h2><p class="section-sub">Operational changes brokerages experience when every lead is contacted, every objection handled, every appointment booked — without human dependency.</p></div>
+  <div class="benefits-grid">
+    <div class="benefit-card reveal"><div class="benefit-icon">◆</div><div class="benefit-title">Faster Lead-to-Conversation</div><div class="benefit-desc">The gap between lead entry and first contact is where most deals are decided — or lost to a competitor. Velixia closes that gap to under 90 seconds, every time.</div><div class="benefit-result">"Speed of contact is the highest-leverage variable in real estate conversion — and most brokerages lose it daily."</div></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">◈</div><div class="benefit-title">Permanent Cost Reduction</div><div class="benefit-desc">One fixed investment replaces recurring commission, salary, and training costs. The unit economics of your sales operation change permanently.</div><div class="benefit-result">"A fixed-cost closer that scales with volume is a structural business advantage — not a short-term tactic."</div></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">◇</div><div class="benefit-title">Predictable, Consistent Output</div><div class="benefit-desc">Human performance varies by mood and circumstance. Velixia delivers the same quality on call one and call one hundred — giving you predictable conversion rates to plan around.</div><div class="benefit-result">"Predictable output means predictable revenue. That changes how you invest, hire, and grow."</div></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">▲</div><div class="benefit-title">Zero Pipeline Leakage</div><div class="benefit-desc">Every lead followed up. Every callback made. The revenue most brokerages are already sitting on — but haven't converted — starts being recovered immediately.</div><div class="benefit-result">"Most brokerages lose 30–40% of closable leads to slow or missed follow-up. That ends immediately."</div></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">●</div><div class="benefit-title">Your Team Does Higher-Value Work</div><div class="benefit-desc">When discovery calls run on autopilot, your team's time shifts to relationship management, deal-making, and strategic growth — work that requires human judgment.</div><div class="benefit-result">"Automating low-leverage tasks frees high-leverage people to do what only humans can do."</div></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">✦</div><div class="benefit-title">A System Built to Scale</div><div class="benefit-desc">As lead volume grows, Velixia scales without hiring cycles or performance inconsistency. Growth becomes a systems decision, not a people problem.</div><div class="benefit-result">"Growth should be a systems decision. Velixia makes it one."</div></div>
+  </div>
+</section>
+
+<section class="access-section" id="access">
+  <div class="access-header reveal"><div class="section-eyebrow">Early Access Program</div><h2 class="section-title">Built for Brokerages<br>That Want to <em>Move First.</em></h2><p class="section-sub" style="margin:0 auto;">Velixia is in its founding client phase. A limited number of brokerages are being onboarded — and locking in founding terms permanently.</p></div>
+  <div class="access-grid">
+    <div class="access-card reveal"><div class="access-num">01</div><div class="access-title">Priority Deployment</div><div class="access-desc">Full setup within 21 days — configured for your market, lead sources, CRM, and objection patterns. Not a template. A custom build.</div></div>
+    <div class="access-card reveal"><div class="access-num">02</div><div class="access-title">Direct Team Access</div><div class="access-desc">Founding clients work directly with Velixia's build team. Your feedback shapes the product. Your results validate it. This is a partnership.</div></div>
+    <div class="access-card reveal"><div class="access-num">03</div><div class="access-title">Founding Client Pricing</div><div class="access-desc">The current $9,700 investment is the founding rate. As Velixia scales, pricing reflects full market value. Early access locks in these terms permanently.</div></div>
+  </div>
+  <div class="founding-strip reveal"><p class="founding-text">Currently accepting <strong>founding clients</strong> across North America · Limited positions · Applications reviewed within 48 hours</p></div>
+</section>
+
+<section class="cta-section" id="cta">
+  <div class="cta-content reveal">
+    <div class="cta-badge"><span>⬡ Founding Client Positions · Limited Availability</span></div>
+    <h2 class="cta-title">Your Pipeline Has Gaps.<br><em>Velixia</em> Closes<br>Every One of Them.</h2>
+    <p class="cta-desc">A 30-minute discovery call is enough to assess whether Velixia fits your operation. No pressure. No pitch deck. Just a direct conversation about your pipeline and what it's costing you.</p>
+    <div class="cta-actions"><a href="mailto:contact@velixia.com" class="btn-primary">Book Your Discovery Call</a><a href="#demo" class="btn-ghost">Watch the Demo Again</a></div>
+    <div class="cta-guarantee"><div class="guarantee-item">One-time investment · $9,700</div><div class="guarantee-item">Deployed in 21 days</div><div class="guarantee-item">30-day performance guarantee</div><div class="guarantee-item">Zero commission, ever</div></div>
+  </div>
+</section>
+
+<footer><div><div class="footer-logo">VELI<span class="x">X</span>IA</div><div class="footer-tagline">Where Excellence Meets Authority</div></div><div class="footer-copy">© 2025 Velixia · All Rights Reserved</div></footer>
+
+</div><!-- end mainContent -->
+
+<script>
+// ── PROTECTION ───────────────────────────────────────────────
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('keydown',function(e){
+  if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['I','J','C'].includes(e.key.toUpperCase()))||(e.ctrlKey&&['u','s','p'].includes(e.key.toLowerCase()))){e.preventDefault();}
+});
+document.addEventListener('visibilitychange',function(){
+  if(document.getElementById('mainContent').style.display==='block'){
+    document.getElementById('mainContent').style.filter=document.hidden?'blur(8px)':'none';
+  }
+});
+
+// ── TOKEN SYSTEM ─────────────────────────────────────────────
+/*
+  HOW TO CREATE CODES FOR YOUR PROSPECTS:
+  ----------------------------------------
+  Each code format: XXXX-XXXX  (e.g. MIKE-2025)
+  
+  Add your prospect's code to the VALID_TOKENS object below.
+  Format: 'CODE': { name: 'Prospect Name', used: false }
+  
+  Example codes you can use right now:
+  MIKE-2025  → for Michael / Broker 1
+  SARA-2025  → for Sarah / Broker 2  
+  JOHN-2025  → for John / Broker 3
+  
+  To add more: copy the line format and add your code.
+  To invalidate a code: change used:false to used:true
+*/
+const VALID_TOKENS = {
+  'EMAN-2007': { name: 'Michael', used: false },
+  'ROBI-NAMA': { name: 'Sarah',   used: false },
+  'LARA-ROSE': { name: 'John',    used: false },
+  'ARUJ-2005': { name: 'Alex',    used: false },
+  'DEMO-2025': { name: 'Guest',   used: false },
+  'HADI-2005': { name: 'Name',    used: false }, 
+};
+
+// Format input as XXXX-XXXX automatically
+document.getElementById('gateInput').addEventListener('input', function(e){
+  let v = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'');
+  if(v.length > 4) v = v.slice(0,4) + '-' + v.slice(4,8);
+  e.target.value = v;
+});
+
+document.getElementById('gateInput').addEventListener('keydown', function(e){
+  if(e.key==='Enter') checkAccess();
+});
+
+function checkAccess(){
+  const input = document.getElementById('gateInput').value.trim().toUpperCase();
+  const token = VALID_TOKENS[input];
+  const errEl = document.getElementById('gateError');
+  const btn   = document.querySelector('.gate-btn');
+
+  if(!token){
+    errEl.textContent = 'Invalid access code. Contact Velixia to request access.';
+    errEl.classList.add('show');
+    document.querySelector('.gate-box').classList.add('shake');
+    setTimeout(()=>document.querySelector('.gate-box').classList.remove('shake'),400);
+    return;
+  }
+
+  if(token.used){
+    // Show blocked screen
+    document.getElementById('gateScreen').style.display='none';
+    const bs = document.getElementById('blockedScreen');
+    bs.style.display='flex';
+    return;
+  }
+
+  // Mark as used
+  VALID_TOKENS[input].used = true;
+
+  // Store in sessionStorage so refresh = locked out
+  sessionStorage.setItem('vx_access','granted');
+  sessionStorage.setItem('vx_token', input);
+  sessionStorage.setItem('vx_name',  token.name);
+
+  // Grant access
+  grantAccess(token.name);
+}
+
+function grantAccess(name){
+  document.getElementById('gateScreen').style.display='none';
+  const mc = document.getElementById('mainContent');
+  mc.style.display='block';
+  mc.style.opacity='0';
+  mc.style.transition='opacity 0.8s ease';
+  setTimeout(()=>mc.style.opacity='1', 50);
+
+  // Init everything
+  initPage();
+
+  // Start session timer — expire after 45 minutes of inactivity
+  startSessionTimer();
+}
+
+// ── SESSION TIMER ────────────────────────────────────────────
+let sessionTimeout;
+function startSessionTimer(){
+  resetSessionTimer();
+  ['mousemove','keydown','scroll','click'].forEach(ev=>{
+    document.addEventListener(ev, resetSessionTimer, {passive:true});
+  });
+}
+function resetSessionTimer(){
+  clearTimeout(sessionTimeout);
+  sessionTimeout = setTimeout(expireSession, 45 * 60 * 1000); // 45 min
+}
+function expireSession(){
+  document.getElementById('mainContent').style.display='none';
+  const es = document.getElementById('expiredScreen');
+  es.style.display='flex';
+  sessionStorage.clear();
+}
+
+// Check if returning on same session (allow) or fresh (block if used)
+window.addEventListener('load',function(){
+  const granted = sessionStorage.getItem('vx_access');
+  if(granted==='granted'){
+    const name = sessionStorage.getItem('vx_name') || 'Guest';
+    grantAccess(name);
+  }
+});
+
+// ── CURSOR ────────────────────────────────────────────────────
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=(mx-4)+'px';cursor.style.top=(my-4)+'px';});
+(function ar(){rx+=(mx-rx-15)*0.12;ry+=(my-ry-15)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar);})();
+
+function initPage(){
+  // Cursor hovers
+  document.querySelectorAll('a,button,.feature-card,.benefit-card,.access-card,.skill-card,.ac-card,.pipe-step').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2.5)';ring.style.transform='scale(1.5)';ring.style.borderColor='rgba(198,167,94,0.9)';});
+    el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.transform='scale(1)';ring.style.borderColor='rgba(198,167,94,0.5)';});
+  });
+
+  // Nav scroll
+  window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60));
+
+  // Scroll reveal
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}});
+  },{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'});});
+  });
+
+  // Demo auto-start
+  const demoObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting&&!demoRunning){setTimeout(startDemo,600);demoObs.unobserve(e.target);}});},{threshold:0.4});
+  demoObs.observe(document.getElementById('demo'));
+}
+
+// ── DEMO ─────────────────────────────────────────────────────
+let timerInterval,demoRunning=false,demoTimeouts=[];
+function startTimer(){let s=0;clearInterval(timerInterval);timerInterval=setInterval(()=>{s++;document.getElementById('callTimer').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');},1000);}
+const transcript_data=[
+  {role:'apex',    text:"Michael — one quick question before anything else. How many qualified leads came into your pipeline this week that didn't get a same-day call?",delay:0},
+  {role:'prospect',text:"Honestly? Probably three or four. We get slammed. We do have in-house closers though.",delay:3200},
+  {role:'apex',    text:"I understand. The issue isn't your closers — it's the window. 78% of deals go to the first company that makes contact. Velixia contacts every lead within 90 seconds. Your team can't do that. Nobody can.",delay:6000},
+  {role:'prospect',text:"That's fair. But my clients need a real conversation. They won't respond well to a robot.",delay:10800},
+  {role:'apex',    text:"What they respond to is speed, confidence, and someone who knows exactly what they need. Velixia delivers all three — most prospects don't know they're speaking with AI until they ask directly.",delay:13600},
+  {role:'prospect',text:"And what happens when they do ask?",delay:18200},
+  {role:'apex',    text:"Velixia says: 'I'm an AI closer built specifically for real estate. What matters more — who's calling you, or whether they can solve your problem?' That answer has never lost a deal.",delay:20500},
+  {role:'prospect',text:"Okay. What does this cost?",delay:26000},
+  {role:'apex',    text:"One investment of $9,700. No commission on anything, ever. If you're paying a closer 5–10% on deals — the math resolves itself after a single transaction. And you get a 30-day performance guarantee.",delay:28200},
+  {role:'prospect',text:"That's actually reasonable. I'd want to see it working in my pipeline though.",delay:34000},
+  {role:'apex',    text:"That's exactly what the discovery call is for — a live configuration built around your lead sources and objection patterns. Thursday at 2PM — does that work?",delay:36800},
+  {role:'prospect',text:"Thursday at 2 works for me.",delay:42000},
+  {role:'apex',    text:"Confirmed. Calendar invite coming to you within two minutes. Looking forward to it, Michael.",delay:44000},
+];
+function clearDemo(){demoTimeouts.forEach(t=>clearTimeout(t));demoTimeouts=[];clearInterval(timerInterval);document.getElementById('callTimer').textContent='00:00';document.getElementById('transcript').innerHTML='';document.getElementById('demoOutcome').style.opacity='0';document.getElementById('replayBtn').style.opacity='0';const wl=document.getElementById('waveLabel');if(wl)wl.textContent='Connecting...';demoRunning=false;}
+function startDemo(){
+  clearDemo();demoRunning=true;startTimer();
+  transcript_data.forEach((line,i)=>{
+    const t=setTimeout(()=>{
+      const div=document.createElement('div');div.className='line '+line.role;
+      div.innerHTML=`<div class="line-label">${line.role==='apex'?'VELIXIA':'PROSPECT'}</div><div class="line-text">${line.text}</div>`;
+      const tc=document.getElementById('transcript');tc.appendChild(div);setTimeout(()=>div.classList.add('visible'),60);tc.scrollTop=tc.scrollHeight;
+      const wl=document.getElementById('waveLabel');if(wl)wl.textContent=line.role==='apex'?'Velixia Speaking...':'Prospect Speaking...';
+      if(i===transcript_data.length-1){const endT=setTimeout(()=>{clearInterval(timerInterval);document.getElementById('demoOutcome').style.opacity='1';document.getElementById('replayBtn').style.opacity='1';if(wl)wl.textContent='Call Complete · Appointment Booked';},2500);demoTimeouts.push(endT);}
+    },line.delay);demoTimeouts.push(t);
+  });
+}
+</script>
+</body>
+</html>
