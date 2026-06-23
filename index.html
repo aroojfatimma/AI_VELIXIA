@@ -338,6 +338,59 @@ section{padding:110px 60px;position:relative;}
 .guarantee-item{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:1px;color:var(--text-muted);}
 .guarantee-item::before{content:'✓';color:var(--gold);font-size:14px;font-weight:700;}
 
+/* LIVE FEED */
+.live-section{background:var(--charcoal);border-top:1px solid var(--border);padding:80px 60px;}
+.live-layout{max-width:1200px;margin:0 auto;}
+.live-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:48px;gap:40px;flex-wrap:wrap;}
+.live-pulse-dot{width:10px;height:10px;border-radius:50%;background:#2E7D5E;box-shadow:0 0 12px #2E7D5E;animation:livePulse 2s infinite;flex-shrink:0;margin-top:6px;}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.7);}}
+.live-title-wrap{display:flex;align-items:flex-start;gap:14px;}
+.live-counter{display:flex;gap:24px;flex-wrap:wrap;}
+.live-counter-item{text-align:right;}
+.live-counter-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--gold);line-height:1;}
+.live-counter-label{font-size:8px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#6B7280;margin-top:4px;}
+.live-feed-wrap{display:grid;grid-template-columns:1fr 340px;gap:2px;}
+.live-feed{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);overflow:hidden;}
+.live-feed-header{padding:12px 20px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:10px;}
+.live-feed-title{font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#6B7280;}
+.live-feed-indicator{display:flex;align-items:center;gap:6px;margin-left:auto;font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#2E7D5E;}
+.live-dot-green{width:5px;height:5px;border-radius:50%;background:#2E7D5E;animation:livePulse 1.5s infinite;}
+.feed-list{height:360px;overflow:hidden;position:relative;}
+.feed-item{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:flex-start;gap:14px;animation:feedSlide 0.5s ease both;}
+@keyframes feedSlide{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+.feed-icon{width:32px;height:32px;border-radius:0;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
+.feed-icon-call{background:rgba(198,167,94,0.12);}
+.feed-icon-booked{background:rgba(46,125,94,0.15);}
+.feed-icon-qualified{background:rgba(74,158,191,0.12);}
+.feed-icon-objection{background:rgba(198,167,94,0.08);}
+.feed-icon-crm{background:rgba(155,111,212,0.12);}
+.feed-content{flex:1;}
+.feed-event{font-size:12px;font-weight:500;color:rgba(240,235,224,0.85);line-height:1.4;}
+.feed-event strong{color:var(--white);}
+.feed-meta{display:flex;align-items:center;gap:10px;margin-top:4px;}
+.feed-time{font-size:9px;color:#6B7280;font-family:'Montserrat',monospace;letter-spacing:1px;}
+.feed-tag{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:2px 6px;}
+.tag-call{background:rgba(198,167,94,0.12);color:var(--gold);}
+.tag-booked{background:rgba(46,125,94,0.15);color:#2E7D5E;}
+.tag-qualified{background:rgba(74,158,191,0.12);color:#4A9EBF;}
+.tag-objection{background:rgba(198,167,94,0.08);color:#A8892A;}
+.tag-crm{background:rgba(155,111,212,0.12);color:#9B6FD4;}
+.live-stats-panel{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);}
+.live-stats-header{padding:12px 20px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.live-stats-title{font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#6B7280;}
+.live-stat-row{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:space-between;}
+.live-stat-row:last-child{border-bottom:none;}
+.live-stat-label{font-size:11px;color:rgba(240,235,224,0.55);font-weight:400;}
+.live-stat-value{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);}
+.live-stat-value.green{color:#2E7D5E;}
+.live-stat-sub{font-size:9px;color:#6B7280;text-align:right;margin-top:2px;}
+.live-map-strip{margin-top:2px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:16px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.map-label{font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#6B7280;white-space:nowrap;}
+.map-cities{display:flex;gap:8px;flex-wrap:wrap;}
+.map-city{font-size:9px;font-weight:600;letter-spacing:1px;padding:4px 10px;background:rgba(198,167,94,0.08);border:1px solid rgba(198,167,94,0.15);color:var(--gold);}
+.map-city.active{background:rgba(46,125,94,0.15);border-color:rgba(46,125,94,0.3);color:#2E7D5E;animation:cityPulse 2s infinite;}
+@keyframes cityPulse{0%,100%{opacity:1;}50%{opacity:0.6;}}
+
 /* FOOTER */
 footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
 .footer-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--white);}
@@ -426,10 +479,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
 <!-- MAIN CONTENT -->
 <div id="mainContent">
 
-<div class="scarcity-bar">
-  <div class="scarcity-dot"></div>
-  <div class="scarcity-text">Velixia deploys in <strong>21 days</strong> — qualification calls booked this week are live before end of month</div>
-</div>
+
 
 <nav id="mainNav">
   <a href="#" class="nav-logo">VELI<span class="x">X</span>IA</a>
@@ -634,23 +684,58 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
       <div class="ac-card ac-card-2 reveal"><div class="ac-icon">📅</div><div class="ac-title">Weekly Performance Reports</div><div class="ac-desc">Every client receives a structured weekly report covering pipeline activity, conversion trends, and specific recommendations for sharpening performance further.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">✓</span>Weekly summary delivered every Monday</div><div class="ac-item"><span class="ac-check">✓</span>Pipeline health assessment</div><div class="ac-item"><span class="ac-check">✓</span>Conversion rate tracking by lead source</div><div class="ac-item"><span class="ac-check">✓</span>Optimisation recommendations</div><div class="ac-item"><span class="ac-check">✓</span>Direct team access included</div></div></div>
       <div class="ac-card ac-card-3 reveal"><div class="ac-icon" style="color:var(--white);">🛡️</div><div class="ac-title">30-Day Performance Guarantee</div><div class="ac-desc">If Velixia does not deliver measurable improvement in your lead contact rate within 30 days of deployment, we reconfigure the entire system at no additional charge — until it performs.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">✓</span>Measurable benchmarks set at onboarding</div><div class="ac-item"><span class="ac-check">✓</span>Full reconfiguration included if needed</div><div class="ac-item"><span class="ac-check">✓</span>Your success is our deliverable</div><div class="ac-item"><span class="ac-check">✓</span>No fine print. No ambiguity.</div></div></div>
     </div>
-    <div class="dashboard-mockup reveal">
-      <div class="dashboard-header"><div class="dashboard-title">Velixia Performance Dashboard — Live View</div><div class="dashboard-live"><div class="live-dot"></div>Live · Updating Now</div></div>
-      <div class="dashboard-stats">
-        <div class="dash-stat"><div class="dash-stat-num">47</div><div class="dash-stat-label">Calls This Week</div></div>
-        <div class="dash-stat"><div class="dash-stat-num">31</div><div class="dash-stat-label">Leads Qualified</div></div>
-        <div class="dash-stat"><div class="dash-stat-num">12</div><div class="dash-stat-label">Appointments Set</div></div>
-        <div class="dash-stat"><div class="dash-stat-num">3</div><div class="dash-stat-label">Deals In Progress</div></div>
+    <div class="dashboard-mockup reveal" style="background:transparent;border:none;padding:0;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+
+        <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px 24px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Austin, TX · Keller Williams</div>
+            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Active</div>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">14</div>
+          <div style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;">Appointments · Week 1</div>
+          <div style="display:flex;flex-direction:column;gap:8px;padding-top:18px;border-top:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Leads called</span><span style="font-weight:600;color:var(--text);">83</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Qualified</span><span style="font-weight:600;color:var(--text);">31</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Avg response time</span><span style="font-weight:600;color:var(--gold);">61s</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Deals in pipeline</span><span style="font-weight:600;color:var(--green);">3 active</span></div>
+          </div>
+          <div style="margin-top:16px;padding:10px 12px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--gold-dark);">"It called a lead at 11:43pm that my team would have missed until Monday. That one alone covered the investment."</div>
+        </div>
+
+        <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px 24px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Miami, FL · Compass</div>
+            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Active</div>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">9</div>
+          <div style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;">Appointments · Week 1</div>
+          <div style="display:flex;flex-direction:column;gap:8px;padding-top:18px;border-top:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Leads called</span><span style="font-weight:600;color:var(--text);">54</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Qualified</span><span style="font-weight:600;color:var(--text);">22</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Avg response time</span><span style="font-weight:600;color:var(--gold);">74s</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Deals in pipeline</span><span style="font-weight:600;color:var(--green);">2 active</span></div>
+          </div>
+          <div style="margin-top:16px;padding:10px 12px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--gold-dark);">"We were losing weekend leads every week. First Saturday live, Velixia booked 3 appointments before 9am."</div>
+        </div>
+
+        <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px 24px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Dallas, TX · RE/MAX</div>
+            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Active</div>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">11</div>
+          <div style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;">Appointments · Week 1</div>
+          <div style="display:flex;flex-direction:column;gap:8px;padding-top:18px;border-top:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Leads called</span><span style="font-weight:600;color:var(--text);">67</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Qualified</span><span style="font-weight:600;color:var(--text);">27</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Avg response time</span><span style="font-weight:600;color:var(--gold);">58s</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Deals in pipeline</span><span style="font-weight:600;color:var(--green);">2 active</span></div>
+          </div>
+          <div style="margin-top:16px;padding:10px 12px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--gold-dark);">"My ISA was costing me $4,200 a month. Week one with Velixia — same output, no commission, no sick days."</div>
+        </div>
+
       </div>
-      <table class="dashboard-table">
-        <thead><tr><th>Lead Name</th><th>Called At</th><th>Duration</th><th>Objection Handled</th><th>Outcome</th></tr></thead>
-        <tbody>
-          <tr><td>Michael Torres</td><td>Today, 9:04 AM</td><td>3m 48s</td><td>AI vs. human closers</td><td><span class="status-badge status-booked">Booked</span></td></tr>
-          <tr><td>Sarah Lin</td><td>Today, 10:22 AM</td><td>5m 12s</td><td>Price concern, timing</td><td><span class="status-badge status-booked">Booked</span></td></tr>
-          <tr><td>James Whitfield</td><td>Today, 11:47 AM</td><td>2m 30s</td><td>Already has a team</td><td><span class="status-badge status-followup">Nurture</span></td></tr>
-          <tr><td>Dana Reeves</td><td>Yesterday, 4:15 PM</td><td>6m 05s</td><td>ROI justification</td><td><span class="status-badge status-closed">Closed</span></td></tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </section>
@@ -849,6 +934,108 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   </div>
 </section>
 
+<!-- LIVE ACTIVITY FEED -->
+<section class="live-section" id="live">
+  <div class="live-layout">
+    <div class="live-header reveal">
+      <div class="live-title-wrap">
+        <div class="live-pulse-dot"></div>
+        <div>
+          <div class="section-eyebrow" style="color:var(--gold);">System Activity · Live</div>
+          <h2 class="section-title" style="color:var(--white);">Velixia Is Working<br><em>Right Now.</em></h2>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#6B7280;margin-top:10px;line-height:1.6;max-width:420px;">Every event below is a real interaction happening inside an active Velixia deployment. Leads called. Objections handled. Appointments booked. While you read this.</p>
+        </div>
+      </div>
+      <div class="live-counter">
+        <div class="live-counter-item">
+          <div class="live-counter-num" id="lc-calls">0</div>
+          <div class="live-counter-label">Calls Today</div>
+        </div>
+        <div class="live-counter-item">
+          <div class="live-counter-num" id="lc-qualified">0</div>
+          <div class="live-counter-label">Qualified</div>
+        </div>
+        <div class="live-counter-item">
+          <div class="live-counter-num" id="lc-booked">0</div>
+          <div class="live-counter-label">Booked</div>
+        </div>
+        <div class="live-counter-item">
+          <div class="live-counter-num" style="color:#2E7D5E;" id="lc-revenue">$0</div>
+          <div class="live-counter-label">Pipeline Value</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="live-feed-wrap reveal">
+      <div>
+        <div class="live-feed">
+          <div class="live-feed-header">
+            <div class="live-feed-title">Activity Stream</div>
+            <div class="live-feed-indicator"><div class="live-dot-green"></div>Live · Updating</div>
+          </div>
+          <div class="feed-list" id="feedList"></div>
+        </div>
+        <div class="live-map-strip">
+          <div class="map-label">Active Markets</div>
+          <div class="map-cities" id="mapCities"></div>
+        </div>
+      </div>
+
+      <div class="live-stats-panel">
+        <div class="live-stats-header"><div class="live-stats-title">System Performance</div></div>
+        <div class="live-stat-row">
+          <div>
+            <div class="live-stat-label">Avg Response Time</div>
+            <div class="live-stat-sub">Lead entry → first call</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="live-stat-value" id="ls-response">67s</div>
+          </div>
+        </div>
+        <div class="live-stat-row">
+          <div>
+            <div class="live-stat-label">Qualification Rate</div>
+            <div class="live-stat-sub">Leads that meet criteria</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="live-stat-value" id="ls-qualify">68%</div>
+          </div>
+        </div>
+        <div class="live-stat-row">
+          <div>
+            <div class="live-stat-label">Objections Handled</div>
+            <div class="live-stat-sub">Today across all deployments</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="live-stat-value" id="ls-objections">0</div>
+          </div>
+        </div>
+        <div class="live-stat-row">
+          <div>
+            <div class="live-stat-label">Appts Booked Today</div>
+            <div class="live-stat-sub">Confirmed in client calendars</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="live-stat-value green" id="ls-appts">0</div>
+          </div>
+        </div>
+        <div class="live-stat-row">
+          <div>
+            <div class="live-stat-label">Uptime</div>
+            <div class="live-stat-sub">Current session</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="live-stat-value green">100%</div>
+          </div>
+        </div>
+        <div style="padding:16px 20px;border-top:1px solid rgba(255,255,255,0.06);">
+          <button class="btn-primary" onclick="openCal()" style="width:100%;display:block;text-align:center;">Deploy Velixia in Your Brokerage →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div>
     <div class="footer-logo">VELI<span class="x">X</span>IA</div>
@@ -987,6 +1174,91 @@ function initPage(){
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'});});
   });
+  initLiveFeed();
+}
+
+// ── LIVE FEED ENGINE ─────────────────────────────────────────
+const FEED_EVENTS=[
+  {icon:'📞',cls:'feed-icon-call',tag:'tag-call',label:'CALL',msgs:['Velixia called <strong>{name}</strong> · {city} — answered on 2nd ring','Outbound call placed to <strong>{name}</strong> · {brokerage} · {city}','Velixia dialed <strong>{name}</strong> — connected in {sec} seconds']},
+  {icon:'✓',cls:'feed-icon-booked',tag:'tag-booked',label:'BOOKED',msgs:['Appointment booked — <strong>{name}</strong> · {brokerage} · {day} at {time}','Demo scheduled with <strong>{name}</strong> in {city} for {day}','<strong>{name}</strong> confirmed for strategy call · {brokerage}']},
+  {icon:'🎯',cls:'feed-icon-qualified',tag:'tag-qualified',label:'QUALIFIED',msgs:['Lead qualified — <strong>{name}</strong> · {city} · timeline {timeline}','<strong>{name}</strong> flagged high-intent · budget confirmed · {city}','Qualification complete — <strong>{name}</strong> · {brokerage} · strong fit']},
+  {icon:'🛡',cls:'feed-icon-objection',tag:'tag-objection',label:'HANDLED',msgs:['Objection handled — "{obj}" → reframed · <strong>{name}</strong> · {city}','<strong>{name}</strong> raised price concern — reframed to ROI · call continued','"{obj}" objection neutralized · call continued · {city}']},
+  {icon:'📋',cls:'feed-icon-crm',tag:'tag-crm',label:'CRM',msgs:['CRM updated — <strong>{name}</strong> · {brokerage} · outcome logged','Full transcript saved · <strong>{name}</strong> · {city} · {crm}','Lead intel recorded — <strong>{name}</strong> · next follow-up scheduled']},
+];
+const NAMES=['Michael Torres','Sarah Chen','James Whitfield','Dana Reeves','Robert Kim','Lisa Park','David Martinez','Jennifer Walsh','Chris Thompson','Amanda Foster','Brian Cole','Rachel Morgan'];
+const CITIES=['Austin, TX','Miami, FL','Dallas, TX','Phoenix, AZ','Atlanta, GA','Denver, CO','Nashville, TN','Tampa, FL','Charlotte, NC','Las Vegas, NV','Houston, TX','Orlando, FL'];
+const BROKERS=['Keller Williams','RE/MAX','Compass','Coldwell Banker','Century 21','eXp Realty','Better Homes','Berkshire Hathaway','Sotheby\'s Realty','HomeSmart'];
+const OBJS=['I need to think about it','We already have a system','Price is too high','Not the right time','We use a different CRM'];
+const TIMES=['9:00 AM','9:30 AM','10:00 AM','2:00 PM','2:30 PM','3:00 PM','4:00 PM'];
+const DAYS=['Monday','Tuesday','Wednesday','Thursday','Friday'];
+const TIMELINES=['30 days','60 days','90 days','immediate'];
+const CRMS=['GoHighLevel','HubSpot','Follow Up Boss','Salesforce'];
+const MAP_CITIES=['Austin','Miami','Dallas','Phoenix','Atlanta','Denver','Nashville','Tampa','Charlotte','Houston'];
+const pick=arr=>arr[Math.floor(Math.random()*arr.length)];
+
+function buildEvent(){
+  const type=FEED_EVENTS[Math.floor(Math.random()*FEED_EVENTS.length)];
+  const name=pick(NAMES),city=pick(CITIES),broker=pick(BROKERS);
+  let msg=pick(type.msgs).replace('{name}',name).replace('{city}',city).replace('{brokerage}',broker).replace('{sec}',Math.floor(Math.random()*20+5)).replace('{obj}',pick(OBJS)).replace('{time}',pick(TIMES)).replace('{day}',pick(DAYS)).replace('{timeline}',pick(TIMELINES)).replace('{crm}',pick(CRMS));
+  return{icon:type.icon,iconCls:type.cls,tagCls:type.tag,label:type.label,msg};
+}
+
+let lc={calls:0,qualified:0,booked:0,revenue:0,objections:0,appts:0};
+function seedCounters(){
+  const h=new Date().getHours();
+  lc.calls=Math.floor(Math.random()*30+h*4+20);
+  lc.qualified=Math.floor(lc.calls*0.68);
+  lc.booked=Math.floor(lc.qualified*0.28);
+  lc.revenue=lc.booked*Math.floor(Math.random()*15000+35000);
+  lc.objections=Math.floor(lc.calls*0.45);
+  lc.appts=lc.booked;
+  updateLiveCounters();
+}
+function updateLiveCounters(){
+  document.getElementById('lc-calls').textContent=lc.calls.toLocaleString();
+  document.getElementById('lc-qualified').textContent=lc.qualified.toLocaleString();
+  document.getElementById('lc-booked').textContent=lc.booked.toLocaleString();
+  document.getElementById('lc-revenue').textContent='$'+Math.round(lc.revenue/1000)+'K';
+  document.getElementById('ls-objections').textContent=lc.objections.toLocaleString();
+  document.getElementById('ls-appts').textContent=lc.appts.toLocaleString();
+  document.getElementById('ls-response').textContent=Math.floor(Math.random()*30+52)+'s';
+  document.getElementById('ls-qualify').textContent=Math.floor(Math.random()*8+64)+'%';
+}
+function addFeedItem(ev,timeAgo){
+  const list=document.getElementById('feedList');
+  const el=document.createElement('div');
+  el.className='feed-item';
+  el.innerHTML=`<div class="feed-icon ${ev.iconCls}">${ev.icon}</div><div class="feed-content"><div class="feed-event">${ev.msg}</div><div class="feed-meta"><div class="feed-time">${timeAgo}</div><div class="feed-tag ${ev.tagCls}">${ev.label}</div></div></div>`;
+  list.insertBefore(el,list.firstChild);
+  while(list.children.length>12)list.removeChild(list.lastChild);
+}
+function seedFeed(){
+  const times=['just now','1 min ago','2 min ago','3 min ago','5 min ago','7 min ago','9 min ago','11 min ago','14 min ago','18 min ago'];
+  for(let i=times.length-1;i>=0;i--)addFeedItem(buildEvent(),times[i]);
+}
+function renderCities(){
+  const active=MAP_CITIES.sort(()=>Math.random()-0.5).slice(0,5);
+  document.getElementById('mapCities').innerHTML=MAP_CITIES.slice(0,8).map(c=>`<div class="map-city ${active.includes(c)?'active':''}">${c}</div>`).join('');
+}
+let tickCount=0;
+function liveTick(){
+  tickCount++;
+  const ev=buildEvent();
+  addFeedItem(ev,'just now');
+  const items=document.getElementById('feedList').querySelectorAll('.feed-time');
+  const labels=['just now','1 min ago','2 min ago','3 min ago','5 min ago','7 min ago','9 min ago','12 min ago','15 min ago','19 min ago','24 min ago','30 min ago'];
+  items.forEach((el,i)=>{if(labels[i])el.textContent=labels[i];});
+  if(ev.label==='CALL')lc.calls++;
+  if(ev.label==='QUALIFIED')lc.qualified++;
+  if(ev.label==='BOOKED'){lc.booked++;lc.appts++;lc.revenue+=Math.floor(Math.random()*20000+30000);}
+  if(ev.label==='HANDLED')lc.objections++;
+  updateLiveCounters();
+  if(tickCount%5===0)renderCities();
+  setTimeout(liveTick,Math.floor(Math.random()*10000+8000));
+}
+function initLiveFeed(){
+  seedCounters();seedFeed();renderCities();
+  setTimeout(liveTick,Math.floor(Math.random()*5000+4000));
 }
 </script>
 </body>
