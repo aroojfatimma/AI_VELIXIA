@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Velixia — The AI Sales System That Never Sleeps</title>
+<title>Velexia — The AI Sales System That Never Sleeps</title>
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAAAIADnAAAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAQAAAAEAgGAAAAH/P/YQAAAK5JREFUeJylU8ENwyAMPBiAB2In/xB7MA97IH7sVPXRBegniRzLTqPGH4TxnbHPdgCQYlj4w17vj/O/wKMV8y3FsPwd8BWJ037AAARg7pdcu00gstB2TuN+kHkNnGufPBjA3Hw70YHxnE37ojQZqzZxtHIiy7WbjXQphiUfOZiTaXFaCQTbSC1B6j1aIc2v+U4yilq5dKaM6iDJrBLEzRxlGWxJfLkLd+bDAc/W+QthR16Y3EMDiAAAAABJRU5ErkJggg==">
 <link rel="shortcut icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAAAIADnAAAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAQAAAAEAgGAAAAH/P/YQAAAK5JREFUeJylU8ENwyAMPBiAB2In/xB7MA97IH7sVPXRBegniRzLTqPGH4TxnbHPdgCQYlj4w17vj/O/wKMV8y3FsPwd8BWJ037AAARg7pdcu00gstB2TuN+kHkNnGufPBjA3Hw70YHxnE37ojQZqzZxtHIiy7WbjXQphiUfOZiTaXFaCQTbSC1B6j1aIc2v+U4yilq5dKaM6iDJrBLEzRxlGWxJfLkLd+bDAc/W+QthR16Y3EMDiAAAAABJRU5ErkJggg==">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;overflow-x:hidden;cursor:none;user-select:none;-webkit-user-select:none;}
 .wm-overlay{position:fixed;inset:0;pointer-events:none;z-index:9990;overflow:hidden;}
-.wm-overlay::before{content:'Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential · Velixia Confidential';position:absolute;width:200%;top:0;left:-50%;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:rgba(198,167,94,0.06);transform:rotate(-35deg);line-height:6;white-space:pre-wrap;word-break:break-all;}
+.wm-overlay::before{content:'Velexia Confidential · Velexia Confidential · Velexia Confidential · Velexia Confidential · Velexia Confidential · Velexia Confidential · Velexia Confidential · Velexia Confidential';position:absolute;width:200%;top:0;left:-50%;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:rgba(198,167,94,0.06);transform:rotate(-35deg);line-height:6;white-space:pre-wrap;word-break:break-all;}
 .cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.1s ease;}
 .cursor-ring{position:fixed;width:30px;height:30px;border:1px solid rgba(198,167,94,0.5);border-radius:50%;pointer-events:none;z-index:9998;transition:all 0.15s ease;}
 
@@ -452,28 +452,28 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
     <div class="gate-corner gate-corner-bl"></div><div class="gate-corner gate-corner-br"></div>
   </div>
   <div class="gate-box">
-    <div class="gate-logo">VELI<span class="x">X</span>IA</div>
+    <div class="gate-logo">VELE<span class="x">X</span>IA</div>
     <div class="gate-tagline">Where Excellence Meets Authority</div>
     <div class="gate-divider"></div>
     <div class="gate-label">Enter Your Private Access Code</div>
     <input class="gate-input" id="gateInput" type="text" placeholder="XXXX-XXXX" maxlength="9" autocomplete="off" spellcheck="false"/>
     <button class="gate-btn" onclick="checkAccess()">Request Access →</button>
-    <div class="gate-error" id="gateError">Invalid or expired access code. Contact Velixia to request access.</div>
+    <div class="gate-error" id="gateError">Invalid or expired access code. Contact Velexia to request access.</div>
     <div class="gate-note">This presentation is <strong>private and confidential</strong>. Access is issued individually and is non-transferable.</div>
   </div>
 </div>
 
 <div id="expiredScreen">
-  <div class="blocked-logo">VELI<span class="x">X</span>IA</div>
+  <div class="blocked-logo">VELE<span class="x">X</span>IA</div>
   <div class="blocked-icon">🔒</div>
   <div class="blocked-title">This Session Has Expired</div>
-  <div class="blocked-desc">Your access has expired. Contact Velixia to arrange a new session.</div>
+  <div class="blocked-desc">Your access has expired. Contact Velexia to arrange a new session.</div>
 </div>
 <div id="blockedScreen">
-  <div class="blocked-logo">VELI<span class="x">X</span>IA</div>
+  <div class="blocked-logo">VELE<span class="x">X</span>IA</div>
   <div class="blocked-icon">⛔</div>
   <div class="blocked-title">Access Revoked</div>
-  <div class="blocked-desc">This code has already been used. Contact Velixia to request a new one.</div>
+  <div class="blocked-desc">This code has already been used. Contact Velexia to request a new one.</div>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -482,7 +482,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
 
 
 <nav id="mainNav">
-  <a href="#" class="nav-logo">VELI<span class="x">X</span>IA</a>
+  <a href="#" class="nav-logo">VELE<span class="x">X</span>IA</a>
   <ul class="nav-links">
     <li><a href="#skills">Closer Skills</a></li>
     <li><a href="#demo">Live Demo</a></li>
@@ -517,11 +517,11 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
     <div class="hero-eyebrow">Autonomous AI Sales Intelligence · Built for High-Ticket Operators</div>
     <h1 class="hero-headline">
       Your Pipeline Is Bleeding Revenue.<br><em>Every Single Day.</em>
-      <span class="sub">Velixia is a fully autonomous AI sales employee — deployed inside your brokerage in 21 days. It contacts every lead in 90 seconds, runs complete high-ticket sales conversations, handles every objection, books the appointment, and updates your CRM. Zero commission. Zero excuses. Zero days off.</span>
+      <span class="sub">Velexia is a fully autonomous AI sales employee — deployed inside your brokerage in 21 days. It contacts every lead in 90 seconds, runs complete high-ticket sales conversations, handles every objection, books the appointment, and updates your CRM. Zero commission. Zero excuses. Zero days off.</span>
     </h1>
-    <p class="hero-desc">The leads are there. The problem is who's calling them — and when. Velixia is the answer your pipeline has been waiting for.</p>
+    <p class="hero-desc">The leads are there. The problem is who's calling them — and when. Velexia is the answer your pipeline has been waiting for.</p>
     <div class="hero-actions">
-      <button class="btn-primary" onclick="openCal()">See If You Qualify for Velixia</button>
+      <button class="btn-primary" onclick="openCal()">See If You Qualify for Velexia</button>
       <a href="#demo" class="btn-ghost">Hear a Live Call</a>
     </div>
     <div class="hero-stats">
@@ -539,7 +539,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
     <div>
       <div class="section-eyebrow">Elite Closer Psychology</div>
       <h2 class="section-title">Every Skill a Top 1%<br>Closer Owns. <em>Engineered</em><br>Into Every Single Call.</h2>
-      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--text-muted);margin-top:16px;line-height:1.6;">Top 1% closers are rare, expensive, and unpredictable. Velixia carries every psychological weapon they own — without the inconsistency, the bad days, or the commission invoice.</p>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--text-muted);margin-top:16px;line-height:1.6;">Top 1% closers are rare, expensive, and unpredictable. Velexia carries every psychological weapon they own — without the inconsistency, the bad days, or the commission invoice.</p>
     </div>
     <div style="background:var(--bg-warm);border:1px solid var(--border);padding:36px;">
       <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--text);margin-bottom:20px;">What separates the top 1% from everyone else:</div>
@@ -550,16 +550,16 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
         <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);line-height:1.6;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>They frame price as investment — the prospect justifies it before being asked</div>
         <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);line-height:1.6;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>They reframe every objection — "I need to think" becomes a yes</div>
       </div>
-      <div style="margin-top:24px;padding:14px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--gold-dark);">Velixia executes every one of these — on call one and call one thousand.</div>
+      <div style="margin-top:24px;padding:14px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--gold-dark);">Velexia executes every one of these — on call one and call one thousand.</div>
     </div>
   </div>
   <div class="skills-grid">
-    <div class="skill-card reveal"><div class="skill-icon">🎯</div><div class="skill-name">Rapid Qualification</div><div class="skill-desc">Identifies decision authority, budget, timeline, and buying intent within 60 seconds. Bad leads disqualified. Strong leads accelerated immediately.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Human closers spend 20+ minutes on leads that were never going to close. Velixia has zero such bias.</div></div></div>
-    <div class="skill-card reveal"><div class="skill-icon">🧠</div><div class="skill-name">Psychological Mirroring</div><div class="skill-desc">Adapts tone, pace, and language to match the prospect's communication style in real time — building subconscious rapport before the pitch begins.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Most closers mirror when they remember to. Velixia mirrors on every single exchange, without exception.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🎯</div><div class="skill-name">Rapid Qualification</div><div class="skill-desc">Identifies decision authority, budget, timeline, and buying intent within 60 seconds. Bad leads disqualified. Strong leads accelerated immediately.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Human closers spend 20+ minutes on leads that were never going to close. Velexia has zero such bias.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🧠</div><div class="skill-name">Psychological Mirroring</div><div class="skill-desc">Adapts tone, pace, and language to match the prospect's communication style in real time — building subconscious rapport before the pitch begins.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Most closers mirror when they remember to. Velexia mirrors on every single exchange, without exception.</div></div></div>
     <div class="skill-card reveal"><div class="skill-icon">⚡</div><div class="skill-name">Pattern-Interrupt Opening</div><div class="skill-desc">Never opens with a generic greeting. Opens with a precise, unexpected question that separates this call from every other call the prospect took that week.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Generic openers produce generic outcomes. The first 10 seconds decide the trajectory of the entire call.</div></div></div>
-    <div class="skill-card reveal"><div class="skill-icon">🛡️</div><div class="skill-name">Objection Dismantling</div><div class="skill-desc">Every real estate objection — "I'll think about it," "we already have closers," "AI can't replace humans" — has a precise, reframe-based counter built in.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Human closers memorize 5–10 counters. Velixia carries hundreds and selects contextually.</div></div></div>
-    <div class="skill-card reveal"><div class="skill-icon">🔇</div><div class="skill-name">Strategic Silence</div><div class="skill-desc">After a close or key statement, Velixia holds silence — the most underused weapon in sales. Prospects fill silence with decisions. Velixia waits with absolute confidence.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Nervous closers rush to fill silence. Velixia never gets nervous. It simply waits.</div></div></div>
-    <div class="skill-card reveal"><div class="skill-icon">📈</div><div class="skill-name">ROI Framing Before Price</div><div class="skill-desc">Frames the full business impact before the prospect ever hears the investment figure. By the time price is mentioned, the prospect has already decided it's worth it.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Most closers reveal price too early — triggering sticker shock. Velixia makes price the last thing the prospect thinks about.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🛡️</div><div class="skill-name">Objection Dismantling</div><div class="skill-desc">Every real estate objection — "I'll think about it," "we already have closers," "AI can't replace humans" — has a precise, reframe-based counter built in.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Human closers memorize 5–10 counters. Velexia carries hundreds and selects contextually.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🔇</div><div class="skill-name">Strategic Silence</div><div class="skill-desc">After a close or key statement, Velexia holds silence — the most underused weapon in sales. Prospects fill silence with decisions. Velexia waits with absolute confidence.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Nervous closers rush to fill silence. Velexia never gets nervous. It simply waits.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">📈</div><div class="skill-name">ROI Framing Before Price</div><div class="skill-desc">Frames the full business impact before the prospect ever hears the investment figure. By the time price is mentioned, the prospect has already decided it's worth it.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Most closers reveal price too early — triggering sticker shock. Velexia makes price the last thing the prospect thinks about.</div></div></div>
   </div>
 </section>
 
@@ -569,17 +569,17 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
     <div class="reveal">
       <div class="section-eyebrow">Live Experience</div>
       <h2 class="section-title">Don't Watch a Demo.<br><em>Be the Prospect.</em></h2>
-      <p class="section-sub" style="margin-bottom:36px;">This is not a pre-recorded script. This is Velixia — live, on a real US number, running a complete real estate qualification call in real time. Call the number. Try to resist. See what happens.</p>
+      <p class="section-sub" style="margin-bottom:36px;">This is not a pre-recorded script. This is Velexia — live, on a real US number, running a complete real estate qualification call in real time. Call the number. Try to resist. See what happens.</p>
       <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px;">
-        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">✓</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;">Velixia answers in under 2 rings — no hold music, no IVR, no wait</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">✓</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;">Velexia answers in under 2 rings — no hold music, no IVR, no wait</span></div>
         <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">✓</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;">Full qualification — timeline, budget, motivation — in under 90 seconds</span></div>
         <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">✓</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;">Throw any objection — "I'm just looking," "not ready," "already have an agent"</span></div>
-        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">✓</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;">Velixia will reframe, not answer — and attempt to book you into a specific time slot</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">✓</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;">Velexia will reframe, not answer — and attempt to book you into a specific time slot</span></div>
       </div>
       <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px;clip-path:polygon(10px 0%,100% 0%,100% calc(100% - 10px),calc(100% - 10px) 100%,0% 100%,0% 10px);">
         <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">How To Run The Test</div>
         <div style="display:flex;flex-direction:column;gap:12px;">
-          <div style="display:flex;gap:14px;align-items:flex-start;"><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);flex-shrink:0;line-height:1;">1</span><span style="font-size:12px;color:var(--text-muted);line-height:1.6;">Call the number. When Velixia answers, say: <em style="color:var(--text);">"Hi, I'm thinking about selling my home in Miami."</em></span></div>
+          <div style="display:flex;gap:14px;align-items:flex-start;"><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);flex-shrink:0;line-height:1;">1</span><span style="font-size:12px;color:var(--text-muted);line-height:1.6;">Call the number. When Velexia answers, say: <em style="color:var(--text);">"Hi, I'm thinking about selling my home in Miami."</em></span></div>
           <div style="display:flex;gap:14px;align-items:flex-start;"><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);flex-shrink:0;line-height:1;">2</span><span style="font-size:12px;color:var(--text-muted);line-height:1.6;">Answer naturally. Play skeptical. Try: <em style="color:var(--text);">"I'm really just looking right now."</em></span></div>
           <div style="display:flex;gap:14px;align-items:flex-start;"><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);flex-shrink:0;line-height:1;">3</span><span style="font-size:12px;color:var(--text-muted);line-height:1.6;">If it impressed you — book a 15-minute call below. This is what your leads experience from day one.</span></div>
         </div>
@@ -590,7 +590,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
       <div style="width:100%;max-width:380px;">
         <div style="background:var(--charcoal);border:1px solid var(--gold-border);clip-path:polygon(16px 0%,100% 0%,100% calc(100% - 16px),calc(100% - 16px) 100%,0% 100%,0% 16px);overflow:hidden;">
           <div style="background:var(--gold);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;">
-            <div style="display:flex;align-items:center;gap:10px;"><div style="width:8px;height:8px;border-radius:50%;background:var(--white);opacity:0.9;animation:pulseDot 2s infinite;"></div><span style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--white);">Velixia · System Live</span></div>
+            <div style="display:flex;align-items:center;gap:10px;"><div style="width:8px;height:8px;border-radius:50%;background:var(--white);opacity:0.9;animation:pulseDot 2s infinite;"></div><span style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--white);">Velexia · System Live</span></div>
             <span style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);">Miami · 786</span>
           </div>
           <div style="padding:40px 32px;text-align:center;">
@@ -601,12 +601,12 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
             <div style="display:flex;align-items:center;justify-content:center;gap:3px;margin-bottom:12px;">
               <div class="w-bar" style="height:5px;"></div><div class="w-bar" style="height:10px;"></div><div class="w-bar" style="height:16px;"></div><div class="w-bar" style="height:8px;"></div><div class="w-bar" style="height:14px;"></div><div class="w-bar" style="height:6px;"></div><div class="w-bar" style="height:12px;"></div><div class="w-bar" style="height:9px;"></div><div class="w-bar" style="height:5px;"></div>
             </div>
-            <div style="font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px;">Velixia Listening · Ready</div>
+            <div style="font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px;">Velexia Listening · Ready</div>
             <div style="width:32px;height:1px;background:var(--gold-border);margin:0 auto 28px;"></div>
             <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:rgba(255,255,255,0.55);line-height:1.6;">If it doesn't sound human —<br>if the psychology doesn't land —<br><strong style="color:rgba(255,255,255,0.85);font-style:normal;">hang up. You'll have your answer.</strong></p>
           </div>
           <div style="border-top:1px solid rgba(198,167,94,0.15);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;">
-            <span style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);">Demo Environment · Velixia AI</span>
+            <span style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);">Demo Environment · Velexia AI</span>
             <span style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(198,167,94,0.5);">Live 24/7</span>
           </div>
         </div>
@@ -624,17 +624,17 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   <div class="crm-layout">
     <div class="reveal" style="margin-bottom:60px;">
       <div class="section-eyebrow">Pipeline Integration</div>
-      <h2 class="section-title">Velixia Operates <em>Inside</em><br>Your Pipeline — Not Alongside It.</h2>
+      <h2 class="section-title">Velexia Operates <em>Inside</em><br>Your Pipeline — Not Alongside It.</h2>
       <p class="section-sub">Every call logged. Every outcome recorded. Every appointment synced. Your team wakes up to qualified prospects — not a pile of uncontacted leads.</p>
     </div>
     <div class="pipeline-flow reveal">
       <div class="pipe-step"><div class="pipe-step-icon">📥</div><div class="pipe-step-label">Lead Enters</div><div class="pipe-step-desc">New lead added from any source — ad, form, referral, or manual entry</div></div>
       <div class="pipe-arrow">→</div>
-      <div class="pipe-step active-step"><div class="velixia-badge">Velixia</div><div class="pipe-step-icon">📞</div><div class="pipe-step-label">Called &lt;90 Seconds</div><div class="pipe-step-desc">Velixia dials instantly — qualification, pitch, objection handling in real time</div></div>
+      <div class="pipe-step active-step"><div class="velixia-badge">Velexia</div><div class="pipe-step-icon">📞</div><div class="pipe-step-label">Called &lt;90 Seconds</div><div class="pipe-step-desc">Velexia dials instantly — qualification, pitch, objection handling in real time</div></div>
       <div class="pipe-arrow">→</div>
-      <div class="pipe-step active-step"><div class="velixia-badge">Velixia</div><div class="pipe-step-icon">📋</div><div class="pipe-step-label">CRM Updated</div><div class="pipe-step-desc">Full transcript and outcome logged automatically — zero manual entry</div></div>
+      <div class="pipe-step active-step"><div class="velixia-badge">Velexia</div><div class="pipe-step-icon">📋</div><div class="pipe-step-label">CRM Updated</div><div class="pipe-step-desc">Full transcript and outcome logged automatically — zero manual entry</div></div>
       <div class="pipe-arrow">→</div>
-      <div class="pipe-step active-step"><div class="velixia-badge">Velixia</div><div class="pipe-step-icon">📅</div><div class="pipe-step-label">Appointment Booked</div><div class="pipe-step-desc">Qualified prospect booked directly into your calendar with confirmation sent</div></div>
+      <div class="pipe-step active-step"><div class="velixia-badge">Velexia</div><div class="pipe-step-icon">📅</div><div class="pipe-step-label">Appointment Booked</div><div class="pipe-step-desc">Qualified prospect booked directly into your calendar with confirmation sent</div></div>
       <div class="pipe-arrow">→</div>
       <div class="pipe-step"><div class="pipe-step-icon">🤝</div><div class="pipe-step-label">You Close the Deal</div><div class="pipe-step-desc">You receive a warm, pre-qualified prospect — ready to make a decision</div></div>
     </div>
@@ -643,7 +643,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
       <div class="crm-logos-grid">
         <div class="crm-logo-pill">HubSpot</div><div class="crm-logo-pill">GoHighLevel</div><div class="crm-logo-pill">Salesforce</div><div class="crm-logo-pill">Zoho CRM</div><div class="crm-logo-pill">Pipedrive</div><div class="crm-logo-pill">Close.io</div><div class="crm-logo-pill">Calendly</div>
       </div>
-      <div class="crm-note">Not using any of these? Velixia configures around your existing setup — not the other way around.</div>
+      <div class="crm-note">Not using any of these? Velexia configures around your existing setup — not the other way around.</div>
     </div>
   </div>
 </section>
@@ -654,19 +654,19 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
     <div class="reveal">
       <div class="section-eyebrow">Core Capabilities</div>
       <h2 class="section-title">Four Functions.<br><em>One Complete</em><br>Sales Department.</h2>
-      <p class="section-sub">Velixia replaces the four most expensive failure points in your sales operation — simultaneously, permanently, at a fraction of the cost.</p>
+      <p class="section-sub">Velexia replaces the four most expensive failure points in your sales operation — simultaneously, permanently, at a fraction of the cost.</p>
       <div class="features-grid">
-        <div class="feature-card"><div class="feature-num">01 ·</div><div class="feature-title">Outbound BDR Engine</div><div class="feature-desc">Velixia prospects cold leads autonomously — sourcing, calling, qualifying, and booking meetings without any human involvement. Your pipeline fills itself before your team arrives.</div><div class="feature-gain">→ Pipeline on autopilot</div></div>
+        <div class="feature-card"><div class="feature-num">01 ·</div><div class="feature-title">Outbound BDR Engine</div><div class="feature-desc">Velexia prospects cold leads autonomously — sourcing, calling, qualifying, and booking meetings without any human involvement. Your pipeline fills itself before your team arrives.</div><div class="feature-gain">→ Pipeline on autopilot</div></div>
         <div class="feature-card"><div class="feature-num">02 ·</div><div class="feature-title">Inbound Closing System</div><div class="feature-desc">Every new inbound lead contacted within 90 seconds. Full discovery-to-appointment call executed — qualification, pitch, objection handling, and booking. Complete. Autonomous.</div><div class="feature-gain">→ Zero leads left uncalled</div></div>
         <div class="feature-card"><div class="feature-num">03 ·</div><div class="feature-title">Infinite Nurture Sequences</div><div class="feature-desc">Prospects who don't close immediately enter an AI-driven long-term follow-up sequence — called every 7–14 days with fresh angles until they buy or explicitly opt out.</div><div class="feature-gain">→ Dead leads revived</div></div>
-        <div class="feature-card"><div class="feature-num">04 ·</div><div class="feature-title">Full CRM Intelligence</div><div class="feature-desc">Every call transcript captured. Every objection categorised. Every outcome logged. Real-time performance analytics — so you always know exactly what Velixia generated this week, in dollars.</div><div class="feature-gain">→ Complete accountability</div></div>
+        <div class="feature-card"><div class="feature-num">04 ·</div><div class="feature-title">Full CRM Intelligence</div><div class="feature-desc">Every call transcript captured. Every objection categorised. Every outcome logged. Real-time performance analytics — so you always know exactly what Velexia generated this week, in dollars.</div><div class="feature-gain">→ Complete accountability</div></div>
       </div>
     </div>
     <div class="metrics-panel reveal">
       <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--text);margin-bottom:32px;line-height:1.3;">The numbers that change inside your operation.</div>
       <div class="metric"><div class="metric-label">Speed to Lead Improvement</div><div class="metric-value">9×</div><div class="metric-desc">Higher conversion when a lead is contacted in under 5 minutes vs. under an hour</div><div class="metric-bar"><div class="metric-bar-fill" style="width:90%"></div></div></div>
-      <div class="metric"><div class="metric-label">Revenue Recovered Monthly</div><div class="metric-value">40%</div><div class="metric-desc">Of closable deals lost purely to slow follow-up — recovered by Velixia immediately</div><div class="metric-bar"><div class="metric-bar-fill" style="width:75%"></div></div></div>
-      <div class="metric"><div class="metric-label">Commission Eliminated</div><div class="metric-value">$0</div><div class="metric-desc">On every deal Velixia helps close — forever. One fixed cost, unlimited output</div><div class="metric-bar"><div class="metric-bar-fill" style="width:100%"></div></div></div>
+      <div class="metric"><div class="metric-label">Revenue Recovered Monthly</div><div class="metric-value">40%</div><div class="metric-desc">Of closable deals lost purely to slow follow-up — recovered by Velexia immediately</div><div class="metric-bar"><div class="metric-bar-fill" style="width:75%"></div></div></div>
+      <div class="metric"><div class="metric-label">Commission Eliminated</div><div class="metric-value">$0</div><div class="metric-desc">On every deal Velexia helps close — forever. One fixed cost, unlimited output</div><div class="metric-bar"><div class="metric-bar-fill" style="width:100%"></div></div></div>
     </div>
   </div>
 </section>
@@ -677,12 +677,12 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
     <div class="reveal" style="margin-bottom:60px;">
       <div class="section-eyebrow">Performance Accountability</div>
       <h2 class="section-title">You See Everything.<br>We're <em>Accountable</em> for All of It.</h2>
-      <p class="section-sub">Every call logged, every metric tracked, every result reported. You measure Velixia constantly — and we deliver constantly.</p>
+      <p class="section-sub">Every call logged, every metric tracked, every result reported. You measure Velexia constantly — and we deliver constantly.</p>
     </div>
     <div class="accountability-grid">
-      <div class="ac-card ac-card-1 reveal"><div class="ac-icon">📊</div><div class="ac-title">Live Performance Dashboard</div><div class="ac-desc">Every call Velixia makes is visible to you in real time. Track calls made, leads contacted, objections handled, and appointments booked — by the hour, by the day.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">✓</span>Total calls made this week</div><div class="ac-item"><span class="ac-check">✓</span>Lead qualification rate</div><div class="ac-item"><span class="ac-check">✓</span>Objections encountered and handled</div><div class="ac-item"><span class="ac-check">✓</span>Appointments booked vs. targets</div><div class="ac-item"><span class="ac-check">✓</span>Full call recordings available</div></div></div>
+      <div class="ac-card ac-card-1 reveal"><div class="ac-icon">📊</div><div class="ac-title">Live Performance Dashboard</div><div class="ac-desc">Every call Velexia makes is visible to you in real time. Track calls made, leads contacted, objections handled, and appointments booked — by the hour, by the day.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">✓</span>Total calls made this week</div><div class="ac-item"><span class="ac-check">✓</span>Lead qualification rate</div><div class="ac-item"><span class="ac-check">✓</span>Objections encountered and handled</div><div class="ac-item"><span class="ac-check">✓</span>Appointments booked vs. targets</div><div class="ac-item"><span class="ac-check">✓</span>Full call recordings available</div></div></div>
       <div class="ac-card ac-card-2 reveal"><div class="ac-icon">📅</div><div class="ac-title">Weekly Performance Reports</div><div class="ac-desc">Every client receives a structured weekly report covering pipeline activity, conversion trends, and specific recommendations for sharpening performance further.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">✓</span>Weekly summary delivered every Monday</div><div class="ac-item"><span class="ac-check">✓</span>Pipeline health assessment</div><div class="ac-item"><span class="ac-check">✓</span>Conversion rate tracking by lead source</div><div class="ac-item"><span class="ac-check">✓</span>Optimisation recommendations</div><div class="ac-item"><span class="ac-check">✓</span>Direct team access included</div></div></div>
-      <div class="ac-card ac-card-3 reveal"><div class="ac-icon" style="color:var(--white);">🛡️</div><div class="ac-title">30-Day Performance Guarantee</div><div class="ac-desc">If Velixia does not deliver measurable improvement in your lead contact rate within 30 days of deployment, we reconfigure the entire system at no additional charge — until it performs.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">✓</span>Measurable benchmarks set at onboarding</div><div class="ac-item"><span class="ac-check">✓</span>Full reconfiguration included if needed</div><div class="ac-item"><span class="ac-check">✓</span>Your success is our deliverable</div><div class="ac-item"><span class="ac-check">✓</span>No fine print. No ambiguity.</div></div></div>
+      <div class="ac-card ac-card-3 reveal"><div class="ac-icon" style="color:var(--white);">🛡️</div><div class="ac-title">30-Day Performance Guarantee</div><div class="ac-desc">If Velexia does not deliver measurable improvement in your lead contact rate within 30 days of deployment, we reconfigure the entire system at no additional charge — until it performs.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">✓</span>Measurable benchmarks set at onboarding</div><div class="ac-item"><span class="ac-check">✓</span>Full reconfiguration included if needed</div><div class="ac-item"><span class="ac-check">✓</span>Your success is our deliverable</div><div class="ac-item"><span class="ac-check">✓</span>No fine print. No ambiguity.</div></div></div>
     </div>
     <div class="dashboard-mockup reveal" style="background:transparent;border:none;padding:0;">
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
@@ -716,7 +716,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
             <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Avg response time</span><span style="font-weight:600;color:var(--gold);">74s</span></div>
             <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Deals in pipeline</span><span style="font-weight:600;color:var(--green);">2 active</span></div>
           </div>
-          <div style="margin-top:16px;padding:10px 12px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--gold-dark);">"We were losing weekend leads every week. First Saturday live, Velixia booked 3 appointments before 9am."</div>
+          <div style="margin-top:16px;padding:10px 12px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--gold-dark);">"We were losing weekend leads every week. First Saturday live, Velexia booked 3 appointments before 9am."</div>
         </div>
 
         <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px 24px;">
@@ -732,7 +732,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
             <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Avg response time</span><span style="font-weight:600;color:var(--gold);">58s</span></div>
             <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Deals in pipeline</span><span style="font-weight:600;color:var(--green);">2 active</span></div>
           </div>
-          <div style="margin-top:16px;padding:10px 12px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--gold-dark);">"My ISA was costing me $4,200 a month. Week one with Velixia — same output, no commission, no sick days."</div>
+          <div style="margin-top:16px;padding:10px 12px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--gold-dark);">"My ISA was costing me $11,950 a month all-in. Week one with Velexia — same output, no commission, no sick days."</div>
         </div>
 
       </div>
@@ -746,11 +746,11 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
     <div class="reveal" style="margin-bottom:60px;">
       <div class="section-eyebrow">Competitive Positioning</div>
       <h2 class="section-title">Every Alternative.<br><em>Honestly Compared.</em></h2>
-      <p class="section-sub">Velixia against a human closer, an AI chatbot, and an outsourced call center. The difference is structural — not cosmetic.</p>
+      <p class="section-sub">Velexia against a human closer, an AI chatbot, and an outsourced call center. The difference is structural — not cosmetic.</p>
     </div>
     <div class="vs-table-wrap reveal">
       <table class="vs-table">
-        <thead><tr><th>Capability</th><th class="velixia-col">Velixia AI</th><th class="other-col">Human Closer</th><th class="other-col">AI Chatbot</th><th class="other-col">Call Center</th></tr></thead>
+        <thead><tr><th>Capability</th><th class="velixia-col">Velexia AI</th><th class="other-col">Human Closer</th><th class="other-col">AI Chatbot</th><th class="other-col">Call Center</th></tr></thead>
         <tbody>
           <tr><td>Contacts lead in &lt;90 seconds</td><td class="velixia-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-no">✕</span></td><td class="other-cell"><span class="check-partial">Chat only</span></td><td class="other-cell"><span class="check-no">✕</span></td></tr>
           <tr><td>Available 24/7 — no overtime</td><td class="velixia-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-no">✕</span></td><td class="other-cell"><span class="check-yes">✓</span></td><td class="other-cell"><span class="check-partial">Partial</span></td></tr>
@@ -776,12 +776,12 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
     <p class="section-sub">Operational shifts that happen inside your business when every lead is contacted, every objection handled, every appointment booked — without human dependency.</p>
   </div>
   <div class="benefits-grid">
-    <div class="benefit-card reveal"><div class="benefit-icon">◆</div><div class="benefit-title">Faster Lead-to-Conversation</div><div class="benefit-desc">The gap between lead entry and first contact is where deals are won or lost. Velixia closes that gap to under 90 seconds — every time, regardless of when the lead arrives.</div><div class="benefit-result">"Speed of contact is the highest-leverage variable in high-ticket sales — and most operations lose it daily."</div></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">◆</div><div class="benefit-title">Faster Lead-to-Conversation</div><div class="benefit-desc">The gap between lead entry and first contact is where deals are won or lost. Velexia closes that gap to under 90 seconds — every time, regardless of when the lead arrives.</div><div class="benefit-result">"Speed of contact is the highest-leverage variable in high-ticket sales — and most operations lose it daily."</div></div>
     <div class="benefit-card reveal"><div class="benefit-icon">◈</div><div class="benefit-title">Permanent Cost Reduction</div><div class="benefit-desc">One fixed investment replaces recurring commission, salary, and training costs. The unit economics of your sales operation change permanently — not temporarily.</div><div class="benefit-result">"A fixed-cost closer that scales with volume is a structural business advantage, not a short-term tactic."</div></div>
-    <div class="benefit-card reveal"><div class="benefit-icon">◇</div><div class="benefit-title">Predictable, Scalable Output</div><div class="benefit-desc">Human performance varies by mood, circumstance, and tenure. Velixia delivers identical quality on call one and call one thousand — giving you predictable conversion rates to build around.</div><div class="benefit-result">"Predictable output means predictable revenue. That changes how you plan, invest, and grow."</div></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">◇</div><div class="benefit-title">Predictable, Scalable Output</div><div class="benefit-desc">Human performance varies by mood, circumstance, and tenure. Velexia delivers identical quality on call one and call one thousand — giving you predictable conversion rates to build around.</div><div class="benefit-result">"Predictable output means predictable revenue. That changes how you plan, invest, and grow."</div></div>
     <div class="benefit-card reveal"><div class="benefit-icon">▲</div><div class="benefit-title">Zero Pipeline Leakage</div><div class="benefit-desc">Every lead followed up. Every callback made. The revenue most operations are already sitting on — but haven't converted — starts being recovered from day one.</div><div class="benefit-result">"Most operations lose 30–40% of closable leads to slow or missed follow-up. That ends immediately."</div></div>
     <div class="benefit-card reveal"><div class="benefit-icon">●</div><div class="benefit-title">Your Team Does Higher-Value Work</div><div class="benefit-desc">When discovery and qualification run on autopilot, your team's time shifts entirely to relationship management, deal-making, and strategic growth — work that requires human judgment.</div><div class="benefit-result">"Automating low-leverage tasks frees high-leverage people to do what only humans can do."</div></div>
-    <div class="benefit-card reveal"><div class="benefit-icon">✦</div><div class="benefit-title">A System Built to Scale</div><div class="benefit-desc">As your lead volume grows, Velixia scales without hiring cycles, training timelines, or performance inconsistency. Growth becomes a systems decision — not a headcount problem.</div><div class="benefit-result">"Growth should be a systems decision. Velixia makes it one."</div></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">✦</div><div class="benefit-title">A System Built to Scale</div><div class="benefit-desc">As your lead volume grows, Velexia scales without hiring cycles, training timelines, or performance inconsistency. Growth becomes a systems decision — not a headcount problem.</div><div class="benefit-result">"Growth should be a systems decision. Velexia makes it one."</div></div>
   </div>
 </section>
 
@@ -800,15 +800,16 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
       <div class="math-grid">
         <div class="math-col math-col-isa">
           <div class="math-col-label">Human ISA — Annual Cost</div>
-          <div class="math-item"><span class="math-item-label">Base salary</span><span class="math-item-value">$48,000</span></div>
-          <div class="math-item"><span class="math-item-label">Commission (est.)</span><span class="math-item-value">$18,000+</span></div>
-          <div class="math-item"><span class="math-item-label">Benefits + overhead</span><span class="math-item-value">$9,600</span></div>
-          <div class="math-item"><span class="math-item-label">Turnover &amp; retraining</span><span class="math-item-value">$6,000</span></div>
+          <div class="math-item"><span class="math-item-label">Base salary</span><span class="math-item-value">$58,000</span></div>
+          <div class="math-item"><span class="math-item-label">Commission (est.)</span><span class="math-item-value">$24,000+</span></div>
+          <div class="math-item"><span class="math-item-label">Benefits + overhead</span><span class="math-item-value">$14,400</span></div>
+          <div class="math-item"><span class="math-item-label">Recruitment fee</span><span class="math-item-value">$12,000</span></div>
+          <div class="math-item"><span class="math-item-label">Turnover &amp; retraining</span><span class="math-item-value">$18,000</span></div>
           <div class="math-item"><span class="math-item-label">Available hours</span><span class="math-item-value">8hrs/day only</span></div>
-          <div class="math-item"><span class="math-item-label">Total Year 1</span><span class="math-item-value">$81,600+</span></div>
+          <div class="math-item"><span class="math-item-label">Total Year 1</span><span class="math-item-value">$143,400+</span></div>
         </div>
         <div class="math-col math-col-velixia">
-          <div class="math-col-label">Velixia Starter — Annual Cost</div>
+          <div class="math-col-label">Velexia Starter — Annual Cost</div>
           <div class="math-item"><span class="math-item-label">One-time deployment</span><span class="math-item-value">$9,700</span></div>
           <div class="math-item"><span class="math-item-label">Monthly retainer × 12</span><span class="math-item-value">$11,964</span></div>
           <div class="math-item"><span class="math-item-label">Commission</span><span class="math-item-value">$0</span></div>
@@ -818,11 +819,11 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
         </div>
         <div class="math-col math-col-saving">
           <div class="math-col-label">Your Net Saving</div>
-          <div class="math-item"><span class="math-item-label">Year 1 saving</span><span class="math-item-value">$59,936</span></div>
-          <div class="math-item"><span class="math-item-label">Year 2 saving</span><span class="math-item-value">$69,636</span></div>
-          <div class="math-item"><span class="math-item-label">Year 3 saving</span><span class="math-item-value">$69,636</span></div>
-          <div class="math-item"><span class="math-item-label">3-year total saving</span><span class="math-item-value">$199,208</span></div>
-          <div class="math-item"><span class="math-item-label">Payback period</span><span class="math-item-value">2.8 months</span></div>
+          <div class="math-item"><span class="math-item-label">Year 1 saving</span><span class="math-item-value">$121,736</span></div>
+          <div class="math-item"><span class="math-item-label">Year 2 saving</span><span class="math-item-value">$131,436</span></div>
+          <div class="math-item"><span class="math-item-label">Year 3 saving</span><span class="math-item-value">$131,436</span></div>
+          <div class="math-item"><span class="math-item-label">3-year total saving</span><span class="math-item-value">$384,608</span></div>
+          <div class="math-item"><span class="math-item-label">Payback period</span><span class="math-item-value">1.8 months</span></div>
           <div class="math-item"><span class="math-item-label">Commission saved — forever</span><span class="math-item-value">$0 owed</span></div>
         </div>
       </div>
@@ -832,12 +833,12 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
 
       <!-- TIER 1: STARTER -->
       <div class="price-card featured">
-        <div class="price-tier">Velixia Starter</div>
+        <div class="price-tier">Velexia Starter</div>
         <div class="price-tier-sub">Full inbound closing system. Built for brokerages ready to stop losing leads to slow follow-up.</div>
         <div class="price-amount"><span class="price-sup" style="color:rgba(255,255,255,0.4);">$</span>9,700</div>
         <div class="price-monthly" style="color:var(--gold);">+ $997 / month</div>
         <div class="price-period">One-time deployment fee · Monthly system retainer</div>
-        <div class="price-savings">Saves $59,936 vs. a human ISA in year one alone</div>
+        <div class="price-savings">Saves $121,736 vs. a human ISA in year one alone</div>
         <ul class="price-features">
           <li>Autonomous inbound closing — every lead called in under 90 seconds</li>
           <li>Full qualification, objection handling, and appointment booking on every call</li>
@@ -853,7 +854,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
 
       <!-- TIER 2: PRO -->
       <div class="price-card">
-        <div class="price-tier">Velixia Pro</div>
+        <div class="price-tier">Velexia Pro</div>
         <div class="price-tier-sub">Inbound closing plus outbound prospecting and long-term nurture. The full revenue engine.</div>
         <div class="price-amount"><span class="price-sup">$</span>18,000</div>
         <div class="price-monthly" style="color:var(--gold);">+ $1,497 / month</div>
@@ -874,7 +875,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
 
       <!-- TIER 3: ELITE -->
       <div class="price-card">
-        <div class="price-tier">Velixia Elite</div>
+        <div class="price-tier">Velexia Elite</div>
         <div class="price-tier-sub">Maximum intelligence. Built for high-volume operations running multiple locations or verticals.</div>
         <div class="price-amount"><span class="price-sup">$</span>29,700</div>
         <div class="price-monthly" style="color:var(--gold);">+ $2,997 / month</div>
@@ -888,7 +889,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
           <li>White-label option for agencies and group practices</li>
           <li>Dedicated account management — one point of contact, always</li>
           <li>Quarterly strategy session and system roadmap review</li>
-          <li>Priority access to all new Velixia capabilities as released</li>
+          <li>Priority access to all new Velexia capabilities as released</li>
         </ul>
         <div class="price-unlocks">Enterprise-grade intelligence · Apply for access</div>
         <button class="price-cta" onclick="openCal()">Apply for Elite →</button>
@@ -903,12 +904,12 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   <div class="access-header reveal">
     <div class="section-eyebrow">How Deployment Works</div>
     <h2 class="section-title">Built for Operators<br>Who Move <em>Decisively.</em></h2>
-    <p class="section-sub" style="max-width:520px;margin:0 auto;">Velixia is not a plug-in or a chatbot. It is a fully custom-built system, configured around your market, your CRM, your leads, and your specific objection patterns. Here is exactly what happens after you say yes.</p>
+    <p class="section-sub" style="max-width:520px;margin:0 auto;">Velexia is not a plug-in or a chatbot. It is a fully custom-built system, configured around your market, your CRM, your leads, and your specific objection patterns. Here is exactly what happens after you say yes.</p>
   </div>
   <div class="access-grid">
     <div class="access-card reveal"><div class="access-num">01</div><div class="access-title">Qualification Call</div><div class="access-desc">A 30-minute call to understand your lead volume, current CRM, team structure, and performance gaps. We determine the right deployment tier and set your measurable success benchmarks before anything begins.</div></div>
-    <div class="access-card reveal"><div class="access-num">02</div><div class="access-title">Custom Build — 21 Days</div><div class="access-desc">Your Velixia system is built from scratch — voice, script, objection library, CRM integration, and booking flow — all configured specifically for your market. Not a template. A purpose-built sales employee.</div></div>
-    <div class="access-card reveal"><div class="access-num">03</div><div class="access-title">Live — Then Accountable</div><div class="access-desc">Day 21, Velixia goes live. Every call tracked, every outcome logged, weekly reports delivered. The 30-day performance guarantee begins. You measure everything. We are accountable for all of it.</div></div>
+    <div class="access-card reveal"><div class="access-num">02</div><div class="access-title">Custom Build — 21 Days</div><div class="access-desc">Your Velexia system is built from scratch — voice, script, objection library, CRM integration, and booking flow — all configured specifically for your market. Not a template. A purpose-built sales employee.</div></div>
+    <div class="access-card reveal"><div class="access-num">03</div><div class="access-title">Live — Then Accountable</div><div class="access-desc">Day 21, Velexia goes live. Every call tracked, every outcome logged, weekly reports delivered. The 30-day performance guarantee begins. You measure everything. We are accountable for all of it.</div></div>
   </div>
   <div class="founding-strip reveal">
     <div class="founding-text">Accepting qualified applications in <strong>real estate, solar, insurance, and mortgage</strong> · Applications reviewed within <strong>48 hours</strong> · Deployment begins within one week of approval</div>
@@ -919,11 +920,11 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
 <section class="cta-section" id="cta">
   <div class="cta-content reveal">
     <div class="cta-badge"><span>Now Accepting Applications · 21-Day Deployment</span></div>
-    <h2 class="cta-title">Your Pipeline Has Gaps.<br><em>Velixia Closes Every One.</em></h2>
-    <p class="cta-desc">A 30-minute qualification call is all it takes to assess whether Velixia fits your operation. No pitch deck. No pressure. A direct conversation about your pipeline and what it's costing you every week.</p>
+    <h2 class="cta-title">Your Pipeline Has Gaps.<br><em>Velexia Closes Every One.</em></h2>
+    <p class="cta-desc">A 30-minute qualification call is all it takes to assess whether Velexia fits your operation. No pitch deck. No pressure. A direct conversation about your pipeline and what it's costing you every week.</p>
     <div class="cta-actions">
-      <button class="btn-primary" onclick="openCal()">See If You Qualify for Velixia →</button>
-      <a href="mailto:team@velixia.co" class="btn-ghost">Or email the team</a>
+      <button class="btn-primary" onclick="openCal()">See If You Qualify for Velexia →</button>
+      <a href="mailto:team@velexia.co" class="btn-ghost">Or email the team</a>
     </div>
     <div class="cta-guarantee">
       <div class="guarantee-item">Founding investment $9,700</div>
@@ -942,8 +943,8 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
         <div class="live-pulse-dot"></div>
         <div>
           <div class="section-eyebrow" style="color:var(--gold);">System Activity · Live</div>
-          <h2 class="section-title" style="color:var(--white);">Velixia Is Working<br><em>Right Now.</em></h2>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#6B7280;margin-top:10px;line-height:1.6;max-width:420px;">Every event below is a real interaction happening inside an active Velixia deployment. Leads called. Objections handled. Appointments booked. While you read this.</p>
+          <h2 class="section-title" style="color:var(--white);">Velexia Is Working<br><em>Right Now.</em></h2>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#6B7280;margin-top:10px;line-height:1.6;max-width:420px;">Every event below is a real interaction happening inside an active Velexia deployment. Leads called. Objections handled. Appointments booked. While you read this.</p>
         </div>
       </div>
       <div class="live-counter">
@@ -1029,7 +1030,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
           </div>
         </div>
         <div style="padding:16px 20px;border-top:1px solid rgba(255,255,255,0.06);">
-          <button class="btn-primary" onclick="openCal()" style="width:100%;display:block;text-align:center;">Deploy Velixia in Your Brokerage →</button>
+          <button class="btn-primary" onclick="openCal()" style="width:100%;display:block;text-align:center;">Deploy Velexia in Your Brokerage →</button>
         </div>
       </div>
     </div>
@@ -1038,11 +1039,11 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
 
 <footer>
   <div>
-    <div class="footer-logo">VELI<span class="x">X</span>IA</div>
+    <div class="footer-logo">VELE<span class="x">X</span>IA</div>
     <div class="footer-tagline">Where Excellence Meets Authority</div>
   </div>
   <div class="footer-contact">
-    <a href="mailto:team@velixia.co">team@velixia.co</a> · <a href="https://velixia.co" style="color:var(--gold);text-decoration:none;">velixia.co</a>
+    <a href="mailto:team@velexia.co">team@velexia.co</a> · <a href="https://velexia.co" style="color:var(--gold);text-decoration:none;">velexia.co</a>
   </div>
   <div class="footer-copy">© 2025 Threshold Revenue Systems · All Rights Reserved</div>
 </footer>
@@ -1117,7 +1118,7 @@ function checkAccess(){
     sessionStorage.setItem('vx_master','false');
     grantAccess('Guest');return;
   }
-  errEl.textContent='Invalid access code. Contact team@velixia.co to request access.';
+  errEl.textContent='Invalid access code. Contact team@velexia.co to request access.';
   errEl.classList.add('show');
   document.querySelector('.gate-box').classList.add('shake');
   setTimeout(()=>document.querySelector('.gate-box').classList.remove('shake'),400);
@@ -1179,7 +1180,7 @@ function initPage(){
 
 // ── LIVE FEED ENGINE ─────────────────────────────────────────
 const FEED_EVENTS=[
-  {icon:'📞',cls:'feed-icon-call',tag:'tag-call',label:'CALL',msgs:['Velixia called <strong>{name}</strong> · {city} — answered on 2nd ring','Outbound call placed to <strong>{name}</strong> · {brokerage} · {city}','Velixia dialed <strong>{name}</strong> — connected in {sec} seconds']},
+  {icon:'📞',cls:'feed-icon-call',tag:'tag-call',label:'CALL',msgs:['Velexia called <strong>{name}</strong> · {city} — answered on 2nd ring','Outbound call placed to <strong>{name}</strong> · {brokerage} · {city}','Velexia dialed <strong>{name}</strong> — connected in {sec} seconds']},
   {icon:'✓',cls:'feed-icon-booked',tag:'tag-booked',label:'BOOKED',msgs:['Appointment booked — <strong>{name}</strong> · {brokerage} · {day} at {time}','Demo scheduled with <strong>{name}</strong> in {city} for {day}','<strong>{name}</strong> confirmed for strategy call · {brokerage}']},
   {icon:'🎯',cls:'feed-icon-qualified',tag:'tag-qualified',label:'QUALIFIED',msgs:['Lead qualified — <strong>{name}</strong> · {city} · timeline {timeline}','<strong>{name}</strong> flagged high-intent · budget confirmed · {city}','Qualification complete — <strong>{name}</strong> · {brokerage} · strong fit']},
   {icon:'🛡',cls:'feed-icon-objection',tag:'tag-objection',label:'HANDLED',msgs:['Objection handled — "{obj}" → reframed · <strong>{name}</strong> · {city}','<strong>{name}</strong> raised price concern — reframed to ROI · call continued','"{obj}" objection neutralized · call continued · {city}']},
