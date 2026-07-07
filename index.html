@@ -465,6 +465,11 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   .cta-title{font-size:28px;}.cta-desc{font-size:16px;}
   footer{padding:28px 18px;}
 }
+@media(max-width:960px){
+  .calc-section{padding:70px 24px !important;}
+  .calc-section > div > div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important;}
+  .calc-section div[style*="repeat(3,1fr)"]{grid-template-columns:1fr !important;}
+}
 </style>
 </head>
 <body>
@@ -482,13 +487,13 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   </div>
   <div class="gate-box">
     <div class="gate-logo">VELE<span class="x">X</span>IA</div>
-    <div class="gate-tagline">Where Excellence Meets Authority</div>
+    <div class="gate-tagline">Every Lead. Ninety Seconds. Always.</div>
     <div class="gate-divider"></div>
     <div class="gate-label">Enter Your Private Access Code</div>
     <input class="gate-input" id="gateInput" type="text" placeholder="XXXX-XXXX" maxlength="9" autocomplete="off" spellcheck="false"/>
     <button class="gate-btn" onclick="checkAccess()">Request Access →</button>
     <div class="gate-error" id="gateError">Invalid or expired access code. Contact Velexia to request access.</div>
-    <div class="gate-note">This presentation is <strong>private and confidential</strong>. Access is issued individually and is non-transferable.</div>
+    <div class="gate-note">This presentation is <strong>private and confidential</strong>. Each access code is issued to one operator, personally. What you are about to see is not public.</div>
   </div>
 </div>
 
@@ -548,7 +553,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
       Your Pipeline Is Bleeding Revenue.<br><em>Every Single Day.</em>
       <span class="sub">Velexia is a fully autonomous AI sales employee — deployed inside your brokerage in 21 days. It contacts every lead in 90 seconds, runs complete high-ticket sales conversations, handles every objection, books the appointment, and updates your CRM. Zero commission. Zero excuses. Zero days off.</span>
     </h1>
-    <p class="hero-desc">The leads are there. The problem is who's calling them — and when. Velexia is the answer your pipeline has been waiting for.</p>
+    <p class="hero-desc">The leads are already coming in. The only question is who reaches them first — you, or the brokerage that answers in ninety seconds.</p>
     <div class="hero-actions">
       <button class="btn-primary" onclick="openCal()">See If You Qualify for Velexia</button>
       <a href="#demo" class="btn-ghost">Hear a Live Call</a>
@@ -724,7 +729,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
             <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Live Now</div>
           </div>
           <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:14px;">Hear It Yourself.<br><em style="color:var(--gold);">Right Now.</em></div>
-          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">Don't take our word for anything. The live line is open 24/7. Call it, play the skeptical lead, throw your hardest objections at it. If it doesn't hold — you have your answer in two minutes.</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">The line is live around the clock. Call it. Play the toughest lead you've ever had — stall, object, push back. Two minutes on that call tells you more than any pitch ever could.</div>
           <a href="tel:+17869667203" style="display:block;text-align:center;font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--gold);text-decoration:none;padding:12px;border:1px solid var(--gold-border);background:var(--gold-dim);">+1 (786) 966-7203</a>
         </div>
 
@@ -743,7 +748,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
             <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Guaranteed</div>
           </div>
           <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:14px;">30 Days. Measurable.<br><em style="color:var(--gold);">Or We Fix It Free.</em></div>
-          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">Benchmarks set at onboarding. If Velexia doesn't measurably improve your lead contact rate within 30 days of going live, we reconfigure the entire system at no charge — until it performs. Your downside is bounded. Your upside is the number you calculate on our call.</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">Benchmarks set at onboarding. If Velexia doesn't measurably improve your lead contact rate within 30 days of going live, we reconfigure the entire system at no charge — until it performs. Your downside is capped by contract. Your upside is the number the calculator above just showed you.</div>
         </div>
 
       </div>
@@ -868,13 +873,110 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   </div>
 </section>
 
+<!-- LEAK CALCULATOR -->
+<section class="calc-section" id="calculator" style="background:var(--charcoal);border-top:1px solid var(--border);padding:110px 60px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 60px;">
+      <div class="section-eyebrow" style="justify-content:center;">The Leak Audit</div>
+      <h2 class="section-title" style="color:var(--white);">Your Numbers.<br><em>Your Verdict.</em></h2>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:#6B7280;margin-top:14px;line-height:1.6;">Three numbers from your own operation. Thirty seconds. The exact figure your pipeline surrenders every year while your competitors' systems stay awake.</p>
+    </div>
+
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:960px;margin:0 auto;">
+      <!-- INPUTS -->
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:40px 36px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;">Your Operation</div>
+
+        <div style="margin-bottom:24px;">
+          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Leads per month</label>
+          <input type="number" id="calc-leads" value="150" min="1" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(198,167,94,0.25);padding:14px 16px;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);outline:none;" oninput="runLeakCalc()"/>
+        </div>
+
+        <div style="margin-bottom:24px;">
+          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Average commission per closed deal ($)</label>
+          <input type="number" id="calc-commission" value="9000" min="100" step="500" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(198,167,94,0.25);padding:14px 16px;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);outline:none;" oninput="runLeakCalc()"/>
+        </div>
+
+        <div style="margin-bottom:8px;">
+          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Leads arriving after-hours / weekends <span id="calc-pct-label" style="color:var(--gold);">35%</span></label>
+          <input type="range" id="calc-pct" value="35" min="10" max="60" style="width:100%;accent-color:#C6A75E;" oninput="runLeakCalc()"/>
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:#6B7280;margin-top:4px;"><span>10%</span><span>Industry avg: 35–40%</span><span>60%</span></div>
+        </div>
+
+        <div style="margin-top:20px;">
+          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Conversion on rescued leads <span id="calc-conv-label" style="color:var(--gold);">3%</span></label>
+          <input type="range" id="calc-conv" value="3" min="1" max="6" style="width:100%;accent-color:#C6A75E;" oninput="runLeakCalc()"/>
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:#6B7280;margin-top:4px;"><span>1% brutal</span><span>3% conservative</span><span>6% strong</span></div>
+        </div>
+
+        <div style="margin-top:24px;padding:14px 16px;background:rgba(255,255,255,0.03);border-left:2px solid rgba(198,167,94,0.4);">
+          <div style="font-size:10px;color:#9A917E;line-height:1.7;" id="calc-verdict">Adjust your numbers — the verdict updates live.</div>
+        </div>
+      </div>
+
+      <!-- OUTPUT -->
+      <div style="background:rgba(198,167,94,0.06);border:1px solid rgba(198,167,94,0.25);padding:40px 36px;display:flex;flex-direction:column;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;">What It's Costing You</div>
+
+        <div style="margin-bottom:22px;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:6px;">Leads untouched after hours / month</div>
+          <div style="font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--white);" id="calc-untouched">53</div>
+        </div>
+
+        <div style="margin-bottom:22px;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:6px;">Deals lost to faster competitors / year</div>
+          <div style="font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--white);" id="calc-deals">19</div>
+          <div style="font-size:10px;color:#6B7280;margin-top:4px;" id="calc-conv-note">At your selected conversion on untouched leads</div>
+        </div>
+
+        <div style="padding:20px;background:rgba(192,57,43,0.1);border-left:3px solid #C0392B;margin-bottom:24px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#D1505A;margin-bottom:6px;">Your Annual Leak</div>
+          <div style="font-family:'Playfair Display',serif;font-size:46px;font-weight:700;color:#FFFFFF;line-height:1;" id="calc-leak">$171,000</div>
+          <div style="font-size:11px;color:#9A917E;margin-top:8px;">Commission your marketing already earned — walking out the door, twelve months a year.</div>
+        </div>
+
+        <div style="margin-top:auto;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#9A917E;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span>Bleeding per month</span><span style="color:#D1505A;font-weight:600;" id="calc-monthly">$14,250</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#9A917E;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span>Velexia year one — all in</span><span style="color:var(--gold);font-weight:600;">$21,664</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#9A917E;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span>System pays for itself in</span><span style="color:var(--gold);font-weight:700;" id="calc-payback">1.5 months</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span style="color:#9A917E;">Net recovered, year one</span><span style="color:#2E9E6E;font-weight:700;font-size:15px;" id="calc-net">$149,336</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span style="color:#9A917E;">Return on the system</span><span style="color:#2E9E6E;font-weight:700;font-size:15px;" id="calc-roi">7.9×</span></div>
+          <button class="btn-primary" onclick="openCal()" style="width:100%;margin-top:16px;">Seal The Leak — Book The Call →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESEARCH STRIP -->
+    <div class="reveal" style="max-width:960px;margin:60px auto 0;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#6B7280;text-align:center;margin-bottom:28px;">Independent Research. Two Decades of Evidence. Zero Opinion.</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:28px 24px;text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--gold);line-height:1;">21×</div>
+          <div style="font-size:11px;color:#9A917E;line-height:1.6;margin-top:10px;">Higher odds of qualifying a lead when contacted within 5 minutes versus 30 minutes.</div>
+          <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#6B7280;margin-top:12px;">MIT · Lead Response Management Study</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:28px 24px;text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--gold);line-height:1;">7×</div>
+          <div style="font-size:11px;color:#9A917E;line-height:1.6;margin-top:10px;">More likely to have a meaningful conversation with the decision-maker when responding within one hour.</div>
+          <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#6B7280;margin-top:12px;">Harvard Business Review</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:28px 24px;text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--gold);line-height:1;">78%</div>
+          <div style="font-size:11px;color:#9A917E;line-height:1.6;margin-top:10px;">Of buyers close with the company that responds to them first — not the best one. The fastest one.</div>
+          <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#6B7280;margin-top:12px;">InsideSales / Velocify Research</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section class="pricing-section" id="pricing">
   <div class="pricing-layout">
     <div class="reveal pricing-intro">
       <div class="section-eyebrow">Investment Tiers</div>
       <h2 class="section-title">One Fixed Cost.<br><em>Unlimited Output.</em><br>Zero Commission.</h2>
-      <p class="section-sub" style="margin-top:16px;">Three deployment levels built around the size and complexity of your operation. Every tier includes the 30-day performance guarantee, full CRM integration, and a dedicated deployment team. Choose the system that matches where you want to go — not just where you are.</p>
+      <p class="section-sub" style="margin-top:16px;">Three deployment levels built around the size and complexity of your operation. Every tier includes the 30-day performance guarantee, full CRM integration, and founder-direct build access. One constraint is real: every system is custom-built and personally engineered — deployment capacity is <strong style="color:var(--gold);font-style:normal;">3 builds per month</strong>. When the month fills, the next build starts the following cycle.</p>
     </div>
 
     <!-- ROI Math -->
@@ -1023,7 +1125,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
 <footer>
   <div>
     <div class="footer-logo">VELE<span class="x">X</span>IA</div>
-    <div class="footer-tagline">Where Excellence Meets Authority</div>
+    <div class="footer-tagline">Every Lead. Ninety Seconds. Always.</div>
   </div>
   <div class="footer-contact">
     <a href="mailto:team@velexia.co">team@velexia.co</a> · <a href="https://velexia.co" style="color:var(--gold);text-decoration:none;">velexia.co</a>
@@ -1142,6 +1244,38 @@ const cursor=document.getElementById('cursor'),ring=document.getElementById('cur
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=(mx-4)+'px';cursor.style.top=(my-4)+'px';});
 (function ar(){rx+=(mx-rx-15)*0.12;ry+=(my-ry-15)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar);})();
+
+// ── LEAK CALCULATOR ──────────────────────────────────────────
+function runLeakCalc(){
+  const leads=parseFloat(document.getElementById('calc-leads').value)||0;
+  const commission=parseFloat(document.getElementById('calc-commission').value)||0;
+  const pct=parseFloat(document.getElementById('calc-pct').value)||35;
+  const conv=parseFloat(document.getElementById('calc-conv').value)||3;
+  document.getElementById('calc-pct-label').textContent=pct+'%';
+  document.getElementById('calc-conv-label').textContent=conv+'%';
+  document.getElementById('calc-conv-note').textContent='At '+conv+'% conversion on untouched leads — your setting';
+  const untouched=Math.round(leads*(pct/100));
+  const dealsLost=Math.max(1,Math.round(untouched*12*(conv/100)));
+  const leak=dealsLost*commission;
+  const monthly=Math.round(leak/12);
+  const net=leak-21664;
+  const payback=leak>0?(21664/(leak/12)):0;
+  const roi=leak>0?(leak/21664):0;
+  document.getElementById('calc-untouched').textContent=untouched.toLocaleString();
+  document.getElementById('calc-deals').textContent=dealsLost.toLocaleString();
+  document.getElementById('calc-leak').textContent='$'+leak.toLocaleString();
+  document.getElementById('calc-monthly').textContent='$'+monthly.toLocaleString();
+  document.getElementById('calc-payback').textContent=payback>0&&payback<24?payback.toFixed(1)+' months':'—';
+  document.getElementById('calc-roi').textContent=roi>0?roi.toFixed(1)+'×':'—';
+  const netEl=document.getElementById('calc-net');
+  netEl.textContent=(net>=0?'$':'-$')+Math.abs(net).toLocaleString();
+  netEl.style.color=net>=0?'#2E9E6E':'#D1505A';
+  const v=document.getElementById('calc-verdict');
+  if(leak>=250000){v.innerHTML='<strong style="color:#D1505A;">Verdict: this is a quarter-million-dollar leak.</strong> At this scale, every week of deliberation costs roughly $'+Math.round(leak/52).toLocaleString()+'. The question is no longer whether to fix it — it is how much more it collects before you do.';}
+  else if(leak>=100000){v.innerHTML='<strong style="color:#D1505A;">Verdict: a six-figure leak.</strong> Your pipeline surrenders about $'+monthly.toLocaleString()+' every month to whoever answers first. One recovered deal covers the entire system.';}
+  else if(leak>=40000){v.innerHTML='<strong style="color:var(--gold);">Verdict: a meaningful leak.</strong> $'+monthly.toLocaleString()+' a month is walking out after hours. The system pays for itself in '+(payback<24?payback.toFixed(1)+' months':'under a year')+' — everything after that is recovered profit.';}
+  else{v.innerHTML='<strong style="color:var(--gold);">Verdict: a controlled leak — for now.</strong> Even at this volume, speed decides who wins each lead. As your lead flow grows, this number grows with it.';}
+}
 function initPage(){
   document.querySelectorAll('a,button,.feature-card,.benefit-card,.access-card,.skill-card,.ac-card,.pipe-step,.price-card').forEach(el=>{
     el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2.5)';ring.style.transform='scale(1.5)';ring.style.borderColor='rgba(198,167,94,0.9)';});
@@ -1155,6 +1289,7 @@ function initPage(){
     entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}});
   },{threshold:0.08});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  runLeakCalc();
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'});});
   });
