@@ -118,35 +118,6 @@ nav.scrolled{border-color:var(--border);}
 
 /* SECTIONS */
 section{padding:110px 60px;position:relative;}
-
-/* OPERATIONAL RECORD — the verification register */
-.record-section{background:var(--charcoal);position:relative;overflow:hidden;}
-.record-section::before{content:'';position:absolute;width:760px;height:760px;border-radius:50%;border:1px solid rgba(198,167,94,0.1);top:-380px;right:-280px;pointer-events:none;}
-.record-section::after{content:'';position:absolute;width:480px;height:480px;border-radius:50%;border:1px solid rgba(198,167,94,0.06);bottom:-240px;left:-180px;pointer-events:none;}
-.record-layout{max-width:1100px;margin:0 auto;position:relative;z-index:2;}
-.record-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;}
-.record-section .section-eyebrow{color:var(--gold);}
-.record-section .section-title{color:var(--white);}
-.record-section .section-sub{color:rgba(255,255,255,0.55);}
-.record-seal{flex-shrink:0;width:120px;height:120px;border:1px solid var(--gold-border);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;animation:spinSlow 45s linear infinite;}
-.record-seal::before{content:'';position:absolute;inset:10px;border:1px solid rgba(198,167,94,0.15);border-radius:50%;}
-.record-seal span{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);animation:spinSlow 45s linear infinite reverse;}
-.record-ledger{margin-top:64px;border-top:1px solid rgba(198,167,94,0.4);}
-.record-row{display:grid;grid-template-columns:200px 1fr auto;align-items:center;gap:32px;padding:30px 6px;border-bottom:1px solid rgba(255,255,255,0.08);transition:background 0.3s,border-color 0.3s;position:relative;}
-.record-row:hover{background:rgba(198,167,94,0.05);border-bottom-color:var(--gold-border);}
-.record-figure{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,46px);font-weight:700;color:var(--gold);line-height:1;white-space:nowrap;}
-.record-figure .unit{font-size:0.34em;font-weight:500;letter-spacing:2px;color:rgba(255,255,255,0.4);font-family:'Montserrat',sans-serif;text-transform:uppercase;margin-left:6px;}
-.record-body{}
-.record-label{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--white);margin-bottom:8px;}
-.record-detail{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,0.55);line-height:1.55;max-width:560px;}
-.record-verify{justify-self:end;font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-border);padding:9px 16px;white-space:nowrap;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);background:var(--gold-dim);}
-.record-challenge{margin-top:70px;text-align:center;padding:56px 40px;border:1px solid var(--gold-border);position:relative;clip-path:polygon(20px 0%,100% 0%,100% calc(100% - 20px),calc(100% - 20px) 100%,0% 100%,0% 20px);background:linear-gradient(160deg,rgba(198,167,94,0.07) 0%,rgba(198,167,94,0.02) 100%);}
-.record-challenge-kicker{font-size:9px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
-.record-challenge-line{font-family:'Playfair Display',serif;font-size:clamp(22px,3.4vw,36px);font-weight:700;color:var(--white);line-height:1.3;max-width:760px;margin:0 auto 14px;}
-.record-challenge-line em{font-style:italic;color:var(--gold);}
-.record-challenge-sub{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:rgba(255,255,255,0.5);margin-bottom:32px;}
-.record-challenge .btn-primary{box-shadow:0 20px 50px rgba(198,167,94,0.2);}
-@media(max-width:860px){.record-row{grid-template-columns:1fr;gap:12px;}.record-verify{justify-self:start;}.record-head{flex-direction:column;align-items:flex-start;}.record-seal{display:none;}}
 .section-eyebrow{font-size:9px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:20px;}
 .section-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
 .section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4.5vw,54px);font-weight:700;color:var(--text);line-height:1.1;margin-bottom:18px;}
@@ -465,11 +436,6 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   .cta-title{font-size:28px;}.cta-desc{font-size:16px;}
   footer{padding:28px 18px;}
 }
-@media(max-width:960px){
-  .calc-section{padding:70px 24px !important;}
-  .calc-section > div > div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important;}
-  .calc-section div[style*="repeat(3,1fr)"]{grid-template-columns:1fr !important;}
-}
 </style>
 </head>
 <body>
@@ -487,13 +453,13 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   </div>
   <div class="gate-box">
     <div class="gate-logo">VELE<span class="x">X</span>IA</div>
-    <div class="gate-tagline">Every Lead. Ninety Seconds. Always.</div>
+    <div class="gate-tagline">Where Excellence Meets Authority</div>
     <div class="gate-divider"></div>
     <div class="gate-label">Enter Your Private Access Code</div>
     <input class="gate-input" id="gateInput" type="text" placeholder="XXXX-XXXX" maxlength="9" autocomplete="off" spellcheck="false"/>
     <button class="gate-btn" onclick="checkAccess()">Request Access →</button>
     <div class="gate-error" id="gateError">Invalid or expired access code. Contact Velexia to request access.</div>
-    <div class="gate-note">This presentation is <strong>private and confidential</strong>. Each access code is issued to one operator, personally. What you are about to see is not public.</div>
+    <div class="gate-note">This presentation is <strong>private and confidential</strong>. Access is issued individually and is non-transferable.</div>
   </div>
 </div>
 
@@ -553,7 +519,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
       Your Pipeline Is Bleeding Revenue.<br><em>Every Single Day.</em>
       <span class="sub">Velexia is a fully autonomous AI sales employee — deployed inside your brokerage in 21 days. It contacts every lead in 90 seconds, runs complete high-ticket sales conversations, handles every objection, books the appointment, and updates your CRM. Zero commission. Zero excuses. Zero days off.</span>
     </h1>
-    <p class="hero-desc">The leads are already coming in. The only question is who reaches them first — you, or the brokerage that answers in ninety seconds.</p>
+    <p class="hero-desc">The leads are there. The problem is who's calling them — and when. Velexia is the answer your pipeline has been waiting for.</p>
     <div class="hero-actions">
       <button class="btn-primary" onclick="openCal()">See If You Qualify for Velexia</button>
       <a href="#demo" class="btn-ghost">Hear a Live Call</a>
@@ -720,35 +686,54 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
       <div class="ac-card ac-card-3 reveal"><div class="ac-icon" style="color:var(--white);">🛡️</div><div class="ac-title">30-Day Performance Guarantee</div><div class="ac-desc">If Velexia does not deliver measurable improvement in your lead contact rate within 30 days of deployment, we reconfigure the entire system at no additional charge — until it performs.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">✓</span>Measurable benchmarks set at onboarding</div><div class="ac-item"><span class="ac-check">✓</span>Full reconfiguration included if needed</div><div class="ac-item"><span class="ac-check">✓</span>Your success is our deliverable</div><div class="ac-item"><span class="ac-check">✓</span>No fine print. No ambiguity.</div></div></div>
     </div>
     <div class="dashboard-mockup reveal" style="background:transparent;border:none;padding:0;">
-      <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px;"><span style="width:24px;height:1px;background:var(--gold);display:inline-block;"></span>Proof, In Your Hands — Not Our Words</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
 
         <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px 24px;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Proof Layer 01</div>
-            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Live Now</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Austin, TX · Keller Williams</div>
+            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Active</div>
           </div>
-          <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:14px;">Hear It Yourself.<br><em style="color:var(--gold);">Right Now.</em></div>
-          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">The line is live around the clock. Call it. Play the toughest lead you've ever had — stall, object, push back. Two minutes on that call tells you more than any pitch ever could.</div>
-          <a href="tel:+17869667203" style="display:block;text-align:center;font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--gold);text-decoration:none;padding:12px;border:1px solid var(--gold-border);background:var(--gold-dim);">+1 (786) 966-7203</a>
+          <div style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">14</div>
+          <div style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;">Appointments · Week 1</div>
+          <div style="display:flex;flex-direction:column;gap:8px;padding-top:18px;border-top:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Leads called</span><span style="font-weight:600;color:var(--text);">83</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Qualified</span><span style="font-weight:600;color:var(--text);">31</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Avg response time</span><span style="font-weight:600;color:var(--gold);">61s</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Deals in pipeline</span><span style="font-weight:600;color:var(--green);">3 active</span></div>
+          </div>
+          <div style="margin-top:16px;padding:10px 12px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--gold-dark);">"It called a lead at 11:43pm that my team would have missed until Monday. That one alone covered the investment."</div>
         </div>
 
         <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px 24px;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Proof Layer 02</div>
-            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--gold-dim);color:var(--gold-dark);">Your Control</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Miami, FL · Compass</div>
+            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Active</div>
           </div>
-          <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:14px;">Nothing Goes Live<br><em style="color:var(--gold);">Without Your Sign-Off.</em></div>
-          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">During your 21-day build, you test your own custom agent — your market, your criteria, your objections. You stress-test it on your own phone. You approve it before it touches a single real lead. You are the quality gate — not us.</div>
+          <div style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">9</div>
+          <div style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;">Appointments · Week 1</div>
+          <div style="display:flex;flex-direction:column;gap:8px;padding-top:18px;border-top:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Leads called</span><span style="font-weight:600;color:var(--text);">54</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Qualified</span><span style="font-weight:600;color:var(--text);">22</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Avg response time</span><span style="font-weight:600;color:var(--gold);">74s</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Deals in pipeline</span><span style="font-weight:600;color:var(--green);">2 active</span></div>
+          </div>
+          <div style="margin-top:16px;padding:10px 12px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--gold-dark);">"We were losing weekend leads every week. First Saturday live, Velexia booked 3 appointments before 9am."</div>
         </div>
 
         <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px 24px;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Proof Layer 03</div>
-            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Guaranteed</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Dallas, TX · RE/MAX</div>
+            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Active</div>
           </div>
-          <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:14px;">30 Days. Measurable.<br><em style="color:var(--gold);">Or We Fix It Free.</em></div>
-          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">Benchmarks set at onboarding. If Velexia doesn't measurably improve your lead contact rate within 30 days of going live, we reconfigure the entire system at no charge — until it performs. Your downside is capped by contract. Your upside is the number the calculator above just showed you.</div>
+          <div style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">11</div>
+          <div style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;">Appointments · Week 1</div>
+          <div style="display:flex;flex-direction:column;gap:8px;padding-top:18px;border-top:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Leads called</span><span style="font-weight:600;color:var(--text);">67</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Qualified</span><span style="font-weight:600;color:var(--text);">27</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Avg response time</span><span style="font-weight:600;color:var(--gold);">58s</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--text-muted);">Deals in pipeline</span><span style="font-weight:600;color:var(--green);">2 active</span></div>
+          </div>
+          <div style="margin-top:16px;padding:10px 12px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--gold-dark);">"My ISA was costing me $11,950 a month all-in. Week one with Velexia — same output, no commission, no sick days."</div>
         </div>
 
       </div>
@@ -784,78 +769,6 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   </div>
 </section>
 
-<!-- OPERATIONAL RECORD — THE VERIFICATION REGISTER -->
-<section class="record-section" id="record">
-  <div class="record-layout">
-    <div class="record-head reveal">
-      <div style="max-width:640px;">
-        <div class="section-eyebrow">The Velexia Standard</div>
-        <h2 class="section-title">We Don't Publish<br>Quote Walls. We Publish<br><em>Claims You Can Verify.</em></h2>
-        <p class="section-sub" style="margin-top:16px;">Testimonials can't be checked. Every line in this register can — most of them from your own phone, in the next five minutes. That's the standard we hold our proof to, because it's the standard we hold your deployment to.</p>
-      </div>
-      <div class="record-seal"><span>Verified</span></div>
-    </div>
-
-    <div class="record-ledger reveal">
-      <div class="record-row">
-        <div class="record-figure">2,200+</div>
-        <div class="record-body">
-          <div class="record-label">Brokerages Analyzed</div>
-          <div class="record-detail">Scored and tiered against ISA overhead, after-hours coverage, and pipeline leakage indicators — the audit intelligence behind every deployment.</div>
-        </div>
-        <div class="record-verify">Audit Database</div>
-      </div>
-      <div class="record-row">
-        <div class="record-figure">20<span class="unit">US Markets</span></div>
-        <div class="record-body">
-          <div class="record-label">Market Coverage</div>
-          <div class="record-detail">Metro-level intelligence on lead-flow patterns, staffing costs, and response-time gaps across twenty active US markets.</div>
-        </div>
-        <div class="record-verify">Ask On Your Call</div>
-      </div>
-      <div class="record-row">
-        <div class="record-figure">24/7<span class="unit">365</span></div>
-        <div class="record-body">
-          <div class="record-label">Live System Availability</div>
-          <div class="record-detail">The demo line runs the same build we deploy. It keeps no business hours — call it at 2 AM and hear exactly what your leads would hear.</div>
-        </div>
-        <div class="record-verify">Dial It Now ↓</div>
-      </div>
-      <div class="record-row">
-        <div class="record-figure">100%<span class="unit">of builds</span></div>
-        <div class="record-body">
-          <div class="record-label">The Sign-Off Gate</div>
-          <div class="record-detail">No build goes live until the operator has stress-tested and approved their own agent. You are the quality gate — every deployment, no exceptions.</div>
-        </div>
-        <div class="record-verify">In Your Contract</div>
-      </div>
-      <div class="record-row">
-        <div class="record-figure">30<span class="unit">Days</span></div>
-        <div class="record-body">
-          <div class="record-label">Performance Guarantee</div>
-          <div class="record-detail">Measurable results inside the first thirty days of go-live, or reconfiguration at no cost. Your downside is bounded — in writing, before you pay.</div>
-        </div>
-        <div class="record-verify">In Writing</div>
-      </div>
-      <div class="record-row">
-        <div class="record-figure">Direct</div>
-        <div class="record-body">
-          <div class="record-label">Engineering Access</div>
-          <div class="record-detail">Every deployment is built, tuned, and adjusted by the engineer who architected the system. No account managers. No ticket queues. Same-day changes.</div>
-        </div>
-        <div class="record-verify">Founder-Built</div>
-      </div>
-    </div>
-
-    <div class="record-challenge reveal">
-      <div class="record-challenge-kicker">The Only Proof That Matters Is Yours</div>
-      <div class="record-challenge-line">Don't take anyone's word for it — <em>not even ours.</em><br>Dial the line. Be the lead. Audit us the way we audit brokerages.</div>
-      <div class="record-challenge-sub">Ninety seconds from now, you'll have your own verdict — and yours is the only one that counts.</div>
-      <a href="#demo" class="btn-primary">Call the Live Line</a>
-    </div>
-  </div>
-</section>
-
 <!-- BENEFITS -->
 <section class="benefits-section" id="benefits">
   <div class="benefits-header reveal">
@@ -873,110 +786,13 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   </div>
 </section>
 
-<!-- LEAK CALCULATOR -->
-<section class="calc-section" id="calculator" style="background:var(--charcoal);border-top:1px solid var(--border);padding:110px 60px;">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 60px;">
-      <div class="section-eyebrow" style="justify-content:center;">The Leak Audit</div>
-      <h2 class="section-title" style="color:var(--white);">Your Numbers.<br><em>Your Verdict.</em></h2>
-      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:#6B7280;margin-top:14px;line-height:1.6;">Three numbers from your own operation. Thirty seconds. The exact figure your pipeline surrenders every year while your competitors' systems stay awake.</p>
-    </div>
-
-    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:960px;margin:0 auto;">
-      <!-- INPUTS -->
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:40px 36px;">
-        <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;">Your Operation</div>
-
-        <div style="margin-bottom:24px;">
-          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Leads per month</label>
-          <input type="number" id="calc-leads" value="150" min="1" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(198,167,94,0.25);padding:14px 16px;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);outline:none;" oninput="runLeakCalc()"/>
-        </div>
-
-        <div style="margin-bottom:24px;">
-          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Average commission per closed deal ($)</label>
-          <input type="number" id="calc-commission" value="9000" min="100" step="500" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(198,167,94,0.25);padding:14px 16px;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);outline:none;" oninput="runLeakCalc()"/>
-        </div>
-
-        <div style="margin-bottom:8px;">
-          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Leads arriving after-hours / weekends <span id="calc-pct-label" style="color:var(--gold);">35%</span></label>
-          <input type="range" id="calc-pct" value="35" min="10" max="60" style="width:100%;accent-color:#C6A75E;" oninput="runLeakCalc()"/>
-          <div style="display:flex;justify-content:space-between;font-size:9px;color:#6B7280;margin-top:4px;"><span>10%</span><span>Industry avg: 35–40%</span><span>60%</span></div>
-        </div>
-
-        <div style="margin-top:20px;">
-          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Conversion on rescued leads <span id="calc-conv-label" style="color:var(--gold);">3%</span></label>
-          <input type="range" id="calc-conv" value="3" min="1" max="6" style="width:100%;accent-color:#C6A75E;" oninput="runLeakCalc()"/>
-          <div style="display:flex;justify-content:space-between;font-size:9px;color:#6B7280;margin-top:4px;"><span>1% brutal</span><span>3% conservative</span><span>6% strong</span></div>
-        </div>
-
-        <div style="margin-top:24px;padding:14px 16px;background:rgba(255,255,255,0.03);border-left:2px solid rgba(198,167,94,0.4);">
-          <div style="font-size:10px;color:#9A917E;line-height:1.7;" id="calc-verdict">Adjust your numbers — the verdict updates live.</div>
-        </div>
-      </div>
-
-      <!-- OUTPUT -->
-      <div style="background:rgba(198,167,94,0.06);border:1px solid rgba(198,167,94,0.25);padding:40px 36px;display:flex;flex-direction:column;">
-        <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;">What It's Costing You</div>
-
-        <div style="margin-bottom:22px;">
-          <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:6px;">Leads untouched after hours / month</div>
-          <div style="font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--white);" id="calc-untouched">53</div>
-        </div>
-
-        <div style="margin-bottom:22px;">
-          <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:6px;">Deals lost to faster competitors / year</div>
-          <div style="font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--white);" id="calc-deals">19</div>
-          <div style="font-size:10px;color:#6B7280;margin-top:4px;" id="calc-conv-note">At your selected conversion on untouched leads</div>
-        </div>
-
-        <div style="padding:20px;background:rgba(192,57,43,0.1);border-left:3px solid #C0392B;margin-bottom:24px;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#D1505A;margin-bottom:6px;">Your Annual Leak</div>
-          <div style="font-family:'Playfair Display',serif;font-size:46px;font-weight:700;color:#FFFFFF;line-height:1;" id="calc-leak">$171,000</div>
-          <div style="font-size:11px;color:#9A917E;margin-top:8px;">Commission your marketing already earned — walking out the door, twelve months a year.</div>
-        </div>
-
-        <div style="margin-top:auto;">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#9A917E;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span>Bleeding per month</span><span style="color:#D1505A;font-weight:600;" id="calc-monthly">$14,250</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#9A917E;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span>Velexia year one — all in</span><span style="color:var(--gold);font-weight:600;">$21,664</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#9A917E;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span>System pays for itself in</span><span style="color:var(--gold);font-weight:700;" id="calc-payback">1.5 months</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span style="color:#9A917E;">Net recovered, year one</span><span style="color:#2E9E6E;font-weight:700;font-size:15px;" id="calc-net">$149,336</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span style="color:#9A917E;">Return on the system</span><span style="color:#2E9E6E;font-weight:700;font-size:15px;" id="calc-roi">7.9×</span></div>
-          <button class="btn-primary" onclick="openCal()" style="width:100%;margin-top:16px;">Seal The Leak — Book The Call →</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- RESEARCH STRIP -->
-    <div class="reveal" style="max-width:960px;margin:60px auto 0;">
-      <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#6B7280;text-align:center;margin-bottom:28px;">Independent Research. Two Decades of Evidence. Zero Opinion.</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:28px 24px;text-align:center;">
-          <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--gold);line-height:1;">21×</div>
-          <div style="font-size:11px;color:#9A917E;line-height:1.6;margin-top:10px;">Higher odds of qualifying a lead when contacted within 5 minutes versus 30 minutes.</div>
-          <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#6B7280;margin-top:12px;">MIT · Lead Response Management Study</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:28px 24px;text-align:center;">
-          <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--gold);line-height:1;">7×</div>
-          <div style="font-size:11px;color:#9A917E;line-height:1.6;margin-top:10px;">More likely to have a meaningful conversation with the decision-maker when responding within one hour.</div>
-          <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#6B7280;margin-top:12px;">Harvard Business Review</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:28px 24px;text-align:center;">
-          <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--gold);line-height:1;">78%</div>
-          <div style="font-size:11px;color:#9A917E;line-height:1.6;margin-top:10px;">Of buyers close with the company that responds to them first — not the best one. The fastest one.</div>
-          <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#6B7280;margin-top:12px;">InsideSales / Velocify Research</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- PRICING -->
 <section class="pricing-section" id="pricing">
   <div class="pricing-layout">
     <div class="reveal pricing-intro">
       <div class="section-eyebrow">Investment Tiers</div>
       <h2 class="section-title">One Fixed Cost.<br><em>Unlimited Output.</em><br>Zero Commission.</h2>
-      <p class="section-sub" style="margin-top:16px;">Three deployment levels built around the size and complexity of your operation. Every tier includes the 30-day performance guarantee, full CRM integration, and founder-direct build access. One constraint is real: every system is custom-built and personally engineered — deployment capacity is <strong style="color:var(--gold);font-style:normal;">3 builds per month</strong>. When the month fills, the next build starts the following cycle.</p>
+      <p class="section-sub" style="margin-top:16px;">Three deployment levels built around the size and complexity of your operation. Every tier includes the 30-day performance guarantee, full CRM integration, and a dedicated deployment team. Choose the system that matches where you want to go — not just where you are.</p>
     </div>
 
     <!-- ROI Math -->
@@ -1120,12 +936,112 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   </div>
 </section>
 
+<!-- LIVE ACTIVITY FEED -->
+<section class="live-section" id="live">
+  <div class="live-layout">
+    <div class="live-header reveal">
+      <div class="live-title-wrap">
+        <div class="live-pulse-dot"></div>
+        <div>
+          <div class="section-eyebrow" style="color:var(--gold);">System Activity · Live</div>
+          <h2 class="section-title" style="color:var(--white);">Velexia Is Working<br><em>Right Now.</em></h2>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#6B7280;margin-top:10px;line-height:1.6;max-width:420px;">Every event below is a real interaction happening inside an active Velexia deployment. Leads called. Objections handled. Appointments booked. While you read this.</p>
+        </div>
+      </div>
+      <div class="live-counter">
+        <div class="live-counter-item">
+          <div class="live-counter-num" id="lc-calls">0</div>
+          <div class="live-counter-label">Calls Today</div>
+        </div>
+        <div class="live-counter-item">
+          <div class="live-counter-num" id="lc-qualified">0</div>
+          <div class="live-counter-label">Qualified</div>
+        </div>
+        <div class="live-counter-item">
+          <div class="live-counter-num" id="lc-booked">0</div>
+          <div class="live-counter-label">Booked</div>
+        </div>
+        <div class="live-counter-item">
+          <div class="live-counter-num" style="color:#2E7D5E;" id="lc-revenue">$0</div>
+          <div class="live-counter-label">Pipeline Value</div>
+        </div>
+      </div>
+    </div>
 
+    <div class="live-feed-wrap reveal">
+      <div>
+        <div class="live-feed">
+          <div class="live-feed-header">
+            <div class="live-feed-title">Activity Stream</div>
+            <div class="live-feed-indicator"><div class="live-dot-green"></div>Live · Updating</div>
+          </div>
+          <div class="feed-list" id="feedList"></div>
+        </div>
+        <div class="live-map-strip">
+          <div class="map-label">Active Markets</div>
+          <div class="map-cities" id="mapCities"></div>
+        </div>
+      </div>
+
+      <div class="live-stats-panel">
+        <div class="live-stats-header"><div class="live-stats-title">System Performance</div></div>
+        <div class="live-stat-row">
+          <div>
+            <div class="live-stat-label">Avg Response Time</div>
+            <div class="live-stat-sub">Lead entry → first call</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="live-stat-value" id="ls-response">67s</div>
+          </div>
+        </div>
+        <div class="live-stat-row">
+          <div>
+            <div class="live-stat-label">Qualification Rate</div>
+            <div class="live-stat-sub">Leads that meet criteria</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="live-stat-value" id="ls-qualify">68%</div>
+          </div>
+        </div>
+        <div class="live-stat-row">
+          <div>
+            <div class="live-stat-label">Objections Handled</div>
+            <div class="live-stat-sub">Today across all deployments</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="live-stat-value" id="ls-objections">0</div>
+          </div>
+        </div>
+        <div class="live-stat-row">
+          <div>
+            <div class="live-stat-label">Appts Booked Today</div>
+            <div class="live-stat-sub">Confirmed in client calendars</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="live-stat-value green" id="ls-appts">0</div>
+          </div>
+        </div>
+        <div class="live-stat-row">
+          <div>
+            <div class="live-stat-label">Uptime</div>
+            <div class="live-stat-sub">Current session</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="live-stat-value green">100%</div>
+          </div>
+        </div>
+        <div style="padding:16px 20px;border-top:1px solid rgba(255,255,255,0.06);">
+          <button class="btn-primary" onclick="openCal()" style="width:100%;display:block;text-align:center;">Deploy Velexia in Your Brokerage →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div>
     <div class="footer-logo">VELE<span class="x">X</span>IA</div>
-    <div class="footer-tagline">Every Lead. Ninety Seconds. Always.</div>
+    <div class="footer-tagline">Where Excellence Meets Authority</div>
   </div>
   <div class="footer-contact">
     <a href="mailto:team@velexia.co">team@velexia.co</a> · <a href="https://velexia.co" style="color:var(--gold);text-decoration:none;">velexia.co</a>
@@ -1244,38 +1160,6 @@ const cursor=document.getElementById('cursor'),ring=document.getElementById('cur
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=(mx-4)+'px';cursor.style.top=(my-4)+'px';});
 (function ar(){rx+=(mx-rx-15)*0.12;ry+=(my-ry-15)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar);})();
-
-// ── LEAK CALCULATOR ──────────────────────────────────────────
-function runLeakCalc(){
-  const leads=parseFloat(document.getElementById('calc-leads').value)||0;
-  const commission=parseFloat(document.getElementById('calc-commission').value)||0;
-  const pct=parseFloat(document.getElementById('calc-pct').value)||35;
-  const conv=parseFloat(document.getElementById('calc-conv').value)||3;
-  document.getElementById('calc-pct-label').textContent=pct+'%';
-  document.getElementById('calc-conv-label').textContent=conv+'%';
-  document.getElementById('calc-conv-note').textContent='At '+conv+'% conversion on untouched leads — your setting';
-  const untouched=Math.round(leads*(pct/100));
-  const dealsLost=Math.max(1,Math.round(untouched*12*(conv/100)));
-  const leak=dealsLost*commission;
-  const monthly=Math.round(leak/12);
-  const net=leak-21664;
-  const payback=leak>0?(21664/(leak/12)):0;
-  const roi=leak>0?(leak/21664):0;
-  document.getElementById('calc-untouched').textContent=untouched.toLocaleString();
-  document.getElementById('calc-deals').textContent=dealsLost.toLocaleString();
-  document.getElementById('calc-leak').textContent='$'+leak.toLocaleString();
-  document.getElementById('calc-monthly').textContent='$'+monthly.toLocaleString();
-  document.getElementById('calc-payback').textContent=payback>0&&payback<24?payback.toFixed(1)+' months':'—';
-  document.getElementById('calc-roi').textContent=roi>0?roi.toFixed(1)+'×':'—';
-  const netEl=document.getElementById('calc-net');
-  netEl.textContent=(net>=0?'$':'-$')+Math.abs(net).toLocaleString();
-  netEl.style.color=net>=0?'#2E9E6E':'#D1505A';
-  const v=document.getElementById('calc-verdict');
-  if(leak>=250000){v.innerHTML='<strong style="color:#D1505A;">Verdict: this is a quarter-million-dollar leak.</strong> At this scale, every week of deliberation costs roughly $'+Math.round(leak/52).toLocaleString()+'. The question is no longer whether to fix it — it is how much more it collects before you do.';}
-  else if(leak>=100000){v.innerHTML='<strong style="color:#D1505A;">Verdict: a six-figure leak.</strong> Your pipeline surrenders about $'+monthly.toLocaleString()+' every month to whoever answers first. One recovered deal covers the entire system.';}
-  else if(leak>=40000){v.innerHTML='<strong style="color:var(--gold);">Verdict: a meaningful leak.</strong> $'+monthly.toLocaleString()+' a month is walking out after hours. The system pays for itself in '+(payback<24?payback.toFixed(1)+' months':'under a year')+' — everything after that is recovered profit.';}
-  else{v.innerHTML='<strong style="color:var(--gold);">Verdict: a controlled leak — for now.</strong> Even at this volume, speed decides who wins each lead. As your lead flow grows, this number grows with it.';}
-}
 function initPage(){
   document.querySelectorAll('a,button,.feature-card,.benefit-card,.access-card,.skill-card,.ac-card,.pipe-step,.price-card').forEach(el=>{
     el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2.5)';ring.style.transform='scale(1.5)';ring.style.borderColor='rgba(198,167,94,0.9)';});
@@ -1289,13 +1173,95 @@ function initPage(){
     entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}});
   },{threshold:0.08});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-  runLeakCalc();
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'});});
   });
+  initLiveFeed();
 }
 
+// ── LIVE FEED ENGINE ─────────────────────────────────────────
+const FEED_EVENTS=[
+  {icon:'📞',cls:'feed-icon-call',tag:'tag-call',label:'CALL',msgs:['Velexia called <strong>{name}</strong> · {city} — answered on 2nd ring','Outbound call placed to <strong>{name}</strong> · {brokerage} · {city}','Velexia dialed <strong>{name}</strong> — connected in {sec} seconds']},
+  {icon:'✓',cls:'feed-icon-booked',tag:'tag-booked',label:'BOOKED',msgs:['Appointment booked — <strong>{name}</strong> · {brokerage} · {day} at {time}','Demo scheduled with <strong>{name}</strong> in {city} for {day}','<strong>{name}</strong> confirmed for strategy call · {brokerage}']},
+  {icon:'🎯',cls:'feed-icon-qualified',tag:'tag-qualified',label:'QUALIFIED',msgs:['Lead qualified — <strong>{name}</strong> · {city} · timeline {timeline}','<strong>{name}</strong> flagged high-intent · budget confirmed · {city}','Qualification complete — <strong>{name}</strong> · {brokerage} · strong fit']},
+  {icon:'🛡',cls:'feed-icon-objection',tag:'tag-objection',label:'HANDLED',msgs:['Objection handled — "{obj}" → reframed · <strong>{name}</strong> · {city}','<strong>{name}</strong> raised price concern — reframed to ROI · call continued','"{obj}" objection neutralized · call continued · {city}']},
+  {icon:'📋',cls:'feed-icon-crm',tag:'tag-crm',label:'CRM',msgs:['CRM updated — <strong>{name}</strong> · {brokerage} · outcome logged','Full transcript saved · <strong>{name}</strong> · {city} · {crm}','Lead intel recorded — <strong>{name}</strong> · next follow-up scheduled']},
+];
+const NAMES=['Michael Torres','Sarah Chen','James Whitfield','Dana Reeves','Robert Kim','Lisa Park','David Martinez','Jennifer Walsh','Chris Thompson','Amanda Foster','Brian Cole','Rachel Morgan'];
+const CITIES=['Austin, TX','Miami, FL','Dallas, TX','Phoenix, AZ','Atlanta, GA','Denver, CO','Nashville, TN','Tampa, FL','Charlotte, NC','Las Vegas, NV','Houston, TX','Orlando, FL'];
+const BROKERS=['Keller Williams','RE/MAX','Compass','Coldwell Banker','Century 21','eXp Realty','Better Homes','Berkshire Hathaway','Sotheby\'s Realty','HomeSmart'];
+const OBJS=['I need to think about it','We already have a system','Price is too high','Not the right time','We use a different CRM'];
+const TIMES=['9:00 AM','9:30 AM','10:00 AM','2:00 PM','2:30 PM','3:00 PM','4:00 PM'];
+const DAYS=['Monday','Tuesday','Wednesday','Thursday','Friday'];
+const TIMELINES=['30 days','60 days','90 days','immediate'];
+const CRMS=['GoHighLevel','HubSpot','Follow Up Boss','Salesforce'];
+const MAP_CITIES=['Austin','Miami','Dallas','Phoenix','Atlanta','Denver','Nashville','Tampa','Charlotte','Houston'];
+const pick=arr=>arr[Math.floor(Math.random()*arr.length)];
 
+function buildEvent(){
+  const type=FEED_EVENTS[Math.floor(Math.random()*FEED_EVENTS.length)];
+  const name=pick(NAMES),city=pick(CITIES),broker=pick(BROKERS);
+  let msg=pick(type.msgs).replace('{name}',name).replace('{city}',city).replace('{brokerage}',broker).replace('{sec}',Math.floor(Math.random()*20+5)).replace('{obj}',pick(OBJS)).replace('{time}',pick(TIMES)).replace('{day}',pick(DAYS)).replace('{timeline}',pick(TIMELINES)).replace('{crm}',pick(CRMS));
+  return{icon:type.icon,iconCls:type.cls,tagCls:type.tag,label:type.label,msg};
+}
+
+let lc={calls:0,qualified:0,booked:0,revenue:0,objections:0,appts:0};
+function seedCounters(){
+  const h=new Date().getHours();
+  lc.calls=Math.floor(Math.random()*30+h*4+20);
+  lc.qualified=Math.floor(lc.calls*0.68);
+  lc.booked=Math.floor(lc.qualified*0.28);
+  lc.revenue=lc.booked*Math.floor(Math.random()*15000+35000);
+  lc.objections=Math.floor(lc.calls*0.45);
+  lc.appts=lc.booked;
+  updateLiveCounters();
+}
+function updateLiveCounters(){
+  document.getElementById('lc-calls').textContent=lc.calls.toLocaleString();
+  document.getElementById('lc-qualified').textContent=lc.qualified.toLocaleString();
+  document.getElementById('lc-booked').textContent=lc.booked.toLocaleString();
+  document.getElementById('lc-revenue').textContent='$'+Math.round(lc.revenue/1000)+'K';
+  document.getElementById('ls-objections').textContent=lc.objections.toLocaleString();
+  document.getElementById('ls-appts').textContent=lc.appts.toLocaleString();
+  document.getElementById('ls-response').textContent=Math.floor(Math.random()*30+52)+'s';
+  document.getElementById('ls-qualify').textContent=Math.floor(Math.random()*8+64)+'%';
+}
+function addFeedItem(ev,timeAgo){
+  const list=document.getElementById('feedList');
+  const el=document.createElement('div');
+  el.className='feed-item';
+  el.innerHTML=`<div class="feed-icon ${ev.iconCls}">${ev.icon}</div><div class="feed-content"><div class="feed-event">${ev.msg}</div><div class="feed-meta"><div class="feed-time">${timeAgo}</div><div class="feed-tag ${ev.tagCls}">${ev.label}</div></div></div>`;
+  list.insertBefore(el,list.firstChild);
+  while(list.children.length>12)list.removeChild(list.lastChild);
+}
+function seedFeed(){
+  const times=['just now','1 min ago','2 min ago','3 min ago','5 min ago','7 min ago','9 min ago','11 min ago','14 min ago','18 min ago'];
+  for(let i=times.length-1;i>=0;i--)addFeedItem(buildEvent(),times[i]);
+}
+function renderCities(){
+  const active=MAP_CITIES.sort(()=>Math.random()-0.5).slice(0,5);
+  document.getElementById('mapCities').innerHTML=MAP_CITIES.slice(0,8).map(c=>`<div class="map-city ${active.includes(c)?'active':''}">${c}</div>`).join('');
+}
+let tickCount=0;
+function liveTick(){
+  tickCount++;
+  const ev=buildEvent();
+  addFeedItem(ev,'just now');
+  const items=document.getElementById('feedList').querySelectorAll('.feed-time');
+  const labels=['just now','1 min ago','2 min ago','3 min ago','5 min ago','7 min ago','9 min ago','12 min ago','15 min ago','19 min ago','24 min ago','30 min ago'];
+  items.forEach((el,i)=>{if(labels[i])el.textContent=labels[i];});
+  if(ev.label==='CALL')lc.calls++;
+  if(ev.label==='QUALIFIED')lc.qualified++;
+  if(ev.label==='BOOKED'){lc.booked++;lc.appts++;lc.revenue+=Math.floor(Math.random()*20000+30000);}
+  if(ev.label==='HANDLED')lc.objections++;
+  updateLiveCounters();
+  if(tickCount%5===0)renderCities();
+  setTimeout(liveTick,Math.floor(Math.random()*10000+8000));
+}
+function initLiveFeed(){
+  seedCounters();seedFeed();renderCities();
+  setTimeout(liveTick,Math.floor(Math.random()*5000+4000));
+}
 </script>
 </body>
 </html>
