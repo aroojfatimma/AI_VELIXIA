@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velexia — Complete Your Starter Deployment</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Montserrat',sans-serif;
+    background:linear-gradient(160deg,#F2F2F2 0%,#EDE0C8 100%);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  .card{
+    background:#FFFFFF;
+    border:1px solid rgba(198,167,94,0.28);
+    padding:56px 44px;
+    max-width:460px;
+    width:100%;
+    text-align:center;
+    box-shadow:0 40px 80px rgba(28,28,28,0.12);
+  }
+  .logo{
+    font-family:'Playfair Display',serif;
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:#1C1C1C;
+    margin-bottom:6px;
+  }
+  .logo .x{color:#C6A75E;}
+  .tier{
+    font-family:'Playfair Display',serif;
+    font-size:28px;
+    font-weight:700;
+    color:#1C1C1C;
+    margin:24px 0 8px;
+  }
+  .desc{
+    font-size:14px;
+    color:#6B7280;
+    margin-bottom:32px;
+    line-height:1.6;
+  }
+  .price-row{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 0;
+    border-top:1px solid #E5E4E2;
+    font-size:14px;
+  }
+  .price-row:last-of-type{border-bottom:1px solid #E5E4E2;margin-bottom:32px;}
+  .price-label{color:#6B7280;}
+  .price-val{color:#1C1C1C;font-weight:600;}
+  .btn{
+    width:100%;
+    background:#C6A75E;
+    border:none;
+    padding:18px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#FFFFFF;
+    cursor:pointer;
+    transition:background 0.3s;
+  }
+  .btn:hover{background:#A8892A;}
+  .note{
+    margin-top:20px;
+    font-size:12px;
+    color:#9A917E;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo">VELE<span class="x">X</span>IA</div>
+  <div class="tier">Starter Deployment</div>
+  <div class="desc">Full inbound closing system. Built for brokerages ready to stop losing leads to slow follow-up.</div>
+
+  <div class="price-row">
+    <span class="price-label">One-time deployment</span>
+    <span class="price-val">$25,000</span>
+  </div>
+  <div class="price-row">
+    <span class="price-label">Monthly system retainer</span>
+    <span class="price-val">$2,000 / mo</span>
+  </div>
+
+  <button class="btn" onclick="startCheckout()">Complete Payment &rarr;</button>
+  <div class="note">Secure checkout powered by Paddle. Questions? +1 (608) 866-1046</div>
+</div>
+
+<script>
+  Paddle.Environment.set('production');
+  Paddle.Setup({ token: 'live_bc1e4cb62e42ec5dd186e98be1a' });
+
+  function startCheckout(){
+    Paddle.Checkout.open({
+      items: [
+        { priceId: 'pri_01kyj9dn44aafv13saw62m3y1x', quantity: 1 },
+        { priceId: 'pri_01kyj994nkb1fbj6cmwts1cda7', quantity: 1 }
+      ]
+    });
+  }
+</script>
+
+</body>
+</html>
