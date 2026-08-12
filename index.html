@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Velexia — The AI Sales System That Never Sleeps</title>
+<title>Velexia — The Revenue Capture System. Replaces Your ISA + BDR.</title>
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAAAIADnAAAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAQAAAAEAgGAAAAH/P/YQAAAK5JREFUeJylU8ENwyAMPBiAB2In/xB7MA97IH7sVPXRBegniRzLTqPGH4TxnbHPdgCQYlj4w17vj/O/wKMV8y3FsPwd8BWJ037AAARg7pdcu00gstB2TuN+kHkNnGufPBjA3Hw70YHxnE37ojQZqzZxtHIiy7WbjXQphiUfOZiTaXFaCQTbSC1B6j1aIc2v+U4yilq5dKaM6iDJrBLEzRxlGWxJfLkLd+bDAc/W+QthR16Y3EMDiAAAAABJRU5ErkJggg==">
 <link rel="shortcut icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAAAIADnAAAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAQAAAAEAgGAAAAH/P/YQAAAK5JREFUeJylU8ENwyAMPBiAB2In/xB7MA97IH7sVPXRBegniRzLTqPGH4TxnbHPdgCQYlj4w17vj/O/wKMV8y3FsPwd8BWJ037AAARg7pdcu00gstB2TuN+kHkNnGufPBjA3Hw70YHxnE37ojQZqzZxtHIiy7WbjXQphiUfOZiTaXFaCQTbSC1B6j1aIc2v+U4yilq5dKaM6iDJrBLEzRxlGWxJfLkLd+bDAc/W+QthR16Y3EMDiAAAAABJRU5ErkJggg==">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -18,7 +18,14 @@
   --green:#2E7D5E;--green-dim:rgba(46,125,94,0.1);--red:#C0392B;
 }
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;overflow-x:hidden;cursor:none;}
+body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;overflow-x:hidden;cursor:none;position:relative;}
+.grain-overlay{position:fixed;inset:0;z-index:9985;pointer-events:none;opacity:0.035;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+::selection{background:rgba(198,167,94,0.28);color:var(--text);}
+.gold-glow-text{text-shadow:0 0 40px rgba(198,167,94,0.35);}
+@media(hover:hover){
+  .feature-card:hover,.skill-card:hover,.ac-card:hover,.price-card:hover,.benefit-card:hover{box-shadow:0 30px 70px -20px rgba(28,28,28,0.18),0 0 0 1px rgba(198,167,94,0.15);}
+  .btn-primary:hover{box-shadow:0 25px 55px -10px rgba(198,167,94,0.4),0 0 0 1px rgba(198,167,94,0.3);}
+}
 .wm-overlay{user-select:none;-webkit-user-select:none;}
 .wm-overlay{position:fixed;inset:0;pointer-events:none;z-index:9990;overflow:hidden;}
 .wm-overlay::before{content:'Velexia Confidential • Velexia Confidential • Velexia Confidential • Velexia Confidential • Velexia Confidential • Velexia Confidential • Velexia Confidential • Velexia Confidential';position:absolute;width:200%;top:0;left:-50%;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:rgba(198,167,94,0.06);transform:rotate(-35deg);line-height:6;white-space:pre-wrap;word-break:break-all;}
@@ -146,7 +153,7 @@ section{padding:110px 60px;position:relative;}
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1200px;margin:0 auto;}
 .skill-card{background:var(--bg);border:1px solid transparent;padding:36px 30px;transition:all 0.4s;cursor:default;position:relative;overflow:hidden;}
 .skill-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform 0.4s;}
-.skill-card:hover{border-color:var(--gold-border);background:var(--gold-dim);}
+.skill-card:hover{border-color:var(--gold-border);background:var(--gold-dim);transform:translateY(-3px);}
 .skill-card:hover::after{transform:scaleX(1);}
 .skill-icon{font-size:22px;margin-bottom:18px;}
 .skill-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--text);margin-bottom:10px;}
@@ -274,8 +281,10 @@ section{padding:110px 60px;position:relative;}
 .pricing-layout{max-width:1200px;margin:0 auto;}
 .pricing-intro{max-width:680px;margin-bottom:20px;}
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;background:var(--border);}
-.price-card{background:var(--bg-alt);padding:48px 40px;position:relative;transition:all 0.4s;}
-.price-card.featured{background:var(--charcoal);}
+.price-card{background:var(--bg-alt);padding:48px 40px;position:relative;transition:all 0.45s cubic-bezier(0.16,1,0.3,1);border:1px solid transparent;}
+.price-card:hover{transform:translateY(-8px);border-color:var(--gold-border);}
+.price-card.featured{background:var(--charcoal);box-shadow:0 40px 90px -30px rgba(198,167,94,0.35);}
+.price-card.featured:hover{transform:translateY(-8px) scale(1.01);}
 .price-card.featured::before{content:'MOST CHOSEN';position:absolute;top:0;left:40px;font-size:8px;font-weight:700;letter-spacing:3px;background:var(--gold);color:var(--white);padding:5px 14px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
 .price-tier{font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
 .price-tier-sub{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-muted);margin-bottom:20px;line-height:1.5;}
@@ -409,7 +418,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
 .float-btn{background:var(--gold);color:var(--white);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:14px 22px;border:none;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);box-shadow:0 8px 30px rgba(198,167,94,0.4);transition:all 0.3s;display:flex;align-items:center;gap:10px;}
 .float-btn:hover{background:var(--gold-dark);transform:translateY(-2px);}
 .float-pulse{width:10px;height:10px;background:var(--white);border-radius:50%;animation:pulseDot 1.5s infinite;}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(0.16,1,0.3,1),transform 1s cubic-bezier(0.16,1,0.3,1);}
 .reveal.visible{opacity:1;transform:translateY(0);}
 
 @media(max-width:960px){
@@ -445,9 +454,47 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   .calc-section > div > div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important;}
   .calc-section div[style*="repeat(3,1fr)"]{grid-template-columns:1fr !important;}
 }
+
+/* ---- Surgical rebuild additions ---- */
+.text-pain{color:var(--red);}
+.bg-watermark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:20vw;color:#FFFFFF;opacity:0.012;letter-spacing:0.02em;transform:rotate(-15deg);pointer-events:none;z-index:0;white-space:nowrap;user-select:none;}
+.hero-stats{opacity:1;animation:none;}
+.hero-stat-item{opacity:0;animation:fadeUp 0.6s ease both;}
+@keyframes goldPulse{0%,100%{box-shadow:0 8px 30px rgba(198,167,94,0.35);}50%{box-shadow:0 8px 46px rgba(198,167,94,0.65);}}
+.btn-primary{animation:goldPulse 2s infinite;letter-spacing:3px;}
+.reveal{transition:opacity 0.4s cubic-bezier(0.16,1,0.3,1),transform 0.4s cubic-bezier(0.16,1,0.3,1);}
+.hero-headline{letter-spacing:-0.02em;}
+.section-title{letter-spacing:-0.02em;}
+.hero-desc,.section-sub{font-weight:400;}
+
+.reframe-section{position:relative;background:var(--charcoal);border-left:3px solid var(--red);padding:100px 60px;overflow:hidden;}
+.reframe-inner{max-width:680px;margin:0 auto;position:relative;z-index:1;text-align:left;}
+.reframe-label{font-size:9px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--red);margin-bottom:22px;}
+.reframe-headline{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:26px;letter-spacing:-0.02em;}
+.reframe-body{font-family:'Cormorant Garamond',serif;font-size:clamp(19px,2.4vw,25px);font-weight:400;font-style:italic;color:rgba(255,255,255,0.82);line-height:1.65;}
+
+.broker-section{position:relative;background:var(--charcoal);padding:110px 60px;overflow:hidden;}
+.broker-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1px 1fr;gap:0;position:relative;z-index:1;}
+.broker-divider{background:linear-gradient(180deg,transparent,var(--gold),transparent);}
+.broker-col{padding:16px 48px;}
+.broker-col h3{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;margin-bottom:26px;}
+.broker-col.broker-a h3{color:var(--red);}
+.broker-col.broker-b h3{color:var(--gold);}
+.broker-col ul{list-style:none;}
+.broker-col li{font-family:'Montserrat',sans-serif;font-size:15px;line-height:1.9;color:rgba(255,255,255,0.75);padding-left:22px;position:relative;margin-bottom:6px;}
+.broker-col.broker-a li::before{content:'\2717';position:absolute;left:0;color:var(--red);font-weight:700;}
+.broker-col.broker-b li::before{content:'\2713';position:absolute;left:0;color:var(--gold);font-weight:700;}
+.broker-verdict{text-align:center;margin-top:64px;position:relative;z-index:1;}
+.broker-verdict p{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,32px);font-style:italic;color:var(--white);margin-bottom:30px;}
+@media(max-width:960px){
+  .broker-grid{grid-template-columns:1fr;}
+  .broker-divider{display:none;}
+  .broker-col{padding:0 0 30px;}
+}
 </style>
 </head>
 <body>
+<div class="grain-overlay"></div>
 <div class="wm-overlay"></div>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -462,13 +509,13 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   </div>
   <div class="gate-box">
     <div class="gate-logo">VELE<span class="x">X</span>IA</div>
-    <div class="gate-tagline">Every Inquiry. Ninety Seconds. Always.</div>
+    <div class="gate-tagline">Every Lead. Ninety Seconds. Always.</div>
     <div class="gate-divider"></div>
     <div class="gate-label">Enter Your Private Access Code</div>
     <input class="gate-input" id="gateInput" type="text" placeholder="XXXX-XXXX" maxlength="9" autocomplete="off" spellcheck="false"/>
     <button class="gate-btn" onclick="checkAccess()">Request Access &rarr;</button>
     <div class="gate-error" id="gateError">Invalid or expired access code. Contact Velexia to request access.</div>
-    <div class="gate-note">This presentation is <strong>private and confidential</strong>. Each access code is issued to one operator, personally. What you are about to see is not public. If you do not have a code, this system is not available to you. That is not exclusion. That is the only way to protect build quality.</div>
+    <div class="gate-note">This presentation is <strong>private and confidential</strong>. Each Velexia deployment is custom-engineered for one brokerage. We do not do templates. We do not do mass onboarding. If you do not have a code, this system is not available to you. That is not exclusion. That is the only way to guarantee it works.</div>
     <div style="margin-top:18px;padding:10px 14px;background:rgba(198,167,94,0.06);border:1px solid rgba(198,167,94,0.15);font-size:10px;color:var(--text-muted);letter-spacing:1px;">This system is custom-built per brokerage. Each deployment requires direct engineering time. Deployment is application-only &mdash; we partner with operations where we can guarantee measurable results. Access is limited to protect build quality.</div>
   </div>
 </div>
@@ -493,12 +540,12 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   <a href="#" class="nav-logo">VELE<span class="x">X</span>IA</a>
   <ul class="nav-links">
     <li><a href="#calculator">Calculator</a></li>
+    <li><a href="#demo">Live Demo</a></li>
     <li><a href="#record">Proof</a></li>
     <li><a href="#skills">Closer Skills</a></li>
-    <li><a href="#demo">Live Demo</a></li>
     <li><a href="#pricing">Pricing</a></li>
   </ul>
-  <button class="nav-cta" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Choose Your Deployment Tier &rarr;</button>
+  <button class="nav-cta" onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth'})">See the Leak &rarr;</button>
   <button class="nav-hamburger" onclick="openMobileNav()" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -510,7 +557,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   <a href="#crm" onclick="closeMobileNav()">Pipeline</a>
   <a href="#accountability" onclick="closeMobileNav()">Accountability</a>
   <a href="#pricing" onclick="closeMobileNav()">Pricing</a>
-  <button class="mobile-nav-cta" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'});closeMobileNav();">Choose Your Deployment Tier &rarr;</button>
+  <button class="mobile-nav-cta" onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth'});closeMobileNav();">See the Leak &rarr;</button>
 </div>
 
 <!-- HERO -->
@@ -521,35 +568,90 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
     <div class="geo-corner geo-corner-bl"></div><div class="geo-corner geo-corner-br"></div>
   </div>
   <div class="hero-glow"></div>
+  <div class="bg-watermark" aria-hidden="true">VELEXIA</div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Autonomous AI Sales Intelligence &middot; Built for High-Ticket Operators</div>
+    <div class="hero-eyebrow">Not Sold to Every Brokerage &middot; Deployed for the Operators Who Refuse to Lose Deals They Already Won</div>
     <h1 class="hero-headline">
-      The Revenue You Already Earned &mdash;<br><em>And Gave Away.</em>
-      <span class="sub">Your marketing generated the inquiry. Your competitor answered first. That is not a lost opportunity. That is a commission you already earned &mdash; and surrendered. Velexia is a fully autonomous AI inbound sales assistant deployed inside your brokerage in 21 days. It responds to every inbound inquiry in 90 seconds, runs complete high-ticket sales conversations, handles every objection, books the appointment, and updates your CRM. It only contacts leads who have already reached out to you. Zero commission. Zero excuses. Zero days off.</span>
+      You Already Earned the Commission.<br><em>It Just Never Got Collected.</em>
     </h1>
-    <p class="hero-desc">The inquiries are already coming in. The only question is who reaches them first &mdash; you, or the brokerage that answers in ninety seconds. Every minute that passes reduces emotional engagement. The decay curve is exponential, not linear.</p>
-    <p style='font-family:"Cormorant Garamond",serif;font-size:14px;font-style:italic;color:var(--text-muted);max-width:640px;margin:0 auto 36px;line-height:1.6;'>Velexia only contacts individuals who have submitted an inquiry through your owned channels. We do not facilitate unsolicited cold outreach, purchased contact lists, or spam.</p>
+    <p class="hero-desc">Velexia is a fully autonomous sales department deployed inside your brokerage in 21 days. It replaces your ISA and your BDR &mdash; not assists them. Every inbound lead contacted in under 90 seconds. Every cold list prospected. Every objection handled using elite sales psychology. Your CRM builds itself. Zero commission. Zero sick days. Zero clocking out at 6 PM.</p>
     <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(15px,2vw,19px);font-weight:400;font-style:italic;color:var(--text-muted);line-height:1.6;max-width:640px;margin:0 auto 36px;opacity:0;animation:fadeUp 1s ease 0.8s both;border-left:2px solid var(--gold);padding-left:20px;">The MIT Lead Response Study found that contacting a lead within 5 minutes makes you 21x more likely to qualify them. After 30 minutes, that window closes. Most brokerages never make that window. The ones that do not are still where they were in January. The ones that did have already seen their contact rates change.</p>
     <div class="hero-actions">
-      <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Choose Your Deployment Tier &rarr;</button>
+      <button class="btn-primary" onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth'})">See the Leak &rarr;</button>
       <a href="#demo" class="btn-ghost">Hear a Live Call</a>
     </div>
     <div class="hero-stats">
-      <div><div class="stat-num">&lt;90s</div><div class="stat-label">Lead Response Time</div></div>
-      <div><div class="stat-num">24/7</div><div class="stat-label">Always Operating</div></div>
-      <div><div class="stat-num">$0</div><div class="stat-label">Commission. Ever.</div></div>
-      <div><div class="stat-num">34%</div><div class="stat-label">Of One ISA Cost</div></div>
+      <div class="hero-stat-item" style="animation-delay:1.1s;"><div class="stat-num">&lt;90s</div><div class="stat-label">Lead Response</div></div>
+      <div class="hero-stat-item" style="animation-delay:1.2s;"><div class="stat-num">$2M+</div><div class="stat-label">Typical Annual Leak Captured</div></div>
+      <div class="hero-stat-item" style="animation-delay:1.3s;"><div class="stat-num">$0</div><div class="stat-label">Commission. Forever.</div></div>
+      <div class="hero-stat-item" style="animation-delay:1.4s;"><div class="stat-num">21 Days</div><div class="stat-label">To Live</div></div>
     </div>
+  </div>
+</section>
+
+<!-- THE REFRAME -->
+<section class="reframe-section" id="reframe">
+  <div class="bg-watermark" aria-hidden="true">VELEXIA</div>
+  <div class="reframe-inner reveal">
+    <div class="reframe-label">The Reframe</div>
+    <h2 class="reframe-headline">This Is Not a Lead Problem. It Is a <span class="text-pain">Collection Problem.</span></h2>
+    <p class="reframe-body">The leads sitting in your pipeline right now are not &ldquo;potential opportunities.&rdquo; They are commission you already earned that your current system is too slow, too human, or too absent to collect. The question is not whether you can afford Velexia. The question is how many more months you can afford to be the leak.</p>
   </div>
 </section>
 
 <!-- LEAK CALCULATOR -->
 <section class="calc-section" id="calculator" style="background:var(--charcoal);border-top:1px solid var(--border);padding:110px 60px;">
+  <div class="bg-watermark" aria-hidden="true">VELEXIA</div>
   <div style="max-width:1200px;margin:0 auto;">
-    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 60px;">
-      <div class="section-eyebrow" style="justify-content:center;">The Leak Audit</div>
-      <h2 class="section-title" style="color:var(--white);">Your Numbers.<br><em>Your Verdict.</em></h2>
-      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:#6B7280;margin-top:14px;line-height:1.6;">Three numbers from your own operation. Thirty seconds. The exact figure your pipeline surrenders every year while your competitors' systems stay awake.</p>
+    <div class="reveal" style="text-align:center;max-width:720px;margin:0 auto 50px;">
+      <div class="section-eyebrow" style="justify-content:center;color:var(--red);">The Diagnosis</div>
+      <h2 class="section-title" style="color:var(--white);">Your Pipeline Is Not Empty.<br><em>It Is Leaking.</em></h2>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:#6B7280;margin-top:14px;line-height:1.6;">Six numbers from your own operation. Thirty seconds. The full picture of what slow ISA follow-up, a mediocre close rate, an untouched database, and two full-time salaries are actually costing you &mdash; every year, on repeat.</p>
+      <p class="text-pain" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-top:14px;">The leak does not pause while you decide.</p>
+    </div>
+
+    <!-- MEGA LEAK BANNER -->
+    <div class="reveal" style="max-width:1200px;margin:0 auto 56px;position:relative;border:1px solid rgba(198,167,94,0.35);clip-path:polygon(24px 0%,100% 0%,100% calc(100% - 24px),calc(100% - 24px) 100%,0% 100%,0% 24px);background:linear-gradient(160deg,rgba(198,167,94,0.11) 0%,rgba(28,28,28,0.55) 55%,rgba(198,167,94,0.05) 100%);padding:52px 44px;">
+      <div style="text-align:center;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#D1505A;margin-bottom:16px;">Total Cost Of The Old Way &mdash; Revenue Leak + Payroll, Combined</div>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(46px,8vw,88px);font-weight:700;color:#FFFFFF;line-height:1;text-shadow:0 0 80px rgba(192,57,43,0.35);" id="calc-mega-total">$2,753,600</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:#9A917E;margin-top:16px;max-width:680px;margin-left:auto;margin-right:auto;">Every year you run it the old way &mdash; a slow ISA, a mediocre close rate, a dormant database no one re-calls, and two full-time salaries &mdash; this is what it actually costs. Not a projection. Your own numbers, below.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;margin-top:44px;">
+        <div style="background:rgba(255,255,255,0.04);border-left:3px solid #D1505A;padding:22px 20px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:10px;">ISA &mdash; Speed-to-Lead Leak</div>
+          <div style="font-family:'Playfair Display',serif;font-size:27px;font-weight:700;color:#FFFFFF;" id="calc-leak-speed">$171,720</div>
+          <div style="font-size:10px;color:#6B7280;margin-top:8px;line-height:1.5;">Leads that arrive after-hours and get reached by no one, in time.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border-left:3px solid #D1505A;padding:22px 20px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:10px;">ISA &mdash; Skill-Gap Leak</div>
+          <div style="font-family:'Playfair Display',serif;font-size:27px;font-weight:700;color:#FFFFFF;" id="calc-leak-isa-skill">$1,676,160</div>
+          <div style="font-size:10px;color:#6B7280;margin-top:8px;line-height:1.5;">Leads your ISA reaches fine &mdash; closed at a fraction of the top-1% standard.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border-left:3px solid #D1505A;padding:22px 20px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:10px;">BDR &mdash; Never Contacted</div>
+          <div style="font-family:'Playfair Display',serif;font-size:27px;font-weight:700;color:#FFFFFF;" id="calc-leak-bdr-contact">$168,480</div>
+          <div style="font-size:10px;color:#6B7280;margin-top:8px;line-height:1.5;">Dormant leads sitting in your CRM, un-called. Revenue already earned, never unlocked.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);border-left:3px solid #D1505A;padding:22px 20px;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:10px;">BDR &mdash; Skill-Gap Leak</div>
+          <div style="font-family:'Playfair Display',serif;font-size:27px;font-weight:700;color:#FFFFFF;" id="calc-leak-bdr-skill">$483,840</div>
+          <div style="font-size:10px;color:#6B7280;margin-top:8px;line-height:1.5;">The dormant leads a BDR does reach &mdash; closed at a mediocre rate, not an elite one.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-top:32px;padding-top:26px;border-top:1px solid rgba(198,167,94,0.2);">
+        <div>
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9A917E;">Total Revenue Leak &mdash; All Four Buckets</div>
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--gold);" id="calc-leak-total">$2,500,200</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9A917E;">+ What You're Also Paying &mdash; ISA + BDR Payroll</div>
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#FFFFFF;" id="calc-payroll-total">$253,400</div>
+          <div style="font-size:9px;color:#6B7280;margin-top:6px;">Includes <strong style="color:#9A917E;" id="calc-commission-callout">$39,000</strong> in commission alone &mdash; zero owed on Velexia.</div>
+        </div>
+      </div>
     </div>
 
     <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:960px;margin:0 auto;">
@@ -562,28 +664,41 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
           <input type="number" id="calc-leads" value="150" min="1" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(198,167,94,0.25);padding:14px 16px;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);outline:none;" oninput="runLeakCalc()"/>
         </div>
 
-        <div style="margin-bottom:24px;">
-          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Average commission per closed deal ($)</label>
-          <input type="number" id="calc-commission" value="9000" min="100" step="500" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(198,167,94,0.25);padding:14px 16px;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);outline:none;" oninput="runLeakCalc()"/>
-        </div>
-
         <div style="margin-bottom:8px;">
-          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Inquiries arriving after-hours / weekends <span id="calc-pct-label" style="color:var(--gold);">35%</span></label>
+          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Leads arriving after-hours / weekends <span id="calc-pct-label" style="color:var(--gold);">35%</span></label>
           <input type="range" id="calc-pct" value="35" min="10" max="60" style="width:100%;accent-color:#C6A75E;" oninput="runLeakCalc()"/>
           <div style="display:flex;justify-content:space-between;font-size:9px;color:#6B7280;margin-top:4px;"><span>10%</span><span>Industry avg: 35&ndash;40%</span><span>60%</span></div>
         </div>
 
         <div style="margin-top:20px;">
-          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Conversion on rescued leads <span id="calc-conv-label" style="color:var(--gold);">3%</span></label>
+          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Conversion on rescued / reactivated leads <span id="calc-conv-label" style="color:var(--gold);">3%</span></label>
           <input type="range" id="calc-conv" value="3" min="1" max="6" style="width:100%;accent-color:#C6A75E;" oninput="runLeakCalc()"/>
           <div style="display:flex;justify-content:space-between;font-size:9px;color:#6B7280;margin-top:4px;"><span>1% brutal</span><span>3% conservative</span><span>6% strong</span></div>
         </div>
 
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(198,167,94,0.15);">
+          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Your team's close rate &mdash; leads they DO reach <span id="calc-human-rate-label" style="color:var(--gold);">8%</span></label>
+          <input type="range" id="calc-human-rate" value="8" min="3" max="20" style="width:100%;accent-color:#C6A75E;" oninput="runLeakCalc()"/>
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:#6B7280;margin-top:4px;"><span>3% weak</span><span>8% typical ISA/BDR</span><span>20% strong</span></div>
+        </div>
+
+        <div style="margin-top:20px;">
+          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Velexia's close rate &mdash; top 1% closer standard <span id="calc-elite-rate-label" style="color:var(--gold);">24%</span></label>
+          <input type="range" id="calc-elite-rate" value="24" min="15" max="35" style="width:100%;accent-color:#C6A75E;" oninput="runLeakCalc()"/>
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:#6B7280;margin-top:4px;"><span>15%</span><span>24% Velexia standard</span><span>35%</span></div>
+        </div>
+
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(198,167,94,0.15);">
+          <label style="display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:8px;">Cold / dormant leads sitting in your CRM (per month)</label>
+          <input type="number" id="calc-cold" value="80" min="0" step="10" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(198,167,94,0.25);padding:14px 16px;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);outline:none;" oninput="runLeakCalc()"/>
+          <div style="font-size:9px;color:#6B7280;margin-top:4px;">Past leads no BDR ever re-called. Most brokerages never touch these again.</div>
+        </div>
+
         <div style="margin-top:24px;padding:14px 16px;background:rgba(255,255,255,0.03);border-left:2px solid rgba(198,167,94,0.4);">
-          <div style="font-size:10px;color:#9A917E;line-height:1.7;" id="calc-verdict">Input three numbers from your own operation. The output is not an estimate. It is a diagnosis. Adjust your numbers &mdash; the verdict updates live.</div>
+          <div style="font-size:10px;color:#9A917E;line-height:1.7;" id="calc-verdict">Input your own numbers above. The output is not an estimate. It is a diagnosis. Adjust anything &mdash; the verdict updates live.</div>
         </div>
         <div style="margin-top:16px;padding:12px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);font-size:10px;color:#9A917E;line-height:1.6;">
-          Uncontacted inquiries don't wait. They call the next brokerage, fill the next form, or move on. The revenue your marketing already generated walks to whoever answers first.
+          Uncontacted leads don't wait, and under-closed leads don't come back. The revenue your marketing already generated walks to whoever answers first &mdash; and closes best.
         </div>
       </div>
 
@@ -591,30 +706,49 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
       <div style="background:rgba(198,167,94,0.06);border:1px solid rgba(198,167,94,0.25);padding:40px 36px;display:flex;flex-direction:column;">
         <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;">What It's Costing You</div>
 
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px 16px;margin-bottom:22px;">
+          <div>
+            <div style="font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#9A917E;margin-bottom:6px;">Untouched after-hours / mo</div>
+            <div style="font-family:'Playfair Display',serif;font-size:27px;font-weight:700;color:var(--white);" id="calc-untouched">53</div>
+          </div>
+          <div>
+            <div style="font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#9A917E;margin-bottom:6px;">Deals lost to slow follow-up / yr</div>
+            <div style="font-family:'Playfair Display',serif;font-size:27px;font-weight:700;color:var(--white);" id="calc-deals">19</div>
+            <div style="font-size:9px;color:#6B7280;margin-top:4px;" id="calc-conv-note">At 3% conversion on untouched leads — your setting</div>
+          </div>
+          <div>
+            <div style="font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#9A917E;margin-bottom:6px;">Deals lost to ISA skill-gap / yr</div>
+            <div style="font-family:'Playfair Display',serif;font-size:27px;font-weight:700;color:var(--white);" id="calc-skillgap-deals">186</div>
+          </div>
+          <div>
+            <div style="font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#9A917E;margin-bottom:6px;">Dormant leads never reactivated / yr</div>
+            <div style="font-family:'Playfair Display',serif;font-size:27px;font-weight:700;color:var(--white);" id="calc-cold-deals">19</div>
+          </div>
+        </div>
         <div style="margin-bottom:22px;">
-          <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:6px;">Inquiries untouched after hours / month</div>
-          <div style="font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--white);" id="calc-untouched">53</div>
+          <div style="font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#9A917E;margin-bottom:6px;">Dormant deals lost to BDR skill-gap / yr</div>
+          <div style="font-family:'Playfair Display',serif;font-size:27px;font-weight:700;color:var(--white);" id="calc-bdr-skillgap-deals">54</div>
         </div>
 
-        <div style="margin-bottom:22px;">
-          <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9A917E;margin-bottom:6px;">Deals lost to faster responders / year</div>
-          <div style="font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--white);" id="calc-deals">19</div>
-          <div style="font-size:10px;color:#6B7280;margin-top:4px;" id="calc-conv-note">At your selected conversion on untouched leads</div>
+        <div style="padding:20px;background:rgba(192,57,43,0.1);border-left:3px solid #C0392B;margin-bottom:20px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#D1505A;margin-bottom:6px;">Guaranteed Recoverable Leak &mdash; Speed + Never-Contacted</div>
+          <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:#FFFFFF;line-height:1;" id="calc-leak">$340,200</div>
+          <div style="font-size:11px;color:#9A917E;margin-top:8px;">The conservative, currently-zero-happening portion. No debate. This alone justifies the system.</div>
         </div>
 
-        <div style="padding:20px;background:rgba(192,57,43,0.1);border-left:3px solid #C0392B;margin-bottom:24px;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#D1505A;margin-bottom:6px;">Your Annual Leak</div>
-          <div style="font-family:'Playfair Display',serif;font-size:46px;font-weight:700;color:#FFFFFF;line-height:1;" id="calc-leak">$171,000</div>
-          <div style="font-size:11px;color:#9A917E;margin-top:8px;">Commission your marketing already earned &mdash; walking out the door, twelve months a year.</div>
+        <div style="padding:20px;background:rgba(46,158,110,0.1);border-left:3px solid #2E9E6E;margin-bottom:24px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#2E9E6E;margin-bottom:6px;">Velexia Pays For Itself In</div>
+          <div style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:#FFFFFF;line-height:1;" id="calc-payback-hero">1.7 Months</div>
+          <div style="font-size:11px;color:#9A917E;margin-top:8px;">On the guaranteed leak alone. Every bucket in the banner above is additional upside.</div>
         </div>
 
         <div style="margin-top:auto;">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#9A917E;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span>Bleeding per month</span><span style="color:#D1505A;font-weight:600;" id="calc-monthly">$14,250</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:#9A917E;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span>Bleeding per month &mdash; guaranteed</span><span style="color:#D1505A;font-weight:600;" id="calc-monthly">$28,350</span></div>
           <div style="display:flex;justify-content:space-between;font-size:12px;color:#9A917E;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span>Velexia Starter year one &mdash; all in</span><span style="color:var(--gold);font-weight:600;">$49,000</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:#9A917E;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span>System pays for itself in</span><span style="color:var(--gold);font-weight:700;" id="calc-payback">3.4 months</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span style="color:#9A917E;">Net recovered, year one</span><span style="color:#2E9E6E;font-weight:700;font-size:15px;" id="calc-net">$122,000</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span style="color:#9A917E;">Return on the system</span><span style="color:#2E9E6E;font-weight:700;font-size:15px;" id="calc-roi">3.5&times;</span></div>
-          <div style="margin-top:8px;padding:12px 14px;background:rgba(192,57,43,0.08);border-left:2px solid #C0392B;font-size:10px;color:#9A917E;line-height:1.6;">Since you opened this page: <strong id="calc-ticker" style="color:#D1505A;font-family:'Playfair Display',serif;font-size:13px;">$0.00</strong> gone, at your own numbers above.</div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span style="color:#9A917E;">Net recovered, year one &mdash; guaranteed</span><span style="color:#2E9E6E;font-weight:700;font-size:15px;" id="calc-net">$291,200</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span style="color:#9A917E;">Guaranteed return on the system</span><span style="color:#2E9E6E;font-weight:700;font-size:15px;" id="calc-roi">6.9&times;</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,0.08);"><span style="color:#9A917E;">Full-capture return &mdash; all four buckets</span><span style="color:var(--gold);font-weight:700;font-size:15px;" id="calc-roi-full">51.0&times;</span></div>
+          <div style="margin-top:8px;padding:12px 14px;background:rgba(192,57,43,0.1);border-left:2px solid #C0392B;font-size:10px;color:#9A917E;line-height:1.6;">Since you opened this page: <strong id="calc-ticker" style="color:#D1505A;font-family:'Courier New',monospace;font-size:14px;letter-spacing:0.5px;">$0.00</strong> gone, on the guaranteed leak alone.</div>
           <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" style="width:100%;margin-top:16px;">See Your Numbers &mdash; Choose Your Tier &rarr;</button>
         </div>
       </div>
@@ -644,8 +778,84 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   </div>
 </section>
 
+<!-- DEMO -->
+<section class="demo-section" id="demo">
+  <div class="demo-layout">
+    <div class="reveal">
+      <div class="section-eyebrow">Live Experience</div>
+      <h2 class="section-title">The System Is Live.<br><em>Call It Yourself.</em></h2>
+      <p class="section-sub" style="margin-bottom:36px;">The number below runs the same Velexia build we deploy inside brokerages &mdash; live around the clock. Call it, and you get the exact call your leads receive 90 seconds after an inquiry: qualification, objection handling, and a booking attempt. Average call: 2&ndash;3 minutes. You are the lead &mdash; just answer. Here is what makes this different from every other demo you have ever heard: you are not listening to a recording. You are talking to the exact same system we deploy.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">&#10003;</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;"><strong style="color:var(--gold);">0:00</strong> &mdash; Answers within 2 rings. No IVR, no hold. Velexia opens the lead-response call and leads it</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">&#10003;</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;"><strong style="color:var(--gold);">0:20</strong> &mdash; Qualification, one question at a time: intent, timeline, budget or price range, agent status</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">&#10003;</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;"><strong style="color:var(--gold);">1:30</strong> &mdash; Throw any objection: "just looking," "already have an agent," "are you AI?" It reframes and keeps the frame</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">&#10003;</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;"><strong style="color:var(--gold);">2:00</strong> &mdash; It closes: a specific day and time slot, asked assumptively. The same end state it produces on every lead in a client pipeline</span></div>
+      </div>
+      <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px;clip-path:polygon(10px 0%,100% 0%,100% calc(100% - 10px),calc(100% - 10px) 100%,0% 100%,0% 10px);">
+        <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">How To Run The Test</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;gap:14px;align-items:flex-start;"><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);flex-shrink:0;line-height:1;">1</span><span style="font-size:12px;color:var(--text-muted);line-height:1.6;">Tap the number. Velexia speaks first &mdash; you just answer. It runs the call exactly as it would on a lead who inquired 90 seconds ago. <em style="color:var(--text);">No script needed on your end. No preparation. Just call.</em></span></div>
+          <div style="display:flex;gap:14px;align-items:flex-start;"><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);flex-shrink:0;line-height:1;">2</span><span style="font-size:12px;color:var(--text-muted);line-height:1.6;">Test it the way a broker should: interrupt it, stall it, object twice, ask if it is AI. <em style="color:var(--text);">Note what it does with each &mdash; that behavior is the product. That is what your leads will experience.</em></span></div>
+          <div style="display:flex;gap:14px;align-items:flex-start;"><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);flex-shrink:0;line-height:1;">3</span><span style="font-size:12px;color:var(--text-muted);line-height:1.6;">The call ends when it attempts to book you. That end state &mdash; qualified lead, specific slot, CRM updated &mdash; is what every lead in your pipeline gets, including the 2 AM ones. <em style="color:var(--text);">If it does not sound human, if the psychology does not land, hang up. You will have your answer. If it does, book the deployment call below to put it on your leads.</em></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-wrap reveal">
+      <div class="phone-glow"></div>
+      <div style="width:100%;max-width:380px;">
+        <div style="background:var(--charcoal);border:1px solid var(--gold-border);clip-path:polygon(16px 0%,100% 0%,100% calc(100% - 16px),calc(100% - 16px) 100%,0% 100%,0% 16px);overflow:hidden;">
+          <div style="background:var(--gold);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:10px;"><div style="width:8px;height:8px;border-radius:50%;background:var(--white);opacity:0.9;animation:pulseDot 2s infinite;"></div><span style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--white);">Velexia &middot; System Live</span></div>
+            <span style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);">Miami &middot; 786</span>
+          </div>
+          <div style="padding:40px 32px;text-align:center;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(198,167,94,0.7);margin-bottom:14px;">Production Stack &middot; Live 24/7</div>
+            <a href="tel:+17869667203" title="Tap to call. Or copy and dial now." style="display:block;font-family:'Playfair Display',serif;font-size:clamp(26px,6vw,38px);font-weight:700;color:var(--gold);letter-spacing:3px;text-decoration:none;margin-bottom:8px;transition:opacity 0.3s;line-height:1.1;">+1 (786) 966-7203</a>
+            <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:#2E9E6E;animation:pulseDot 1.5s infinite;"></div><div style="font-size:9px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);">Tap to call. Or copy and dial now.</div></div>
+            <div style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(198,167,94,0.55);margin-bottom:32px;">Velexia speaks first &middot; Avg call 2&ndash;3 min &middot; Same build as client deployments</div>
+            <div style="width:32px;height:1px;background:var(--gold-border);margin:0 auto 28px;"></div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;margin-bottom:12px;">
+              <div class="w-bar" style="height:5px;"></div><div class="w-bar" style="height:10px;"></div><div class="w-bar" style="height:16px;"></div><div class="w-bar" style="height:8px;"></div><div class="w-bar" style="height:14px;"></div><div class="w-bar" style="height:6px;"></div><div class="w-bar" style="height:12px;"></div><div class="w-bar" style="height:9px;"></div><div class="w-bar" style="height:5px;"></div>
+            </div>
+            <div style="font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px;">Velexia Listening &middot; Ready</div>
+            <div style="width:32px;height:1px;background:var(--gold-border);margin:0 auto 28px;"></div>
+            <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:rgba(255,255,255,0.55);line-height:1.6;">If it doesn't sound human &mdash;<br>if the psychology doesn't land &mdash;<br><strong style="color:rgba(255,255,255,0.85);font-style:normal;">hang up. You'll have your answer.</strong></p>
+          </div>
+          <div style="border-top:1px solid rgba(198,167,94,0.15);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);">Demo Environment &middot; Velexia AI</span>
+            <span style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(198,167,94,0.5);">Live 24/7</span>
+          </div>
+        </div>
+        <div style="margin-top:16px;background:var(--gold-dim);border:1px solid var(--gold-border);padding:20px 24px;clip-path:polygon(10px 0%,100% 0%,100% calc(100% - 10px),calc(100% - 10px) 100%,0% 100%,0% 10px);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <div><div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">After the call</div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--text-muted);">It just tried to book you. Now imagine it on every lead you're missing.</div></div>
+          <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" style="background:var(--gold);border:none;padding:12px 20px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--white);cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);white-space:nowrap;transition:background 0.3s;">Choose Your Tier &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:28px auto 0;padding:16px 20px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(10px 0%,100% 0%,100% calc(100% - 10px),calc(100% - 10px) 100%,0% 100%,0% 10px);">
+    <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">What The Call Proves</div>
+    <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">Two minutes on this line tells you whether AI can handle your sales conversations. Not our pitch. Not our claims. Your own assessment of whether this voice would convert your leads. That is the only verdict that matters. And it is the only one we trust.</div>
+  </div>
+  <div class="reveal" style="max-width:1200px;margin:20px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+    <div style="background:var(--bg-alt);border:1px solid var(--border);padding:22px 24px;clip-path:polygon(10px 0%,100% 0%,100% calc(100% - 10px),calc(100% - 10px) 100%,0% 100%,0% 10px);">
+      <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Layer One</div>
+      <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Dial it now. 2 minutes tells you more than any pitch.</div>
+    </div>
+    <div style="background:var(--bg-alt);border:1px solid var(--border);padding:22px 24px;clip-path:polygon(10px 0%,100% 0%,100% calc(100% - 10px),calc(100% - 10px) 100%,0% 100%,0% 10px);">
+      <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Layer Two</div>
+      <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">Nothing goes live without your sign-off. You are the quality gate.</div>
+    </div>
+    <div style="background:var(--bg-alt);border:1px solid var(--border);padding:22px 24px;clip-path:polygon(10px 0%,100% 0%,100% calc(100% - 10px),calc(100% - 10px) 100%,0% 100%,0% 10px);">
+      <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Layer Three</div>
+      <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">30-day performance commitment. In writing. Not marketing.</div>
+    </div>
+  </div>
+</section>
+
 <!-- OPERATIONAL RECORD -->
 <section class="record-section" id="record">
+  <div class="bg-watermark" aria-hidden="true">VELEXIA</div>
   <div class="record-layout">
     <div class="record-head reveal">
       <div style="max-width:640px;">
@@ -658,18 +868,18 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
 
     <div class="record-ledger reveal">
       <div class="record-row">
-        <div class="record-figure">2,200+</div>
+        <div class="record-figure">Live</div>
         <div class="record-body">
-          <div class="record-label">Brokerages Analyzed</div>
-          <div class="record-detail">Scored and tiered against ISA overhead, after-hours coverage, and pipeline leakage indicators &mdash; the audit intelligence behind every deployment.</div>
+          <div class="record-label">Live System. One Number. Your Verdict.</div>
+          <div class="record-detail">No analyzed database to take our word on. Dial the demo line yourself and score it against your own leads.</div>
         </div>
-        <div class="record-verify">Audit Database</div>
+        <div class="record-verify">Dial It Now &darr;</div>
       </div>
       <div class="record-row">
-        <div class="record-figure">20<span class="unit">US Markets</span></div>
+        <div class="record-figure">Active</div>
         <div class="record-body">
           <div class="record-label">Market Coverage</div>
-          <div class="record-detail">Metro-level intelligence on lead-flow patterns, staffing costs, and response-time gaps across twenty active US markets.</div>
+          <div class="record-detail">Deployments active. Specific markets disclosed on qualification call.</div>
         </div>
         <div class="record-verify">Ask On Your Call</div>
       </div>
@@ -677,7 +887,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
         <div class="record-figure">24/7<span class="unit">365</span></div>
         <div class="record-body">
           <div class="record-label">Live System Availability</div>
-          <div class="record-detail">The demo line runs the same build we deploy. It keeps no business hours &mdash; call it at 2 AM and hear exactly what your leads would hear.</div>
+          <div class="record-detail">The demo line runs the same build we deploy. Call +1 (786) 966-7203 at 2 AM. It answers.</div>
         </div>
         <div class="record-verify">Dial It Now &darr;</div>
       </div>
@@ -685,7 +895,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
         <div class="record-figure">100%<span class="unit">of builds</span></div>
         <div class="record-body">
           <div class="record-label">The Sign-Off Gate</div>
-          <div class="record-detail">No build goes live until the operator has stress-tested and approved their own agent. You are the quality gate &mdash; every deployment, no exceptions.</div>
+          <div class="record-detail">No build goes live until the operator has stress-tested and approved their own agent. You are the quality gate &mdash; not us.</div>
         </div>
         <div class="record-verify">In Your Contract</div>
       </div>
@@ -719,6 +929,55 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   </div>
 </section>
 
+<!-- ACCOUNTABILITY -->
+<section class="accountability-section" id="accountability">
+  <div class="accountability-layout">
+    <div class="reveal" style="margin-bottom:60px;">
+      <div class="section-eyebrow">Performance Accountability</div>
+      <h2 class="section-title">You See Everything.<br>We Are <em>Accountable</em> for All of It.</h2>
+      <p class="section-sub">Every call logged, every metric tracked, every result reported. You measure Velexia constantly &mdash; and we deliver constantly.</p>
+    </div>
+    <div style="max-width:1200px;margin:50px auto 0;text-align:center;">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--text-muted);line-height:1.6;max-width:640px;margin:0 auto;">You cannot improve what you do not measure. Most brokerages measure pipeline volume. Velexia measures pipeline velocity &mdash; how fast a lead moves from entry to conversation to appointment. That is the metric that changes revenue.</p>
+    </div>
+    <div class="accountability-grid">
+      <div class="ac-card ac-card-1 reveal"><div class="ac-icon">&#128202;</div><div class="ac-title">Live Performance Dashboard</div><div class="ac-desc">Every call Velexia makes is visible to you in real time. Track calls made, leads contacted, objections handled, and appointments booked &mdash; by the hour, by the day.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">&#10003;</span>Total calls made this week</div><div class="ac-item"><span class="ac-check">&#10003;</span>Lead qualification rate</div><div class="ac-item"><span class="ac-check">&#10003;</span>Objections encountered and handled</div><div class="ac-item"><span class="ac-check">&#10003;</span>Appointments booked vs. targets</div><div class="ac-item"><span class="ac-check">&#10003;</span>Full call recordings available</div></div></div>
+      <div class="ac-card ac-card-2 reveal"><div class="ac-icon">&#128197;</div><div class="ac-title">Weekly Performance Reports</div><div class="ac-desc">Every client receives a structured weekly report covering pipeline activity, conversion trends, and specific recommendations for sharpening performance further.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">&#10003;</span>Weekly summary delivered every Monday</div><div class="ac-item"><span class="ac-check">&#10003;</span>Pipeline health assessment</div><div class="ac-item"><span class="ac-check">&#10003;</span>Conversion rate tracking by lead source</div><div class="ac-item"><span class="ac-check">&#10003;</span>Optimisation recommendations</div><div class="ac-item"><span class="ac-check">&#10003;</span>Direct team access included</div></div></div>
+      <div class="ac-card ac-card-3 reveal"><div class="ac-icon" style="color:var(--white);">&#128737;</div><div class="ac-title">30-Day Performance Fix</div><div class="ac-desc">If Velexia does not deliver measurable improvement in your lead contact rate within 30 days of deployment, we identify the gap, rebuild what is not working, and continue until it performs. We do not walk away from a deployment that is underperforming. That is the commitment.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">&#10003;</span>Measurable benchmarks set at onboarding</div><div class="ac-item"><span class="ac-check">&#10003;</span>Full reconfiguration included if needed</div><div class="ac-item"><span class="ac-check">&#10003;</span>Your success is our deliverable</div><div class="ac-item"><span class="ac-check">&#10003;</span>No fine print. No ambiguity.</div></div></div>
+    </div>
+    <div class="dashboard-mockup reveal" style="background:transparent;border:none;padding:0;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px;"><span style="width:24px;height:1px;background:var(--gold);display:inline-block;"></span>Proof, In Your Hands &mdash; Not Our Words</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+        <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px 24px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Proof Layer 01</div>
+            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Live Now</div>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:14px;">Hear It Yourself.<br><em style="color:var(--gold);">Right Now.</em></div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">The line is live around the clock. Call it. Play the toughest lead you've ever had &mdash; stall, object, push back. Two minutes on that call tells you more than any pitch ever could.</div>
+          <a href="tel:+17869667203" style="display:block;text-align:center;font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--gold);text-decoration:none;padding:12px;border:1px solid var(--gold-border);background:var(--gold-dim);">+1 (786) 966-7203</a>
+        </div>
+        <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px 24px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Proof Layer 02</div>
+            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--gold-dim);color:var(--gold-dark);">Your Control</div>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:14px;">Nothing Goes Live<br><em style="color:var(--gold);">Without Your Sign-Off.</em></div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">During your 21-day build, you test your own custom agent &mdash; your market, your criteria, your objections. You stress-test it on your own phone. You approve it before it touches a single real lead. You are the quality gate &mdash; not us.</div>
+        </div>
+        <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px 24px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Proof Layer 03</div>
+            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Committed</div>
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:14px;">30 Days. Measurable.<br><em style="color:var(--gold);">We Fix What Is Not Working.</em></div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">Benchmarks set at onboarding. If Velexia does not measurably improve your lead contact rate within 30 days of going live, we identify the gap, rebuild what needs rebuilding, and keep working until it performs. We do not walk away from a deployment that is underperforming. That is not a promise. That is the contract.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SKILLS -->
 <section class="skills-section" id="skills">
   <div class="skills-intro reveal">
@@ -733,7 +992,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
         <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);line-height:1.6;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">&#10003;</span>They weaponize silence &mdash; never fill it nervously</div>
         <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);line-height:1.6;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">&#10003;</span>They qualify in 60 seconds &mdash; cut dead weight, accelerate real buyers</div>
         <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);line-height:1.6;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">&#10003;</span>They signal abundance &mdash; zero desperation detectable in tone</div>
-        <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);line-height:1.6;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">&#10003;</span>They frame price as investment &mdash; the lead justifies it before being asked</div>
+        <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);line-height:1.6;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">&#10003;</span>They frame price as investment &mdash; the prospect justifies it before being asked</div>
         <div style="display:flex;gap:12px;font-size:12px;color:var(--text-muted);line-height:1.6;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">&#10003;</span>They reframe every objection &mdash; "I need to think" becomes a yes</div>
       </div>
       <div style="margin-top:24px;padding:14px;background:var(--gold-dim);border-left:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--gold-dark);">Velexia executes every one of these &mdash; on call one and call one thousand. Identical performance. Zero bad days. No commission invoice.</div>
@@ -744,11 +1003,11 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
     </div>
   <div class="skills-grid">
     <div class="skill-card reveal"><div class="skill-icon">&#127919;</div><div class="skill-name">Rapid Qualification</div><div class="skill-desc">Identifies decision authority, budget, timeline, and buying intent within 60 seconds. Bad leads disqualified. Strong leads accelerated immediately.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Human closers spend 20+ minutes on leads that were never going to close. Velexia has zero such bias.</div></div></div>
-    <div class="skill-card reveal"><div class="skill-icon">&#129504;</div><div class="skill-name">Psychological Mirroring</div><div class="skill-desc">Adapts tone, pace, and language to match the lead's communication style in real time &mdash; building subconscious rapport before the pitch begins.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Most closers mirror when they remember to. Velexia mirrors on every single exchange, without exception.</div></div></div>
-    <div class="skill-card reveal"><div class="skill-icon">&#9889;</div><div class="skill-name">Pattern-Interrupt Opening</div><div class="skill-desc">Never opens with a generic greeting. Opens with a precise, unexpected question that separates this call from every other call the lead took that week.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Generic openers produce generic outcomes. The first 10 seconds decide the trajectory of the entire call.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">&#129504;</div><div class="skill-name">Psychological Mirroring</div><div class="skill-desc">Adapts tone, pace, and language to match the prospect's communication style in real time &mdash; building subconscious rapport before the pitch begins.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Most closers mirror when they remember to. Velexia mirrors on every single exchange, without exception.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">&#9889;</div><div class="skill-name">Pattern-Interrupt Opening</div><div class="skill-desc">Never opens with a generic greeting. Opens with a precise, unexpected question that separates this call from every other call the prospect took that week.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Generic openers produce generic outcomes. The first 10 seconds decide the trajectory of the entire call.</div></div></div>
     <div class="skill-card reveal"><div class="skill-icon">&#128737;</div><div class="skill-name">Objection Dismantling</div><div class="skill-desc">Every real estate objection &mdash; "I'll think about it," "we already have closers," "AI can't replace humans" &mdash; has a precise, reframe-based counter built in.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Human closers memorize 5&ndash;10 counters. Velexia carries hundreds and selects contextually.</div></div></div>
-    <div class="skill-card reveal"><div class="skill-icon">&#128263;</div><div class="skill-name">Strategic Silence</div><div class="skill-desc">After a close or key statement, Velexia holds silence &mdash; the most underused weapon in sales. Leads fill silence with decisions. Velexia waits with absolute confidence.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Nervous closers rush to fill silence. Velexia never gets nervous. It simply waits.</div></div></div>
-    <div class="skill-card reveal"><div class="skill-icon">&#128200;</div><div class="skill-name">ROI Framing Before Price</div><div class="skill-desc">Frames the full business impact before the lead ever hears the investment figure. By the time price is mentioned, the lead has already decided it's worth it.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Most closers reveal price too early &mdash; triggering sticker shock. Velexia makes price the last thing the lead thinks about.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">&#128263;</div><div class="skill-name">Strategic Silence</div><div class="skill-desc">After a close or key statement, Velexia holds silence &mdash; the most underused weapon in sales. Prospects fill silence with decisions. Velexia waits with absolute confidence.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Nervous closers rush to fill silence. Velexia never gets nervous. It simply waits.</div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">&#128200;</div><div class="skill-name">ROI Framing Before Price</div><div class="skill-desc">Frames the full business impact before the prospect ever hears the investment figure. By the time price is mentioned, the prospect has already decided it's worth it.</div><div class="skill-vs"><div class="skill-vs-label">vs. Human Closer</div><div class="skill-vs-text">Most closers reveal price too early &mdash; triggering sticker shock. Velexia makes price the last thing the prospect thinks about.</div></div></div>
   </div>
 </section>
 
@@ -762,9 +1021,9 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
       <p style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text-muted);margin-top:14px;line-height:1.6;max-width:520px;">Four failure points, one system, zero hand-offs between them &mdash; each function feeds the next automatically.</p>
 
       <div class="features-grid">
-        <div class="feature-card"><div class="feature-num">01 &middot;</div><div class="feature-title">Warm Lead Reactivation</div><div class="feature-desc">Velexia re-engages past inquiries and dormant leads from your existing database &mdash; leads who previously contacted you but went cold. Qualifies, follows up, and books meetings without human involvement. Reactivates revenue you already paid for.</div><div class="feature-gain">&rarr; Revenue recovery from your database</div></div>
+        <div class="feature-card"><div class="feature-num">01 &middot;</div><div class="feature-title">Outbound BDR Engine</div><div class="feature-desc">Velexia prospects cold leads autonomously &mdash; sourcing, calling, qualifying, and booking meetings without any human involvement. No ramp time. No turnover. No Friday afternoon slowdown. A human BDR dials for eight hours and needs six months to get good. Velexia dials at full competency from day one, every hour the lead list allows.</div><div class="feature-gain">&rarr; Outperforms a human BDR, permanently</div></div>
         <div class="feature-card"><div class="feature-num">02 &middot;</div><div class="feature-title">Inbound Closing System</div><div class="feature-desc">Every new inbound lead contacted within 90 seconds. Full discovery-to-appointment call executed &mdash; qualification, pitch, objection handling, and booking. Complete. Autonomous.</div><div class="feature-gain">&rarr; Zero leads left uncalled</div></div>
-        <div class="feature-card"><div class="feature-num">03 &middot;</div><div class="feature-title">Long-Term Nurture Follow-Up</div><div class="feature-desc">Existing inquiries who don't book immediately enter a configured follow-up sequence, based on your communication policy, until they schedule or ask to stop. Only follows up with leads who have existing inquiry history in your system.</div><div class="feature-gain">&rarr; Revenue recovered from your existing inquiries</div></div>
+        <div class="feature-card"><div class="feature-num">03 &middot;</div><div class="feature-title">Infinite Nurture Sequences</div><div class="feature-desc">Prospects who don't close immediately enter an AI-driven long-term follow-up sequence &mdash; called every 7&ndash;14 days with fresh angles until they buy or explicitly opt out.</div><div class="feature-gain">&rarr; Dead leads revived</div></div>
         <div class="feature-card"><div class="feature-num">04 &middot;</div><div class="feature-title">Full CRM Intelligence</div><div class="feature-desc">Every call transcript captured. Every objection categorised. Every outcome logged. Real-time performance analytics &mdash; so you always know exactly what Velexia generated this week, in dollars.</div><div class="feature-gain">&rarr; Complete accountability</div></div>
       </div>
     </div>
@@ -772,8 +1031,78 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
       <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--text);margin-bottom:32px;line-height:1.3;">The numbers that change inside your operation.</div>
       <div class="metric"><div class="metric-label">Speed to Lead Improvement</div><div class="metric-value">9&times;</div><div class="metric-desc">Higher conversion when a lead is contacted in under 5 minutes vs. under an hour</div><div class="metric-bar"><div class="metric-bar-fill" style="width:90%"></div></div></div>
       <div class="metric"><div class="metric-label">Revenue Recovered Monthly</div><div class="metric-value">40%</div><div class="metric-desc">Of closable deals lost purely to slow follow-up &mdash; recovered by Velexia immediately</div><div class="metric-bar"><div class="metric-bar-fill" style="width:75%"></div></div></div>
-      <div class="metric"><div class="metric-label">Commission Eliminated</div><div class="metric-value">$0</div><div class="metric-desc">On every deal Velexia helps close &mdash; forever. One fixed cost, predictable output</div><div class="metric-bar"><div class="metric-bar-fill" style="width:100%"></div></div></div>
+      <div class="metric"><div class="metric-label">Commission Eliminated</div><div class="metric-value">$0</div><div class="metric-desc">On every deal Velexia closes &mdash; forever. One fixed cost, predictable output</div><div class="metric-bar"><div class="metric-bar-fill" style="width:100%"></div></div></div>
     </div>
+  </div>
+</section>
+
+<!-- CRM -->
+<section class="crm-section" id="crm">
+  <div class="crm-layout">
+    <div class="reveal" style="margin-bottom:60px;">
+      <div class="section-eyebrow">Pipeline Integration</div>
+      <h2 class="section-title">Velexia Operates <em>Inside</em><br>Your Pipeline &mdash; Not Alongside It.</h2>
+      <p class="section-sub">Every call logged. Every outcome recorded. Every appointment synced. Your team wakes up to qualified prospects &mdash; not a pile of uncontacted leads.</p>
+    </div>
+    <div class="pipeline-flow reveal">
+      <div class="pipe-step"><div class="pipe-step-icon">&#128229;</div><div class="pipe-step-label">Lead Enters</div><div class="pipe-step-desc">New lead added from any source &mdash; ad, form, referral, or manual entry</div></div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-step active-step"><div class="velixia-badge">Velexia</div><div class="pipe-step-icon">&#128222;</div><div class="pipe-step-label">Called &lt;90 Seconds</div><div class="pipe-step-desc">Velexia dials instantly &mdash; qualification, pitch, objection handling in real time</div></div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-step active-step"><div class="velixia-badge">Velexia</div><div class="pipe-step-icon">&#128203;</div><div class="pipe-step-label">CRM Updated</div><div class="pipe-step-desc">Full transcript and outcome logged automatically &mdash; zero manual entry</div></div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-step active-step"><div class="velixia-badge">Velexia</div><div class="pipe-step-icon">&#128197;</div><div class="pipe-step-label">Appointment Booked</div><div class="pipe-step-desc">Qualified prospect booked directly into your calendar with confirmation sent</div></div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-step"><div class="pipe-step-icon">&#129309;</div><div class="pipe-step-label">You Close the Deal</div><div class="pipe-step-desc">You receive a warm, pre-qualified prospect &mdash; ready to make a decision</div></div>
+    </div>
+    <div style="max-width:1200px;margin:50px auto 0;text-align:center;">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--text-muted);line-height:1.6;max-width:600px;margin:0 auto;">Most CRMs contain the data. Few contain the intelligence. Velexia closes that gap by logging not just what happened, but why &mdash; every objection, every reframe, every outcome &mdash; automatically.</p>
+    </div>
+    <div class="crm-logos reveal">
+      <div class="crm-logos-label">Integrates natively with your existing tools</div>
+      <div class="crm-logos-grid">
+        <div class="crm-logo-pill">HubSpot</div><div class="crm-logo-pill">GoHighLevel</div><div class="crm-logo-pill">Salesforce</div><div class="crm-logo-pill">Zoho CRM</div><div class="crm-logo-pill">Pipedrive</div><div class="crm-logo-pill">Close.io</div><div class="crm-logo-pill">Calendly</div>
+      </div>
+      <div class="crm-note">Not using any of these? Velexia configures around your existing setup &mdash; not the other way around.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BROKER A VS BROKER B -->
+<section class="broker-section" id="broker-compare">
+  <div class="bg-watermark" aria-hidden="true">VELEXIA</div>
+  <div class="reveal" style="text-align:center;max-width:680px;margin:0 auto 60px;position:relative;z-index:1;">
+    <div class="section-eyebrow" style="justify-content:center;color:var(--gold);">The Close</div>
+    <h2 class="section-title" style="color:var(--white);">Two Brokerages.<br><em>One Decision.</em></h2>
+  </div>
+  <div class="broker-grid reveal">
+    <div class="broker-col broker-a">
+      <h3>Broker A</h3>
+      <ul>
+        <li>Pays $220K+ for ISA + BDR</li>
+        <li>Covers 8 hours a day</li>
+        <li>Cherry-picks easy leads</li>
+        <li>Completely dark after 6 PM</li>
+        <li>No outbound engine</li>
+        <li>Cold lists sit untouched</li>
+      </ul>
+    </div>
+    <div class="broker-divider"></div>
+    <div class="broker-col broker-b">
+      <h3>Broker B</h3>
+      <ul>
+        <li>Pays $49K</li>
+        <li>Every lead contacted in &lt;90 seconds, 24/7/365</li>
+        <li>No cherry-picking</li>
+        <li>Full outbound BDR engine running</li>
+        <li>CRM auto-builds itself</li>
+        <li>Elite psychology on every call</li>
+      </ul>
+    </div>
+  </div>
+  <div class="broker-verdict reveal">
+    <p>Who is building the smarter business?</p>
+    <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Deploy as Broker B &rarr;</button>
   </div>
 </section>
 
@@ -818,148 +1147,6 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   </div>
 </section>
 
-<!-- ACCOUNTABILITY -->
-<section class="accountability-section" id="accountability">
-  <div class="accountability-layout">
-    <div class="reveal" style="margin-bottom:60px;">
-      <div class="section-eyebrow">Performance Accountability</div>
-      <h2 class="section-title">You See Everything.<br>We Are <em>Accountable</em> for All of It.</h2>
-      <p class="section-sub">Every call logged, every metric tracked, every result reported. You measure Velexia constantly &mdash; and we deliver constantly.</p>
-    </div>
-    <div style="max-width:1200px;margin:50px auto 0;text-align:center;">
-      <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--text-muted);line-height:1.6;max-width:640px;margin:0 auto;">You cannot improve what you do not measure. Most brokerages measure pipeline volume. Velexia measures pipeline velocity &mdash; how fast a lead moves from entry to conversation to appointment. That is the metric that changes revenue.</p>
-    </div>
-    <div class="accountability-grid">
-      <div class="ac-card ac-card-1 reveal"><div class="ac-icon">&#128202;</div><div class="ac-title">Live Performance Dashboard</div><div class="ac-desc">Every call Velexia makes is visible to you in real time. Track calls made, leads contacted, objections handled, and appointments booked &mdash; by the hour, by the day.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">&#10003;</span>Total calls made this week</div><div class="ac-item"><span class="ac-check">&#10003;</span>Lead qualification rate</div><div class="ac-item"><span class="ac-check">&#10003;</span>Objections encountered and handled</div><div class="ac-item"><span class="ac-check">&#10003;</span>Appointments booked vs. targets</div><div class="ac-item"><span class="ac-check">&#10003;</span>Full call recordings available</div></div></div>
-      <div class="ac-card ac-card-2 reveal"><div class="ac-icon">&#128197;</div><div class="ac-title">Weekly Performance Reports</div><div class="ac-desc">Every client receives a structured weekly report covering pipeline activity, conversion trends, and specific recommendations for sharpening performance further.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">&#10003;</span>Weekly summary delivered every Monday</div><div class="ac-item"><span class="ac-check">&#10003;</span>Pipeline health assessment</div><div class="ac-item"><span class="ac-check">&#10003;</span>Conversion rate tracking by lead source</div><div class="ac-item"><span class="ac-check">&#10003;</span>Optimisation recommendations</div><div class="ac-item"><span class="ac-check">&#10003;</span>Direct team access included</div></div></div>
-      <div class="ac-card ac-card-3 reveal"><div class="ac-icon" style="color:var(--white);">&#128737;</div><div class="ac-title">30-Day Performance Fix</div><div class="ac-desc">If Velexia does not deliver measurable improvement in your lead contact rate within 30 days of deployment, we identify the gap, rebuild what is not working, and continue until it performs. We do not walk away from a deployment that is underperforming. That is the commitment.</div><div class="ac-items"><div class="ac-item"><span class="ac-check">&#10003;</span>Measurable benchmarks set at onboarding</div><div class="ac-item"><span class="ac-check">&#10003;</span>Full reconfiguration included if needed</div><div class="ac-item"><span class="ac-check">&#10003;</span>Your success is our deliverable</div><div class="ac-item"><span class="ac-check">&#10003;</span>No fine print. No ambiguity.</div></div></div>
-    </div>
-    <div class="dashboard-mockup reveal" style="background:transparent;border:none;padding:0;">
-      <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px;"><span style="width:24px;height:1px;background:var(--gold);display:inline-block;"></span>Proof, In Your Hands &mdash; Not Our Words</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
-        <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px 24px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Proof Layer 01</div>
-            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Live Now</div>
-          </div>
-          <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:14px;">Hear It Yourself.<br><em style="color:var(--gold);">Right Now.</em></div>
-          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">The line is live around the clock. Call it. Play the toughest inbound inquiry you've ever had &mdash; stall, object, push back. Two minutes on that call tells you more than any pitch ever could.</div>
-          <a href="tel:+17869667203" style="display:block;text-align:center;font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--gold);text-decoration:none;padding:12px;border:1px solid var(--gold-border);background:var(--gold-dim);">+1 (786) 966-7203</a>
-        </div>
-        <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px 24px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Proof Layer 02</div>
-            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--gold-dim);color:var(--gold-dark);">Your Control</div>
-          </div>
-          <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:14px;">Nothing Goes Live<br><em style="color:var(--gold);">Without Your Sign-Off.</em></div>
-          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">During your 21-day build, you test your own custom agent &mdash; your market, your criteria, your objections. You stress-test it on your own phone. You approve it before it touches a single real lead. You are the quality gate &mdash; not us.</div>
-        </div>
-        <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px 24px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);">Proof Layer 03</div>
-            <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:var(--green-dim);color:var(--green);">Committed</div>
-          </div>
-          <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:14px;">30 Days. Measurable.<br><em style="color:var(--gold);">We Fix What Is Not Working.</em></div>
-          <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">Benchmarks set at onboarding. If Velexia does not measurably improve your lead contact rate within 30 days of going live, we identify the gap, rebuild what needs rebuilding, and keep working until it performs. We do not walk away from a deployment that is underperforming. That is not a promise. That is the contract.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CRM -->
-<section class="crm-section" id="crm">
-  <div class="crm-layout">
-    <div class="reveal" style="margin-bottom:60px;">
-      <div class="section-eyebrow">Pipeline Integration</div>
-      <h2 class="section-title">Velexia Operates <em>Inside</em><br>Your Pipeline &mdash; Not Alongside It.</h2>
-      <p class="section-sub">Every call logged. Every outcome recorded. Every appointment synced. Your team wakes up to qualified leads &mdash; not a pile of uncontacted inquiries.</p>
-    </div>
-    <div class="pipeline-flow reveal">
-      <div class="pipe-step"><div class="pipe-step-icon">&#128229;</div><div class="pipe-step-label">Inquiry Enters</div><div class="pipe-step-desc">New inbound inquiry arrives from a website form, ad lead form, referral, or your existing CRM</div></div>
-      <div class="pipe-arrow">&rarr;</div>
-      <div class="pipe-step active-step"><div class="velixia-badge">Velexia</div><div class="pipe-step-icon">&#128222;</div><div class="pipe-step-label">Called &lt;90 Seconds</div><div class="pipe-step-desc">Velexia responds instantly &mdash; qualification, pitch, objection handling in real time</div></div>
-      <div class="pipe-arrow">&rarr;</div>
-      <div class="pipe-step active-step"><div class="velixia-badge">Velexia</div><div class="pipe-step-icon">&#128203;</div><div class="pipe-step-label">CRM Updated</div><div class="pipe-step-desc">Full transcript and outcome logged automatically &mdash; zero manual entry</div></div>
-      <div class="pipe-arrow">&rarr;</div>
-      <div class="pipe-step active-step"><div class="velixia-badge">Velexia</div><div class="pipe-step-icon">&#128197;</div><div class="pipe-step-label">Appointment Booked</div><div class="pipe-step-desc">Qualified lead booked directly into your calendar with confirmation sent</div></div>
-      <div class="pipe-arrow">&rarr;</div>
-      <div class="pipe-step"><div class="pipe-step-icon">&#129309;</div><div class="pipe-step-label">You Close the Deal</div><div class="pipe-step-desc">You receive a warm, pre-qualified lead &mdash; ready to make a decision</div></div>
-    </div>
-    <div style="max-width:1200px;margin:50px auto 0;text-align:center;">
-      <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--text-muted);line-height:1.6;max-width:600px;margin:0 auto;">Most CRMs contain the data. Few contain the intelligence. Velexia closes that gap by logging not just what happened, but why &mdash; every objection, every reframe, every outcome &mdash; automatically.</p>
-    </div>
-    <div class="crm-logos reveal">
-      <div class="crm-logos-label">Integrates natively with your existing tools</div>
-      <div class="crm-logos-grid">
-        <div class="crm-logo-pill">HubSpot</div><div class="crm-logo-pill">GoHighLevel</div><div class="crm-logo-pill">Salesforce</div><div class="crm-logo-pill">Zoho CRM</div><div class="crm-logo-pill">Pipedrive</div><div class="crm-logo-pill">Close.io</div><div class="crm-logo-pill">Calendly</div>
-      </div>
-      <div class="crm-note">Not using any of these? Velexia configures around your existing setup &mdash; not the other way around.</div>
-    </div>
-  </div>
-</section>
-
-<!-- DEMO -->
-<section class="demo-section" id="demo">
-  <div class="demo-layout">
-    <div class="reveal">
-      <div class="section-eyebrow">Live Experience</div>
-      <h2 class="section-title">The System Is Live.<br><em>Call It Yourself.</em></h2>
-      <p class="section-sub" style="margin-bottom:36px;">The number below runs the same Velexia build we deploy inside brokerages &mdash; live around the clock. Call it, and you get the exact call your leads receive 90 seconds after an inquiry: qualification, objection handling, and a booking attempt. Average call: 2&ndash;3 minutes. You are the lead &mdash; just answer. Here is what makes this different from every other demo you have ever heard: you are not listening to a recording. You are talking to the exact same system we deploy.</p>
-      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px;">
-        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">&#10003;</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;"><strong style="color:var(--gold);">0:00</strong> &mdash; Answers within 2 rings. No IVR, no hold. Velexia opens the lead-response call and leads it</span></div>
-        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">&#10003;</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;"><strong style="color:var(--gold);">0:20</strong> &mdash; Qualification, one question at a time: intent, timeline, budget or price range, agent status</span></div>
-        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">&#10003;</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;"><strong style="color:var(--gold);">1:30</strong> &mdash; Throw any objection: "just looking," "already have an agent," "are you AI?" It reframes and keeps the frame</span></div>
-        <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:30px;height:30px;min-width:30px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;">&#10003;</div><span style="font-size:12px;color:var(--text-muted);padding-top:6px;line-height:1.6;"><strong style="color:var(--gold);">2:00</strong> &mdash; It closes: a specific day and time slot, asked assumptively. The same end state it produces on every lead in a client pipeline</span></div>
-      </div>
-      <div style="background:var(--bg-alt);border:1px solid var(--border);padding:28px;clip-path:polygon(10px 0%,100% 0%,100% calc(100% - 10px),calc(100% - 10px) 100%,0% 100%,0% 10px);">
-        <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">How To Run The Test</div>
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          <div style="display:flex;gap:14px;align-items:flex-start;"><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);flex-shrink:0;line-height:1;">1</span><span style="font-size:12px;color:var(--text-muted);line-height:1.6;">Tap the number. Velexia speaks first &mdash; you just answer. It runs the call exactly as it would on an inquiry received 90 seconds ago. <em style="color:var(--text);">No script needed on your end. No preparation. Just call.</em></span></div>
-          <div style="display:flex;gap:14px;align-items:flex-start;"><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);flex-shrink:0;line-height:1;">2</span><span style="font-size:12px;color:var(--text-muted);line-height:1.6;">Test it the way a broker should: interrupt it, stall it, object twice, ask if it is AI. <em style="color:var(--text);">Note what it does with each &mdash; that behavior is the product. That is what your leads will experience.</em></span></div>
-          <div style="display:flex;gap:14px;align-items:flex-start;"><span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);flex-shrink:0;line-height:1;">3</span><span style="font-size:12px;color:var(--text-muted);line-height:1.6;">The call ends when it attempts to book you. That end state &mdash; qualified lead, specific slot, CRM updated &mdash; is what every lead in your pipeline gets, including the 2 AM ones. <em style="color:var(--text);">If it does not sound human, if the psychology does not land, hang up. You will have your answer. If it does, book the deployment call below to put it on your leads.</em></span></div>
-        </div>
-      </div>
-    </div>
-    <div class="phone-wrap reveal">
-      <div class="phone-glow"></div>
-      <div style="width:100%;max-width:380px;">
-        <div style="background:var(--charcoal);border:1px solid var(--gold-border);clip-path:polygon(16px 0%,100% 0%,100% calc(100% - 16px),calc(100% - 16px) 100%,0% 100%,0% 16px);overflow:hidden;">
-          <div style="background:var(--gold);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;">
-            <div style="display:flex;align-items:center;gap:10px;"><div style="width:8px;height:8px;border-radius:50%;background:var(--white);opacity:0.9;animation:pulseDot 2s infinite;"></div><span style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--white);">Velexia &middot; System Live</span></div>
-            <span style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);">Miami &middot; 786</span>
-          </div>
-          <div style="padding:40px 32px;text-align:center;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(198,167,94,0.7);margin-bottom:14px;">Production Stack &middot; Live 24/7</div>
-            <a href="tel:+17869667203" style="display:block;font-family:'Playfair Display',serif;font-size:clamp(26px,6vw,38px);font-weight:700;color:var(--gold);letter-spacing:3px;text-decoration:none;margin-bottom:8px;transition:opacity 0.3s;line-height:1.1;">+1 (786) 966-7203</a>
-            <div style="font-size:9px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Tap to call on mobile</div>
-            <div style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(198,167,94,0.55);margin-bottom:32px;">Velexia speaks first &middot; Avg call 2&ndash;3 min &middot; Same build as client deployments</div>
-            <div style="width:32px;height:1px;background:var(--gold-border);margin:0 auto 28px;"></div>
-            <div style="display:flex;align-items:center;justify-content:center;gap:3px;margin-bottom:12px;">
-              <div class="w-bar" style="height:5px;"></div><div class="w-bar" style="height:10px;"></div><div class="w-bar" style="height:16px;"></div><div class="w-bar" style="height:8px;"></div><div class="w-bar" style="height:14px;"></div><div class="w-bar" style="height:6px;"></div><div class="w-bar" style="height:12px;"></div><div class="w-bar" style="height:9px;"></div><div class="w-bar" style="height:5px;"></div>
-            </div>
-            <div style="font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px;">Velexia Listening &middot; Ready</div>
-            <div style="width:32px;height:1px;background:var(--gold-border);margin:0 auto 28px;"></div>
-            <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:rgba(255,255,255,0.55);line-height:1.6;">If it doesn't sound human &mdash;<br>if the psychology doesn't land &mdash;<br><strong style="color:rgba(255,255,255,0.85);font-style:normal;">hang up. You'll have your answer.</strong></p>
-          </div>
-          <div style="border-top:1px solid rgba(198,167,94,0.15);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;">
-            <span style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);">Demo Environment &middot; Velexia AI</span>
-            <span style="font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(198,167,94,0.5);">Live 24/7</span>
-          </div>
-        </div>
-        <div style="margin-top:16px;background:var(--gold-dim);border:1px solid var(--gold-border);padding:20px 24px;clip-path:polygon(10px 0%,100% 0%,100% calc(100% - 10px),calc(100% - 10px) 100%,0% 100%,0% 10px);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-          <div><div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">After the call</div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--text-muted);">It just tried to book you. Now imagine it on every lead you're missing.</div></div>
-          <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" style="background:var(--gold);border:none;padding:12px 20px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--white);cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);white-space:nowrap;transition:background 0.3s;">Choose Your Tier &rarr;</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div style="max-width:1200px;margin:28px auto 0;padding:16px 20px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(10px 0%,100% 0%,100% calc(100% - 10px),calc(100% - 10px) 100%,0% 100%,0% 10px);">
-    <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">What The Call Proves</div>
-    <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">Two minutes on this line tells you whether AI can handle your sales conversations. Not our pitch. Not our claims. Your own assessment of whether this voice would convert your leads. That is the only verdict that matters. And it is the only one we trust.</div>
-  </div>
-</section>
-
 <!-- BENEFITS -->
 <section class="benefits-section" id="benefits">
   <div class="benefits-header reveal">
@@ -971,12 +1158,12 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
     <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--text-muted);line-height:1.6;max-width:640px;margin:0 auto;">These outcomes are not projections. They are the operational reality of brokerages that eliminated the gap between lead entry and first contact. The ones that didn't are still measuring that gap.</p>
   </div>
   <div class="benefits-grid">
-    <div class="benefit-card reveal"><div class="benefit-icon">&#9670;</div><div class="benefit-title">Faster Inquiry-to-Conversation</div><div class="benefit-desc">The gap between inquiry submission and first contact is where deals are won or lost. Velexia closes that gap to under 90 seconds &mdash; every time, regardless of when the inquiry arrives.</div><div class="benefit-result">"Speed of contact is the highest-leverage variable in high-ticket sales &mdash; and most operations lose it daily."</div></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">&#9670;</div><div class="benefit-title">Faster Lead-to-Conversation</div><div class="benefit-desc">The gap between lead entry and first contact is where deals are won or lost. Velexia closes that gap to under 90 seconds &mdash; every time, regardless of when the lead arrives.</div><div class="benefit-result">"Speed of contact is the highest-leverage variable in high-ticket sales &mdash; and most operations lose it daily."</div></div>
     <div class="benefit-card reveal"><div class="benefit-icon">&#9672;</div><div class="benefit-title">Permanent Cost Reduction</div><div class="benefit-desc">One fixed investment replaces recurring commission, salary, and training costs. The unit economics of your sales operation change permanently &mdash; not temporarily.</div><div class="benefit-result">"A fixed-cost closer that scales with volume is a structural business advantage, not a short-term tactic."</div></div>
     <div class="benefit-card reveal"><div class="benefit-icon">&#9671;</div><div class="benefit-title">Predictable, Scalable Output</div><div class="benefit-desc">Human performance varies by mood, circumstance, and tenure. Velexia delivers identical quality on call one and call one thousand &mdash; giving you predictable conversion rates to build around.</div><div class="benefit-result">"Predictable output means predictable revenue. That changes how you plan, invest, and grow."</div></div>
-    <div class="benefit-card reveal"><div class="benefit-icon">&#9650;</div><div class="benefit-title">Zero Pipeline Leakage</div><div class="benefit-desc">Every inquiry followed up. Every callback made. The revenue most operations are already sitting on &mdash; but haven't converted &mdash; starts being recovered from day one.</div><div class="benefit-result">"Most operations lose 30&ndash;40% of closable leads to slow or missed follow-up. That ends immediately."</div></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">&#9650;</div><div class="benefit-title">Zero Pipeline Leakage</div><div class="benefit-desc">Every lead followed up. Every callback made. The revenue most operations are already sitting on &mdash; but haven't converted &mdash; starts being recovered from day one.</div><div class="benefit-result">"Most operations lose 30&ndash;40% of closable leads to slow or missed follow-up. That ends immediately."</div></div>
     <div class="benefit-card reveal"><div class="benefit-icon">&#9679;</div><div class="benefit-title">Your Team Does Higher-Value Work</div><div class="benefit-desc">When discovery and qualification run on autopilot, your team's time shifts entirely to relationship management, deal-making, and strategic growth &mdash; work that requires human judgment.</div><div class="benefit-result">"Automating low-leverage tasks frees high-leverage people to do what only humans can do."</div></div>
-    <div class="benefit-card reveal"><div class="benefit-icon">&#10022;</div><div class="benefit-title">A System Built to Scale</div><div class="benefit-desc">As your inquiry volume grows, Velexia scales without hiring cycles, training timelines, or performance inconsistency. Growth becomes a systems decision &mdash; not a headcount problem.</div><div class="benefit-result">"Growth should be a systems decision. Velexia makes it one."</div></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">&#10022;</div><div class="benefit-title">A System Built to Scale</div><div class="benefit-desc">As your lead volume grows, Velexia scales without hiring cycles, training timelines, or performance inconsistency. Growth becomes a systems decision &mdash; not a headcount problem.</div><div class="benefit-result">"Growth should be a systems decision. Velexia makes it one."</div></div>
   </div>
 </section>
 
@@ -984,12 +1171,16 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
 <section class="pricing-section" id="pricing">
   <div class="pricing-layout">
     <div class="reveal pricing-intro">
-      <div class="section-eyebrow">Investment Tiers</div>
+      <div style="max-width:820px;margin:0 auto 44px;padding:32px 36px;background:var(--charcoal);border-left:3px solid var(--gold);text-align:left;">
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(18px,2.2vw,24px);font-weight:700;color:var(--white);line-height:1.4;margin-bottom:12px;">Forget the price for one moment.</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,0.7);line-height:1.6;">If every lead that arrived at 9 PM on a Sunday was contacted, qualified, and booked before you woke up &mdash; would your revenue change? The math below is just the confirmation of what you already know.</div>
+      </div>
+      <div class="section-eyebrow">Capacity</div>
       <div style="max-width:1200px;margin:0 auto 40px;">
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;">
           <div style="display:flex;align-items:center;gap:8px;padding:10px 18px;background:var(--gold-dim);border:1px solid var(--gold-border);clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);">
             <div style="width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulseDot 2s infinite;"></div>
-            <span style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dark);">Custom-built per deployment &middot; Engineer-direct build &middot; 21-day delivery</span>
+            <span style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dark);">Custom-built per deployment &middot; Engineer-direct build &middot; 21-day delivery &middot; Limited builds accepted per quarter</span>
           </div>
         </div>
       </div>
@@ -1010,6 +1201,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
           <div class="math-item"><span class="math-item-label">Turnover &amp; retraining</span><span class="math-item-value">$18,000</span></div>
           <div class="math-item"><span class="math-item-label">Available hours</span><span class="math-item-value">8hrs/day only</span></div>
           <div class="math-item"><span class="math-item-label">Total Year 1</span><span class="math-item-value">$143,400+</span></div>
+          <div class="math-item"><span class="math-item-label">3-Year Total Cost</span><span class="math-item-value">$382,400+</span></div>
         </div>
         <div class="math-col math-col-velixia">
           <div class="math-col-label">Velexia Starter &mdash; Annual Cost</div>
@@ -1019,6 +1211,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
           <div class="math-item"><span class="math-item-label">Overtime / sick days</span><span class="math-item-value">$0</span></div>
           <div class="math-item"><span class="math-item-label">Available hours</span><span class="math-item-value">24 / 7 / 365</span></div>
           <div class="math-item"><span class="math-item-label">Total Year 1</span><span class="math-item-value">$49,000</span></div>
+          <div class="math-item"><span class="math-item-label">3-Year Total Cost</span><span class="math-item-value">$97,000</span></div>
         </div>
         <div class="math-col math-col-saving">
           <div class="math-col-label">Your Net Saving</div>
@@ -1041,7 +1234,52 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
       </div>
     </div>
 
-    <div class="pricing-grid reveal">
+    <!-- ROI Math: BDR -->
+    <div class="pricing-math reveal" style="margin-top:40px;">
+      <div class="pricing-math-title">What a Human BDR Costs You &mdash; And What Velexia Recovers Instead</div>
+      <div class="math-grid" style="grid-template-columns:1fr 1fr 1fr 1fr;">
+        <div class="math-col math-col-isa">
+          <div class="math-col-label">Human BDR &mdash; Annual Cost</div>
+          <div class="math-item"><span class="math-item-label">Base salary</span><span class="math-item-value">$52,000</span></div>
+          <div class="math-item"><span class="math-item-label">Commission / bonus (est.)</span><span class="math-item-value">$15,000</span></div>
+          <div class="math-item"><span class="math-item-label">Benefits + overhead</span><span class="math-item-value">$13,000</span></div>
+          <div class="math-item"><span class="math-item-label">Recruitment fee</span><span class="math-item-value">$10,000</span></div>
+          <div class="math-item"><span class="math-item-label">Turnover &amp; retraining</span><span class="math-item-value">$20,000</span></div>
+          <div class="math-item"><span class="math-item-label">Average tenure</span><span class="math-item-value">~14&ndash;18 months</span></div>
+          <div class="math-item"><span class="math-item-label">Total Year 1</span><span class="math-item-value">$110,000+</span></div>
+          <div class="math-item"><span class="math-item-label">3-Year Total Cost</span><span class="math-item-value">$296,000+</span></div>
+        </div>
+        <div class="math-col math-col-velixia">
+          <div class="math-col-label">Velexia's BDR Function &mdash; Cost to Add</div>
+          <div class="math-item"><span class="math-item-label">Incremental deployment</span><span class="math-item-value">$15,000</span></div>
+          <div class="math-item"><span class="math-item-label">Incremental monthly &times; 12</span><span class="math-item-value">$12,000</span></div>
+          <div class="math-item"><span class="math-item-label">Commission</span><span class="math-item-value">$0</span></div>
+          <div class="math-item"><span class="math-item-label">Recruitment / retraining</span><span class="math-item-value">$0</span></div>
+          <div class="math-item"><span class="math-item-label">Available hours</span><span class="math-item-value">24 / 7 / 365</span></div>
+          <div class="math-item"><span class="math-item-label">Total Year 1</span><span class="math-item-value">$27,000</span></div>
+          <div class="math-item"><span class="math-item-label">3-Year Total Cost</span><span class="math-item-value">$51,000</span></div>
+        </div>
+        <div class="math-col math-col-saving">
+          <div class="math-col-label">Your Net Saving</div>
+          <div class="math-item"><span class="math-item-label">Year 1 saving</span><span class="math-item-value">$83,000</span></div>
+          <div class="math-item"><span class="math-item-label">Year 2 saving</span><span class="math-item-value">$98,000</span></div>
+          <div class="math-item"><span class="math-item-label">Year 3 saving</span><span class="math-item-value">$98,000</span></div>
+          <div class="math-item"><span class="math-item-label">3-year total saving</span><span class="math-item-value">$279,000</span></div>
+          <div class="math-item"><span class="math-item-label">Payback period</span><span class="math-item-value">&lt;2 months</span></div>
+          <div class="math-item"><span class="math-item-label">Turnover risk</span><span class="math-item-value">$0, ever</span></div>
+        </div>
+        <div class="math-col" style="background:var(--bg);border-color:var(--border);">
+          <div class="math-col-label" style="color:var(--text-muted);">What Changes</div>
+          <div class="math-item"><span class="math-item-label">Outbound dial volume</span><span class="math-item-value" style="color:var(--gold);">Unlimited</span></div>
+          <div class="math-item"><span class="math-item-label">Ramp time to full output</span><span class="math-item-value" style="color:var(--gold);">Zero</span></div>
+          <div class="math-item"><span class="math-item-label">Coverage window</span><span class="math-item-value" style="color:var(--gold);">24/7</span></div>
+          <div class="math-item"><span class="math-item-label">Performance consistency</span><span class="math-item-value" style="color:var(--gold);">Identical</span></div>
+          <div class="math-item"><span class="math-item-label">Hiring risk</span><span class="math-item-value" style="color:var(--gold);">Eliminated</span></div>
+          <div class="math-item"><span class="math-item-label">Pipeline coverage</span><span class="math-item-value" style="color:var(--gold);">Never idle</span></div>
+        </div>
+      </div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--text-muted);line-height:1.7;max-width:820px;margin:26px auto 0;text-align:center;">A human BDR is the highest-turnover seat in most sales organizations &mdash; hired, ramped over months, and often gone before the investment fully pays back. Velexia's outbound function carries none of that risk: no recruiting cycle, no ramp curve, no seat to refill. The cost of adding it is a fraction of the cost of the role it replaces.</p>
+    </div>
       <!-- TIER 1: STARTER -->
       <div class="price-card featured">
         <div class="price-tier">Velexia Starter</div>
@@ -1066,21 +1304,21 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
       <!-- TIER 2: PRO -->
       <div class="price-card">
         <div class="price-tier">Velexia Pro</div>
-        <div class="price-tier-sub">Inbound closing plus warm database reactivation and long-term nurture. The full revenue engine.</div>
+        <div class="price-tier-sub">Inbound closing plus outbound prospecting and long-term nurture. The full revenue engine.</div>
         <div class="price-amount"><span class="price-sup">$</span>40,000</div>
         <div class="price-monthly" style="color:var(--gold);">+ $3,000 / month</div>
         <div class="price-period">One-time deployment fee &middot; Monthly system retainer</div>
-        <div class="price-savings">Replaces an inbound closer and a database reactivation specialist simultaneously</div>
+        <div class="price-savings">Replaces an inbound closer and an outbound BDR &mdash; saving $83,000+ in BDR costs alone in year one</div>
         <ul class="price-features">
           <li>Everything in Starter, plus:</li>
-          <li>Warm database reactivation &mdash; past inquiries and dormant leads re-engaged and qualified autonomously</li>
-          <li>Long-term nurture sequences &mdash; unconverted inquiries followed up on your configured schedule and communication policy</li>
+          <li>BDR outbound engine &mdash; cold leads prospected and qualified autonomously, no ramp time, no turnover</li>
+          <li>Infinite nurture sequences &mdash; unconverted leads followed up every 7&ndash;14 days</li>
           <li>Real-time performance dashboard with live call data</li>
           <li>All 7 sales psychology frameworks deployed on every call</li>
           <li>Priority deployment &mdash; live in 14 days</li>
           <li>Monthly strategy and performance optimisation call</li>
         </ul>
-        <div class="price-unlocks">Full inbound + reactivation + nurture &middot; Engineer-direct build</div>
+        <div class="price-unlocks">Full inbound + outbound + nurture &middot; Engineer-direct build</div>
         <a class="price-cta" href="https://app.boldsign.com/document/sign-bulk-links/?documentId=6dfb2832-dbb5-432c-9df0-87ac16f71d6as_1eppZ" target="_blank" rel="noopener" style="display:block;">Sign as Pro &rarr;</a>
       </div>
 
@@ -1094,7 +1332,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
         <div class="price-savings">Engineered for operations scaling beyond a single market</div>
         <ul class="price-features">
           <li>Everything in Pro, plus:</li>
-          <li>Full lead intelligence engine &mdash; inquiry qualification and conversation intelligence, buying psychology, trigger mapping</li>
+          <li>Full lead intelligence engine &mdash; prospect profiling, buying psychology, trigger mapping</li>
           <li>Custom objection library built from your own call recordings</li>
           <li>Multi-location or multi-vertical deployment &mdash; one system, multiple markets</li>
           <li>White-label option for agencies and group practices</li>
@@ -1106,8 +1344,8 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
         <a class="price-cta" href="https://app.boldsign.com/document/sign-bulk-links/?documentId=cf9f69c3-c738-4d7a-8ff4-45728b8ca2c4s_RYwTS" target="_blank" rel="noopener" style="display:block;">Sign as Elite &rarr;</a>
       </div>
     <div style="margin-top:40px;padding:32px;background:var(--bg-warm);border:1px solid var(--border);clip-path:polygon(16px 0%,100% 0%,100% calc(100% - 16px),calc(100% - 16px) 100%,0% 100%,0% 16px);">
-          <div style="font-family:'Playfair Display',serif;font-size:clamp(18px,2.2vw,24px);font-weight:700;color:var(--text);line-height:1.4;margin-bottom:12px;">Forget the price for one moment. Forget the $49,000.</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--text-muted);line-height:1.6;">Just answer this: if every lead that arrived at 9 PM was contacted by a system that qualified, handled objections, and booked the appointment before you woke up &mdash; would your revenue change? Would your team's focus change? Would your competitive position change? The math above is just the confirmation of what you already know.</div>
+          <div style="font-family:'Playfair Display',serif;font-size:clamp(18px,2.2vw,24px);font-weight:700;color:var(--text);line-height:1.4;margin-bottom:12px;">The $49,000 is not an expense.</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--text-muted);line-height:1.6;">It is a toll booth to stop the leak. Would your team's focus change? Would your competitive position change? The math above is just the confirmation of what you already know.</div>
         </div>
       </div>
     </div>
@@ -1146,7 +1384,8 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
     <p class="cta-desc">A 30-minute qualification call is all it takes. No pitch deck. No pressure. Just your numbers, your pipeline, and a decision. The brokerages that deployed Velexia in Q2 have already seen their lead contact rates change. The ones that did not are still where they were in January. The difference is not the technology &mdash; it is the decision to deploy it.</p>
     <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--text-muted);max-width:600px;margin:0 auto 36px;line-height:1.6;border-left:2px solid var(--gold);padding-left:20px;">Every week of deliberation costs roughly what your calculator shows above. The leak does not pause while you decide. Your competitor is not waiting for your approval. The only question left is whether you move before they do.</p>
 
-    <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:rgba(255,255,255,0.55);max-width:560px;margin:0 auto 8px;line-height:1.6;">A human ISA, a chatbot, and a call center were already ruled out above on cost, coverage, or consistency. The leak keeps running at the rate the calculator showed you &mdash; whether or not this call happens this week. The system that stops it costs $49,000. The next build window is open now. The only question left is whether you move before your competitor does.</p>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,0.72);max-width:640px;margin:0 auto 8px;line-height:1.75;text-align:left;">I want to be direct. I do not need you to buy Velexia today. I need you to stop lying to yourself about two things: the leak you can see &mdash; the after-hours inbound walking out the door &mdash; and the drought you cannot see &mdash; the outbound revenue that was never generated because nobody is running your cold lists. Whether you fix it with me or with someone else &mdash; fix both. Because I have seen what happens when a brokerage owner carries those numbers for another year. It erodes everything. Your energy. Your team. Your sleep. And the crazy part is &mdash; the fix exists. It handles both sides. Inbound rescue. Outbound growth. Elite psychology on every call. Your CRM building itself. It is right here. The only question is whether you are ready to receive it.</p>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--gold);max-width:640px;margin:0 auto 36px;text-align:left;">&mdash; Arooj, Founder</p>
     <div class="cta-actions">
       <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Choose Your Deployment Tier &rarr;</button>
       <a href="mailto:team@velexia.co" class="btn-ghost">Or email the team</a>
@@ -1160,24 +1399,10 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="access-section" id="faq">
-  <div class="access-header reveal">
-    <div class="section-eyebrow">Common Questions</div>
-    <h2 class="section-title">How Velexia<br><em>Actually Works.</em></h2>
-    <p class="section-sub" style="max-width:620px;margin:0 auto;">Velexia is designed for inbound lead response and re-engagement of a client's existing leads. It does not facilitate unsolicited cold calling, purchased contact lists, or unsolicited marketing outreach.</p>
-  </div>
-  <div class="access-grid">
-    <div class="access-card reveal"><div class="access-title">Does Velexia make cold calls?</div><div class="access-desc">No. Velexia responds to inbound inquiries and re-engages a client's existing leads. It does not facilitate unsolicited cold calling, purchased contact lists, or unsolicited marketing outreach.</div></div>
-    <div class="access-card reveal"><div class="access-title">What counts as an inbound inquiry?</div><div class="access-desc">A website form submission, an advertising lead form, a referral, or an inquiry already sitting in your CRM &mdash; any channel where the person has already reached out or opted in to be contacted.</div></div>
-    <div class="access-card reveal"><div class="access-title">What does "existing lead reactivation" mean?</div><div class="access-desc">It means following up with leads your business already holds &mdash; people who previously inquired but went cold &mdash; subject to your own applicable permissions and communication policies. Velexia does not source or purchase new contacts to call.</div></div>
-  </div>
-</section>
-
 <footer>
   <div>
     <div class="footer-logo">VELE<span class="x">X</span>IA</div>
-    <div class="footer-tagline">Every Inquiry. Ninety Seconds. Always. Built by Threshold Revenue Systems.</div>
+    <div class="footer-tagline">Every Lead. Ninety Seconds. Always. Built by Threshold Revenue Systems.</div>
   </div>
   <div class="footer-contact">
     <a href="mailto:team@velexia.co">team@velexia.co</a> &middot; <a href="https://velexia.co" style="color:var(--gold);text-decoration:none;">velexia.co</a>
@@ -1198,7 +1423,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
 </footer>
 
 <div class="float-cta" id="floatCta" style="display:none;">
-  <button class="float-btn" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})"><div class="float-pulse"></div>Choose Your Tier</button>
+  <button class="float-btn" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})"><div class="float-pulse"></div>Claim Your Deployment Slot</button>
 </div>
 
 </div><!-- end mainContent -->
@@ -1332,35 +1557,93 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style
 
 // LEAK CALCULATOR
 function runLeakCalc(){
+  const AVG_COMMISSION=9000;
+  const COLD_REACH_RATE=0.35;
+  const ISA_PAYROLL=143400;
+  const BDR_PAYROLL=110000;
+  const COMMISSION_CALLOUT=39000;
+  const DEPLOY_COST=49000;
+
   const leads=parseFloat(document.getElementById('calc-leads').value)||0;
-  const commission=parseFloat(document.getElementById('calc-commission').value)||0;
   const pct=parseFloat(document.getElementById('calc-pct').value)||35;
   const conv=parseFloat(document.getElementById('calc-conv').value)||3;
+  const humanRate=parseFloat(document.getElementById('calc-human-rate').value)||8;
+  const eliteRate=parseFloat(document.getElementById('calc-elite-rate').value)||24;
+  const cold=parseFloat(document.getElementById('calc-cold').value)||0;
+
   document.getElementById('calc-pct-label').textContent=pct+'%';
   document.getElementById('calc-conv-label').textContent=conv+'%';
+  document.getElementById('calc-human-rate-label').textContent=humanRate+'%';
+  document.getElementById('calc-elite-rate-label').textContent=eliteRate+'%';
   document.getElementById('calc-conv-note').textContent='At '+conv+'% conversion on untouched leads — your setting';
+
   const untouched=Math.round(leads*(pct/100));
-  const dealsLost=Math.max(1,Math.round(untouched*12*(conv/100)));
-  const leak=dealsLost*commission;
-  const monthly=Math.round(leak/12);
-  const net=leak-49000;
-  const payback=leak>0?(49000/(leak/12)):0;
-  const roi=leak>0?(leak/49000):0;
+  const reached=Math.max(0,leads-untouched);
+  const gapRate=Math.max(0,eliteRate-humanRate)/100;
+
+  // Bucket 1 — ISA speed-to-lead leak
+  const dealsLost=Math.max(0,Math.round(untouched*12*(conv/100)));
+  const leakSpeed=dealsLost*AVG_COMMISSION;
+
+  // Bucket 2 — ISA skill-gap leak
+  const skillgapDeals=Math.max(0,Math.round(reached*12*gapRate));
+  const leakIsaSkill=skillgapDeals*AVG_COMMISSION;
+
+  // Cold/dormant pool splits into never-reached vs reached-but-under-closed
+  const coldReached=cold*COLD_REACH_RATE;
+  const coldNever=cold*(1-COLD_REACH_RATE);
+
+  // Bucket 3 — BDR never-contacted leak
+  const coldDealsLost=Math.max(0,Math.round(coldNever*12*(conv/100)));
+  const leakBdrContact=coldDealsLost*AVG_COMMISSION;
+
+  // Bucket 4 — BDR skill-gap leak
+  const bdrSkillgapDeals=Math.max(0,Math.round(coldReached*12*gapRate));
+  const leakBdrSkill=bdrSkillgapDeals*AVG_COMMISSION;
+
+  const totalLeak=leakSpeed+leakIsaSkill+leakBdrContact+leakBdrSkill;
+  const payrollTotal=ISA_PAYROLL+BDR_PAYROLL;
+  const megaTotal=totalLeak+payrollTotal;
+
+  const guaranteedLeak=leakSpeed+leakBdrContact;
+  const monthly=Math.round(guaranteedLeak/12);
+  const net=guaranteedLeak-DEPLOY_COST;
+  const payback=guaranteedLeak>0?(DEPLOY_COST/(guaranteedLeak/12)):0;
+  const roi=guaranteedLeak>0?(guaranteedLeak/DEPLOY_COST):0;
+  const roiFull=totalLeak>0?(totalLeak/DEPLOY_COST):0;
+
   document.getElementById('calc-untouched').textContent=untouched.toLocaleString();
   document.getElementById('calc-deals').textContent=dealsLost.toLocaleString();
-  document.getElementById('calc-leak').textContent='$'+leak.toLocaleString();
+  document.getElementById('calc-skillgap-deals').textContent=skillgapDeals.toLocaleString();
+  document.getElementById('calc-cold-deals').textContent=coldDealsLost.toLocaleString();
+  document.getElementById('calc-bdr-skillgap-deals').textContent=bdrSkillgapDeals.toLocaleString();
+
+  document.getElementById('calc-leak-speed').textContent='$'+leakSpeed.toLocaleString();
+  document.getElementById('calc-leak-isa-skill').textContent='$'+leakIsaSkill.toLocaleString();
+  document.getElementById('calc-leak-bdr-contact').textContent='$'+leakBdrContact.toLocaleString();
+  document.getElementById('calc-leak-bdr-skill').textContent='$'+leakBdrSkill.toLocaleString();
+  document.getElementById('calc-leak-total').textContent='$'+totalLeak.toLocaleString();
+  document.getElementById('calc-payroll-total').textContent='$'+payrollTotal.toLocaleString();
+  document.getElementById('calc-commission-callout').textContent='$'+COMMISSION_CALLOUT.toLocaleString();
+  document.getElementById('calc-mega-total').textContent='$'+megaTotal.toLocaleString();
+
+  document.getElementById('calc-leak').textContent='$'+guaranteedLeak.toLocaleString();
   document.getElementById('calc-monthly').textContent='$'+monthly.toLocaleString();
-  document.getElementById('calc-payback').textContent=payback>0&&payback<24?payback.toFixed(1)+' months':'—';
+  document.getElementById('calc-payback-hero').textContent=payback>0&&payback<24?payback.toFixed(1)+' Months':'—';
   document.getElementById('calc-roi').textContent=roi>0?roi.toFixed(1)+'×':'—';
+  document.getElementById('calc-roi-full').textContent=roiFull>0?roiFull.toFixed(1)+'×':'—';
+
   const netEl=document.getElementById('calc-net');
   netEl.textContent=(net>=0?'$':'-$')+Math.abs(net).toLocaleString();
   netEl.style.color=net>=0?'#2E9E6E':'#D1505A';
-  window.vxAnnualLeak=leak;
+
+  window.vxAnnualLeak=guaranteedLeak;
+
   const v=document.getElementById('calc-verdict');
-  if(leak>=250000){v.innerHTML='<strong style="color:#D1505A;">Verdict: this is a quarter-million-dollar leak.</strong> At this scale, every week of deliberation costs roughly $'+Math.round(leak/52).toLocaleString()+'. The question is no longer whether to fix it — it is how much more it collects before you do.';}
-  else if(leak>=100000){v.innerHTML='<strong style="color:#D1505A;">Verdict: a six-figure leak.</strong> Your pipeline surrenders about $'+monthly.toLocaleString()+' every month to whoever answers first. One recovered deal covers the entire system.';}
-  else if(leak>=40000){v.innerHTML='<strong style="color:var(--gold);">Verdict: a meaningful leak.</strong> $'+monthly.toLocaleString()+' a month is walking out after hours. The system pays for itself in '+(payback<24?payback.toFixed(1)+' months':'under a year')+' — everything after that is recovered profit.';}
-  else{v.innerHTML='<strong style="color:var(--gold);">Verdict: a controlled leak — for now.</strong> Even at this volume, speed decides who wins each lead. As your lead flow grows, this number grows with it.';}
+  if(megaTotal>=2000000){v.innerHTML='<strong style="color:#D1505A;">Verdict: a multi-million-dollar leak.</strong> You are surrendering roughly $'+Math.round(megaTotal/52).toLocaleString()+' a week to the old way. The guaranteed portion alone pays for the system in '+(payback<24?payback.toFixed(1)+' months':'under a year')+'.';}
+  else if(megaTotal>=750000){v.innerHTML='<strong style="color:#D1505A;">Verdict: a severe six-to-seven-figure leak.</strong> Speed, skill, and payroll are compounding against you every month. One recovered deal covers the entire system many times over.';}
+  else if(megaTotal>=250000){v.innerHTML='<strong style="color:var(--gold);">Verdict: a meaningful, compounding leak.</strong> The guaranteed portion alone — speed-to-lead plus your dormant database — pays for the system in '+(payback<24?payback.toFixed(1)+' months':'under a year')+'. Everything after that, across all four buckets, is upside.';}
+  else{v.innerHTML='<strong style="color:var(--gold);">Verdict: a controlled leak — for now.</strong> Even at this volume, speed and skill decide who captures the deal. As your lead flow and database grow, every bucket above grows with it.';}
 }
 function initPage(){
   document.querySelectorAll('a,button,.feature-card,.benefit-card,.access-card,.skill-card,.ac-card,.pipe-step,.price-card').forEach(el=>{
