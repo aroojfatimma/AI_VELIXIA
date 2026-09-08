@@ -1280,7 +1280,7 @@ const CODE_HASHES = [
   'c3b933418c92fd58b013d1701558596cca61bebe119547585848e813c3030f6f', // RONX-2025 (fixed — the old "RON--2025" could never be typed: the input field always collapses to one dash after 4 chars, so "RON-2025" auto-formats to "RON2-025" and would never match)
   '2971eef2a808fb717803ea14876fb602555a8fec5caac043dcb8563bc0f0ae34', // VLX1-2025
   '55ba02492ad952afe1959d09516bc7420bea7eba3531b99caf1ca8734da3689b', // VLX2-2025
-  '8fd88d1c93562fb46c2088651b61b3cb3503c0df1981482aa8c35a8f2c093c2b', // VLX3-2025
+  '8fd88d1c93562fb46c2088651b61b3cb3503c0df1981482aa8c35a8f2c093c2b', // VELX-7655
 ];
 async function sha256Hex(str){
   const buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
