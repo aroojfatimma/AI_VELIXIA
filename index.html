@@ -1106,7 +1106,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
           <li>Dedicated deployment team &middot; Live in 21 days</li>
         </ul>
         <div class="price-unlocks">Custom-built per deployment</div>
-        <a class="price-cta" href="https://app.boldsign.com/document/sign-bulk-links/?documentId=ad5d12cd-25b1-4f2f-8f9a-5929988d2fa2s_WbpAK" target="_blank" rel="noopener" style="display:block;">Apply for Starter Deployment &rarr;</a>
+        <button class="price-cta" onclick="openTierModal('Starter Deployment')" style="display:block;">Confirm Your Tier &rarr;</button>
       </div>
 
       <!-- TIER 2: PRO -->
@@ -1128,7 +1128,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
           <li>Monthly strategy and performance optimisation call</li>
         </ul>
         <div class="price-unlocks">&#10003; Most Chosen &middot; Full inbound + outbound + nurture &middot; Engineer-direct build</div>
-        <a class="price-cta" href="https://app.boldsign.com/document/sign-bulk-links/?documentId=0b5b5eb3-be90-41c7-9672-9172f2557869s_UWpMn" target="_blank" rel="noopener" style="display:block;">Apply for Pro Deployment &rarr;</a>
+        <button class="price-cta" onclick="openTierModal('Pro Deployment')" style="display:block;">Confirm Your Tier &rarr;</button>
       </div>
 
       <!-- TIER 3: ELITE -->
@@ -1151,7 +1151,7 @@ footer{background:var(--charcoal);padding:44px 60px;display:flex;align-items:cen
           <li>Priority access to all new Velexia capabilities as released</li>
         </ul>
         <div class="price-unlocks">Enterprise-grade intelligence &middot; Multi-market deployment</div>
-        <a class="price-cta" href="https://app.boldsign.com/document/sign-bulk-links/?documentId=e05d437f-6f40-40c7-96e8-4802f5052e11s_mTeea" target="_blank" rel="noopener" style="display:block;">Apply for Elite Deployment &rarr;</a>
+        <button class="price-cta" onclick="openTierModal('Elite Deployment')" style="display:block;">Confirm Your Tier &rarr;</button>
       </div>
     </div>
     <div style="margin-top:40px;padding:32px;background:var(--bg-warm);border:1px solid var(--border);clip-path:polygon(16px 0%,100% 0%,100% calc(100% - 16px),calc(100% - 16px) 100%,0% 100%,0% 16px);">
@@ -1482,6 +1482,65 @@ function initPage(){
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'});});
   });
+}
+</script>
+<div id="tierModalOverlay" style="display:none;position:fixed;inset:0;background:rgba(20,18,14,0.72);z-index:99998;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);">
+  <div style="background:var(--bg,#fff);max-width:440px;width:100%;position:relative;padding:40px 32px;clip-path:polygon(14px 0%,100% 0%,100% calc(100% - 14px),calc(100% - 14px) 100%,0% 100%,0% 14px);">
+    <button onclick="closeTierModal()" aria-label="Close" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;line-height:1;cursor:pointer;color:var(--text-muted,#888);">&#10005;</button>
+    <div id="tierModalStep1">
+      <div class="price-tier" style="margin-bottom:4px;">Reserve Your Deployment</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:26px;margin:0 0 6px;" id="tierModalTitle"></h3>
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--text-muted,#888);margin:0 0 24px;font-size:15px;line-height:1.5;">Deployment slots are limited by design — we onboard a select number of brokerages per cycle. Confirm your details below and your agreement will be issued for signature shortly.</p>
+      <form id="tierForm" onsubmit="submitTierForm(event)">
+        <input type="hidden" name="access_key" value="376bc6aa-6f69-48a1-8972-a7ebe26690f4">
+        <input type="hidden" name="subject" id="tierFormSubject" value="">
+        <input type="hidden" name="tier" id="tierFormTier" value="">
+        <input required name="name" placeholder="Full Name" style="width:100%;margin-bottom:12px;padding:14px 16px;border:1px solid var(--border,#ddd);background:transparent;font-family:'Montserrat',sans-serif;font-size:14px;color:var(--text,#111);outline:none;">
+        <input required type="email" name="email" placeholder="Email" style="width:100%;margin-bottom:12px;padding:14px 16px;border:1px solid var(--border,#ddd);background:transparent;font-family:'Montserrat',sans-serif;font-size:14px;color:var(--text,#111);outline:none;">
+        <input name="company" placeholder="Company / Brokerage" style="width:100%;margin-bottom:12px;padding:14px 16px;border:1px solid var(--border,#ddd);background:transparent;font-family:'Montserrat',sans-serif;font-size:14px;color:var(--text,#111);outline:none;">
+        <input name="phone" placeholder="Phone (optional)" style="width:100%;margin-bottom:20px;padding:14px 16px;border:1px solid var(--border,#ddd);background:transparent;font-family:'Montserrat',sans-serif;font-size:14px;color:var(--text,#111);outline:none;">
+        <button type="submit" class="price-cta" style="background:var(--gold);color:var(--white,#fff);">Secure My Deployment &rarr;</button>
+        <p style="text-align:center;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted,#999);margin-top:14px;">Private &amp; confidential</p>
+        <p id="tierFormError" style="display:none;color:#c0392b;font-size:12px;margin-top:10px;"></p>
+      </form>
+    </div>
+    <div id="tierModalStep2" style="display:none;text-align:center;padding:20px 0;">
+      <div class="price-tier" style="margin-bottom:10px;justify-content:center;display:flex;">Slot Reserved</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:26px;margin:0 0 12px;">Welcome to Velexia.</h3>
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--text-muted,#888);font-size:16px;line-height:1.6;">Your deployment slot is held. Your signing agreement is being prepared and will land in your inbox shortly — complete it to lock in your onboarding date.</p>
+    </div>
+  </div>
+</div>
+<script>
+function openTierModal(tier){
+  document.getElementById('tierModalTitle').textContent=tier;
+  document.getElementById('tierFormTier').value=tier;
+  document.getElementById('tierFormSubject').value='Tier Confirmation: '+tier;
+  document.getElementById('tierModalStep1').style.display='block';
+  document.getElementById('tierModalStep2').style.display='none';
+  document.getElementById('tierForm').reset();
+  document.getElementById('tierFormTier').value=tier;
+  document.getElementById('tierFormSubject').value='Tier Confirmation: '+tier;
+  document.getElementById('tierModalOverlay').style.display='flex';
+}
+function closeTierModal(){document.getElementById('tierModalOverlay').style.display='none';}
+async function submitTierForm(e){
+  e.preventDefault();
+  var form=e.target, btn=form.querySelector('button[type="submit"]'), err=document.getElementById('tierFormError');
+  err.style.display='none'; btn.disabled=true; btn.textContent='Sending...';
+  try{
+    var res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(form)))});
+    var data=await res.json();
+    if(data.success){
+      document.getElementById('tierModalStep1').style.display='none';
+      document.getElementById('tierModalStep2').style.display='block';
+    } else { throw new Error(data.message||'Submission failed'); }
+  }catch(err2){
+    err.textContent='Something went wrong — please try again or email team@velexia.co directly.';
+    err.style.display='block';
+  }finally{
+    btn.disabled=false; btn.textContent='Secure My Deployment \u2192';
+  }
 }
 </script>
 </body>
