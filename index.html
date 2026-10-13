@@ -1260,27 +1260,26 @@ document.addEventListener('visibilitychange',function(){
 // offline. Real single-use enforcement across devices/sessions needs a
 // backend check (e.g. a Make.com webhook against a sheet) rather than
 // anything client-side.
-const MASTER_HASH = 'd26c3f9d92c3bed60635734aa9e10a85708270c984d59c8cb45653491bab61a9';
-// PERSONAL_HASHES: codes that ALWAYS work, unlimited times, on any device.
-// Use this list for your own codes or ones you hand to people you want to
-// let back in repeatedly. They behave like the master code but can be
-// revoked individually without touching MASTER_HASH.
+// PERSONAL_HASHES: the ONLY codes that ALWAYS work, unlimited times, on any
+// device. MUFL-IHUN is the permanent code; every other code is single-use.
 const PERSONAL_HASHES = [
-  '7cf86bd76ed6887ca84ae947dc1484f0f589e28dfa7f9c91a852ee5b33dffb0e', // ARUJ-HADI
+  'eed02094180b3f0bb03492e8f0295bbeb339ecaccdcb94650b94b80edeeba145', // MUFL-IHUN
 ];
 // CODE_HASHES: single-use guest codes. Each one works exactly once per
 // device/browser (see isCodeUsed/markCodeUsed below), then shows the
 // "blocked" screen.
 const CODE_HASHES = [
-  '4cd1561cca9ea9061b2e54aa7b1a868d1aa85a3f654c9db7f13072ba8df86efd', // NICK-2025
-  '20d23c101f7bfe3563f540511869913e6ad6cf93023b6240569457caedadcdb3', // MIKE-2025
-  'cace4ae3397c26e260df8a8d3c4efef148057e8ea16451e79e17dabf1357ecd2', // SARA-2025
-  'b8af4d8a1fb14061f83d9cf56be1926d306936f6782434562763ce5681536f4c', // JOHN-2025
-  'caab3f7cbbf6699dd4cdaa95eb21c083bbb139a37dca065a2529e5292df00c65', // ALEX-2025
-  'c3b933418c92fd58b013d1701558596cca61bebe119547585848e813c3030f6f', // RONX-2025 (fixed — the old "RON--2025" could never be typed: the input field always collapses to one dash after 4 chars, so "RON-2025" auto-formats to "RON2-025" and would never match)
-  '2971eef2a808fb717803ea14876fb602555a8fec5caac043dcb8563bc0f0ae34', // VLX1-2025
-  '55ba02492ad952afe1959d09516bc7420bea7eba3531b99caf1ca8734da3689b', // VLX2-2025
-  '8fd88d1c93562fb46c2088651b61b3cb3503c0df1981482aa8c35a8f2c093c2b', // VELX-7655
+  'd26c3f9d92c3bed60635734aa9e10a85708270c984d59c8cb45653491bab61a9', // former master code (now single-use)
+  '222ec267cbc2b18ec16b269141c043e2684860018aac05ec7f0f14f190ae32b5', // guest 01
+  'c0591f0a4df395c0ce62d96e9cd009378c2d92b504bf74b1102e65e50aedbe88', // guest 02
+  '0cd685f4bd409b7335eee21f800a196436371b5cf3897dbb75c610ccdb77ec70', // guest 03
+  'b40cf3c03d60f4993ef8464304f9453ad4472fdfac714e817785da149644c704', // guest 04
+  'f5cb635b792e0587516e55067edaf68a0d9aaf1b98ada337ff2218aefe1de1f0', // guest 05
+  '01b14033a3d270238c00682850d72cc179314c20a44bc2cc8abe8b7970760a93', // guest 06
+  'e01310da6c9d56a2bb121f3c24610afef4c300e584348f1d480dd4eb4f593858', // guest 07
+  '2da386579eb301d188676bb6ce8f6f8dbecae0206f3a03b9503ca51e443f38c2', // guest 08
+  '0c753ef8391f74e39d5b5d835a65a1755dbbcea32aed728be1218dec14a5c9b3', // guest 09
+  'cb5e1a87e50b4b4f86051ce8937a77dce568f2faf074e58203e18f2c3e0b48f1', // guest 10
 ];
 async function sha256Hex(str){
   const buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
@@ -1304,11 +1303,6 @@ async function checkAccess(){
   const input=document.getElementById('gateInput').value.trim().toUpperCase();
   const errEl=document.getElementById('gateError');
   const hash=await sha256Hex(input);
-  if(hash===MASTER_HASH){
-    sessionStorage.setItem('vx_access','granted');
-    sessionStorage.setItem('vx_master','true');
-    grantAccess('Arooj');return;
-  }
   if(PERSONAL_HASHES.includes(hash)){
     sessionStorage.setItem('vx_access','granted');
     sessionStorage.setItem('vx_master','true');
